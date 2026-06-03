@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { Firestore, doc, setDoc, collection, getDoc } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Passageiro } from '../models/passageiro.model';
 import { Motorista } from '../models/motorista.model';
 
