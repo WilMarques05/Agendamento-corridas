@@ -1,4 +1,11 @@
-form{
+h2{
+  text-align: center;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  color: #2d3436c3;
+  letter-spacing: 0.5px;
+}
+
+form {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -7,7 +14,7 @@ form{
   gap: 5px;
 }
 
-div{
+div {
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -16,24 +23,39 @@ div{
   gap: 6px;
 }
 
-input{
-  border: 0.5px solid gray;
+input {
+  border: 0.5px solid #DFE6ED;
   border-radius: 8px;
-  height: 30px;
+  height: 24px;
   padding: 4px;
+  transition: all 0.2s ease-in-out;
 }
 
-input::placeholder{
+input::placeholder {
   font-size: 0.7rem;
   padding-left: 8px;
 }
 
-button{
+input:focus{
+  outline: none;
+  border: 0.5px solid #0984E3;
+  box-shadow: 0 0 0 3px rgba(9, 133, 227, 0.269);
+}
+
+button {
   align-self: flex-end;
-  background-color: rgba(37, 227, 37, 0.557);
+  background-color: #00B894;
+  transition: background-color 0.2s ease-in-out;
+  color: #FFFFFF;
+  border: 1px solid white;
   border-radius: 100px;
   width: 100px;
   height: 40px;
   font-weight: 600;
+  letter-spacing: 1px;
   cursor: pointer;
+}
+
+button:hover{
+  background-color: #00A884 ;
 }
