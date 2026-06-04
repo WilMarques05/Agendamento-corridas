@@ -1,1 +1,55 @@
-<p>cadastro-passageiro works!</p>
+<h1>Cadastre-se</h1>
+
+<form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+  <div>
+    <input type="text" placeholder="Digite seu nome *" formControlName="nome" id="" />
+    @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+      <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end">
+        Por favor, digite seu nome</small
+      >
+    }
+
+    <input type="text" placeholder="Digite seu CPF *" formControlName="cpf" id="" />
+    @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
+      @if (formulario.get('cpf')?.hasError('required')) {
+        <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end"
+          >Por favor, digite seu CPF</small
+        >
+      }
+      @if (formulario.get('cpf')?.hasError('minlength')) {
+        <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end"
+          >O CPF precisa conter 11 dígitos</small
+        >
+      }
+    }
+
+    <input type="tel" placeholder="Digite seu telefone *" formControlName="telefone" id="" />
+    @if (formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
+      <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end"
+        >Por favor, digite seu telefone</small
+      >
+    }
+
+    <input type="email" placeholder="Digite seu e-mail *" formControlName="email" id="" />
+    @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+      <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end"
+        >Por favor, digite seu e-mail</small
+      >
+    }
+
+    <input type="password" placeholder="Digite sua senha *" formControlName="senha" id="" />
+    @if (formulario.get('senha')?.invalid && formulario.get('senha')?.touched) {
+      @if (formulario.get('senha')?.hasError('required')) {
+        <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end"
+        >Por favor, digite sua senha</small
+      >
+      }
+      @if (formulario.get('senha')?.hasError('minlength')) {
+        <small style="color: rgba(255, 0, 0, 0.5); align-self: flex-end"
+        >A senha precisa conter mais de 6 caracteres</small
+      >
+      }
+    }
+  </div>
+  <button type="submit">Cadastrar</button>
+</form>

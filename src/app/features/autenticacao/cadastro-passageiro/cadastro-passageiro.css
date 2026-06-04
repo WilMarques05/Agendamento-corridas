@@ -1,0 +1,39 @@
+form{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 6px;
+  gap: 5px;
+}
+
+div{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  gap: 6px;
+}
+
+input{
+  border: 0.5px solid gray;
+  border-radius: 8px;
+  height: 30px;
+  padding: 4px;
+}
+
+input::placeholder{
+  font-size: 0.7rem;
+  padding-left: 8px;
+}
+
+button{
+  align-self: flex-end;
+  background-color: rgba(37, 227, 37, 0.557);
+  border-radius: 100px;
+  width: 100px;
+  height: 40px;
+  font-weight: 600;
+  cursor: pointer;
+}
