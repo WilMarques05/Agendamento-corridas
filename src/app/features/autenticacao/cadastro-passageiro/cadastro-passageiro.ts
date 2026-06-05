@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { Autenticacao } from '../../../shared/services/autenticacao';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 
@@ -9,16 +9,17 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
   styleUrl: './cadastro-passageiro.css',
 })
 export class CadastroPassageiro {
-
   private authService = inject(Autenticacao);
-
+  private changeDetector = inject(ChangeDetectorRef);
   private formBuilder = inject(FormBuilder);
+
   formulario = this.formBuilder.group({
     nome: ['', [Validators.required]],
     cpf: ['', [Validators.required, Validators.minLength(11)]],
     telefone: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    senha: ['',[Validators.required, Validators.minLength(6)]]
+    senha: ['',[Validators.required, Validators.minLength(6)]],
+    foto: ['', [Validators.required]]
   });
 
   async cadastrar(){
@@ -29,6 +30,19 @@ export class CadastroPassageiro {
       this.formulario.reset();
     }else{
       console.log('Formulário inválido! Verifique os campos.' );
+    }
+  }
+
+  selecionarFoto(event: any){
+    const arquivo = event.target.files[0];
+    if(arquivo){
+      const leitor = new FileReader();
+        leitor.onload = () => {
+          this.formulario.patchValue({foto: leitor.result as string});
+          this.changeDetector.detectChanges();
+          this.formulario.get('foto')?.markAsDirty();
+        }
+      leitor.readAsDataURL(arquivo);
     }
   }
 }

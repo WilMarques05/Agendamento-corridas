@@ -23,6 +23,11 @@ div {
   gap: 6px;
 }
 
+small.texto-alerta{
+  align-self: flex-end;
+  color: rgba(255, 0, 0, 0.578);
+}
+
 input {
   border: 0.5px solid #DFE6ED;
   border-radius: 8px;
@@ -58,4 +63,28 @@ button {
 
 button:hover{
   background-color: #00A884 ;
+}
+
+p{
+  color: #2d3436c3;
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  padding-left: 4px;
+}
+
+div.foto-perfil-container{
+  align-self: flex-end;
+  border: none;
+  padding: 0"
+}
+
+img.foto-perfil{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00B894;
+  box-shadow: 0 4px 20px rgba(0, 184, 148, 0.2);
+  margin: 10px auto;
+  display: block;
 }
