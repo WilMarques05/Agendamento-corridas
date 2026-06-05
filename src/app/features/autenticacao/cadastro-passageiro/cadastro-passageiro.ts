@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { idToken } from '@angular/fire/auth';
+import { Autenticacao } from '../../../shared/services/autenticacao';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 
 @Component({
@@ -9,6 +9,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
   styleUrl: './cadastro-passageiro.css',
 })
 export class CadastroPassageiro {
+
+  private authService = inject(Autenticacao);
+
   private formBuilder = inject(FormBuilder);
   formulario = this.formBuilder.group({
     nome: ['', [Validators.required]],
@@ -18,9 +21,12 @@ export class CadastroPassageiro {
     senha: ['',[Validators.required, Validators.minLength(6)]]
   });
 
-  cadastrar(){
+  async cadastrar(){
     if(this.formulario.valid){
-      console.log('Dados prontos para firebase:', this.formulario.value);
+      const {senha, ...dadosSemSenha} = this.formulario.value;
+      await this.authService.criarPassageiro(dadosSemSenha as any, senha as string);
+      console.log('Passageiro cadastrado com sucesso no Firebase');
+      this.formulario.reset();
     }else{
       console.log('Formulário inválido! Verifique os campos.' );
     }
