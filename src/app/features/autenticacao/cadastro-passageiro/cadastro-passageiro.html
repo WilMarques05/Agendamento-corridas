@@ -1,52 +1,126 @@
-<h2>Cadastre-se</h2>
+<section class="container-principal">
+<div class="text-container">
+  <h2 class="subtitulo">Criar Conta</h2>
+  <p class="subtitulo-descricao">
+    Preencha seus dados para realizar seu cadastro e começar a solicitar corridas
+  </p>
+</div>
+<picture class="imagem-container">
+  <img class="imagem-page" src="imagem_tela_cadastro_passageiro_4k.png" alt="Imagem-carro-layout">
+</picture>
 
-<form [formGroup]="formulario" (ngSubmit)="cadastrar()">
-  <div>
-    <input type="text" placeholder="Digite seu nome *" formControlName="nome" id="" />
-    @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
-      <small class="texto-alerta"> Por favor, digite seu nome</small>
-    }
 
-    <input type="text" placeholder="Digite seu CPF *" formControlName="cpf" id="" />
-    @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
-      @if (formulario.get('cpf')?.hasError('required')) {
-        <small class="texto-alerta">Por favor, digite seu CPF</small>
+<form class="formulario-container" [formGroup]="formulario" (ngSubmit)="cadastrar()">
+  <div class="campos-formulario-container">
+    <div
+      class="grupo-campos-formulario"
+      [class.invalid]="formulario.get('nome')?.invalid && formulario.get('nome')?.touched"
+    >
+      <label class="formulario-label">Nome Completo *</label>
+      <input
+        type="text"
+        placeholder="Digite seu nome"
+        formControlName="nome"
+        class="texto-input"
+      />
+      @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+        <small class="mensagem-erro">Por favor, digite seu nome</small>
       }
-      @if (formulario.get('cpf')?.hasError('minlength')) {
-        <small class="texto-alerta">O CPF precisa conter 11 dígitos</small>
+    </div>
+
+    <div
+      class="grupo-campos-formulario"
+      [class.invalid]="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched"
+    >
+      <label class="formulario-label">CPF *</label>
+      <input type="text" placeholder="000.000.000-00" formControlName="cpf" class="texto-input" />
+      @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
+        @if (formulario.get('cpf')?.hasError('required')) {
+          <small class="mensagem-erro">Por favor, digite seu CPF</small>
+        }
+        @if (formulario.get('cpf')?.hasError('minlength')) {
+          <small class="mensagem-erro">O CPF precisa conter 11 dígitos</small>
+        }
       }
-    }
+    </div>
 
-    <input type="tel" placeholder="Digite seu telefone *" formControlName="telefone" id="" />
-    @if (formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
-      <small class="texto-alerta">Por favor, digite seu telefone</small>
-    }
-
-    <input type="email" placeholder="Digite seu e-mail *" formControlName="email" id="" />
-    @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
-      <small class="texto-alerta">Por favor, digite seu e-mail</small>
-    }
-
-    <input type="password" placeholder="Digite sua senha *" formControlName="senha" id="" />
-    @if (formulario.get('senha')?.invalid && formulario.get('senha')?.touched) {
-      @if (formulario.get('senha')?.hasError('required')) {
-        <small class="texto-alerta">Por favor, digite sua senha</small>
+    <div
+      class="grupo-campos-formulario"
+      [class.invalid]="formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched"
+    >
+      <label class="formulario-label">Telefone *</label>
+      <input
+        type="tel"
+        placeholder="(71) 99999-9999"
+        formControlName="telefone"
+        class="texto-input"
+      />
+      @if (formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
+        <small class="mensagem-erro">Por favor, digite seu telefone</small>
       }
-      @if (formulario.get('senha')?.hasError('minlength')) {
-        <small class="texto-alerta">A senha precisa conter mais de 6 caracteres</small>
-      }
-    }
+    </div>
 
-    <p>Adicione uma foto de Perfil: *</p>
-    <input type="file" accept="image/*" (change)="selecionarFoto($event)" />
-    @if (formulario.get('foto')?.invalid && (formulario.get('foto')?.dirty || formulario.touched)) {
-      <small class="texto-alerta">Por favor, adicione uma foto de perfil</small>
-    }
-    @if (formulario.get('foto')?.value) {
-      <div class="foto-perfil-container">
-        <img [src]="formulario.get('foto')?.value" alt="Foto de perfil" class="foto-perfil" />
-      </div>
-    }
+    <div
+      class="grupo-campos-formulario"
+      [class.invalid]="formulario.get('email')?.invalid && formulario.get('email')?.touched"
+    >
+      <label class="formulario-label">E-mail *</label>
+      <input
+        type="email"
+        placeholder="seu-email@dominio.com"
+        formControlName="email"
+        class="texto-input"
+      />
+      @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+        <small class="mensagem-erro">Por favor, digite seu e-mail</small>
+      }
+    </div>
+
+    <div
+      class="grupo-campos-formulario"
+      [class.invalid]="formulario.get('senha')?.invalid && formulario.get('senha')?.touched"
+    >
+      <label class="formulario-label">Senha *</label>
+      <input
+        type="password"
+        placeholder="Digite sua senha"
+        formControlName="senha"
+        class="texto-input"
+      />
+      @if (formulario.get('senha')?.invalid && formulario.get('senha')?.touched) {
+        @if (formulario.get('senha')?.hasError('required')) {
+          <small class="mensagem-erro">Por favor, digite sua senha</small>
+        }
+        @if (formulario.get('senha')?.hasError('minlength')) {
+          <small class="mensagem-erro">A senha precisa conter mais de 6 caracteres</small>
+        }
+      }
+    </div>
+
+    <div class="grupo-campos-formulario">
+      <label class="formulario-label formulario-foto">Foto de Perfil *</label>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="selecionarFoto($event)"
+        class="input-foto"
+        id="fotoPerfil"
+      />
+      <label for="fotoPerfil" class="mensagem-arquivo-foto formulario-foto"> Escolher Imagem </label>
+
+      @if (formulario.get('foto')?.invalid && formulario.get('foto')?.touched) {
+        <small class="mensagem-erro">Por favor, adicione uma foto de perfil</small>
+      }
+
+      @if (formulario.get('foto')?.value) {
+        <div class="foto-container">
+          <img [src]="formulario.get('foto')?.value" alt="Foto de perfil" class="foto-perfil" />
+        </div>
+      }
+    </div>
   </div>
-  <button type="submit">Cadastrar</button>
+<div class="btn-container">
+  <button type="submit" class="btn-finalizar-cadastro">Finalizar Cadastro</button>
+</div>
 </form>
+</section>
