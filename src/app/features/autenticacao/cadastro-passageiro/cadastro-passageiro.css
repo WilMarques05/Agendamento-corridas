@@ -6,7 +6,7 @@ section.container-principal {
   align-items: center;
   padding: 20px;
   position: relative;
-  overflow:visible;
+  overflow: visible;
   gap: 40px;
 }
 
@@ -247,7 +247,7 @@ input.texto-input:focus {
     font-size: 2rem;
   }
 
-  form{
+  form {
     margin-top: -40px;
   }
 
