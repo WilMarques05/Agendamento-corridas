@@ -39,4 +39,15 @@ export class CadastroMotorista {
       console.log('Formulário inválido, verifique os campos.')
     }
   }
+
+  selecionarFoto(event: any, nomeCampo: string){
+    const arquivo = event.target.files[0];
+
+    if(arquivo){
+      const urlImagem = URL.createObjectURL(arquivo);
+      this.formulario.patchValue({[nomeCampo]: urlImagem});
+      this.formulario.get(nomeCampo)?.markAsDirty();
+      this.formulario.get(nomeCampo)?.markAllAsTouched();
+    }
+  }
 }
