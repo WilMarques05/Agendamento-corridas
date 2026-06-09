@@ -1,1 +1,41 @@
-<p>cadastro-motorista works!</p>
+<section class="container-principal">
+  <div class="text-container">
+    <h2 class="subtitulo">Seja um motorista parceiro</h2>
+    <p class="subtitulo-descricao">Cadastre-se para começar a aceitar agendamentos</p>
+  </div>
+  <picture class="imagem-container">
+    <img class="imagem-page" src="imagem_tela_cadastro_motorista_4k.png" alt="Imagem-carro-layout">
+  </picture>
+
+  <form class="formulario-container" [formGroup]="formulario" (ngSubmit)="cadastrar()">
+    <div class="grupo-campos-formulario" [class.invalid]="formulario.get('nome')?.invalid && formulario.get('nome')?.touched ">
+      <label class="formulario-label">Nome Completo *</label>
+      <input type="text" placeholder="Digite seu nome completo" formControlName="nomeCompleto" class="texto-input"/>
+
+      @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+        <small class="mensagem-erro">Por favor, digite seu nome</small>
+      }
+    </div>
+
+    <div class="grupo-campos-formulario" [class.invalid]="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched">
+      <label for="formulario-label">CPF *</label>
+      <input type="text" placeholder="000.000.000-00" formControlName="cpf" class="texto-input"/>
+      @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
+        @if (formulario.get('cpf')?.hasError('required')) {
+          <small class="mensagem-erro">Por favor, digite seu CPF</small>
+        }
+        @if (formulario.get('cpf')?.hasError('minlength')) {
+          <small class="mensagem-erro">O CPF precisa conter 11 dígitos</small>
+        }
+      }
+    </div>
+
+    <div class="grupo-campos-formulario" [class.invalid]="formulario.get('cidade')?.invalid && formulario.get('cidade')?.touched">
+      <label class="formulario-label">Digite sua Cidade *</label>
+      <input type="text" placeholder="Cidade" formControlName="cidade" class="texto-input">
+      @if (formulario.get('cidade')?.invalid && formulario.get('cidade')?.touched) {
+        <small class="mensagem-erro">Por favor, digite sua cidade</small>
+      }
+    </div>
+  </form>
+</section>
