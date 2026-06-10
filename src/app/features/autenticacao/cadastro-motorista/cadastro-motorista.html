@@ -232,71 +232,76 @@
           }
         }
       </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('fotoCarroExterna')?.invalid && formulario.get('fotoCarroExterna')?.touched
-        "
-      >
-        <label class="formulario-label">Foto Externa do Veículo *</label>
-        <input
-          type="file"
-          accept="image/*"
-          (change)="selecionarFoto($event, 'fotoCarroExterna')"
-          class="input-foto"
-          id="fotoCarroExterna"
-        />
-        <label for="fotoCarroExterna" class="mensagem-arquivo-foto formulario-foto"
-          >Escolher Imagem *</label
+      <div class="fotos-veiculo-linha">
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('fotoCarroExterna')?.invalid &&
+            formulario.get('fotoCarroExterna')?.touched
+          "
         >
-        @if (
-          formulario.get('fotoCarroExterna')?.invalid && formulario.get('fotoCarroExterna')?.touched
-        ) {
-          <small class="mensagem-erro">Por favor, adicione uma foto Externa do Veículo</small>
-        }
-        @if (formulario.get('fotoCarroExterna')?.value) {
-          <div class="foto-container">
-            <img
-              [src]="formulario.get('fotoCarroExterna')?.value"
-              alt="Foto-externa-veiculo"
-              class="foto-perfil"
-            />
-          </div>
-        }
-      </div>
+          <label class="formulario-label">Foto Externa do Veículo *</label>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="selecionarFoto($event, 'fotoCarroExterna')"
+            class="input-foto"
+            id="fotoCarroExterna"
+          />
+          <label for="fotoCarroExterna" class="mensagem-arquivo-foto formulario-foto"
+            >Escolher Imagem *</label
+          >
+          @if (
+            formulario.get('fotoCarroExterna')?.invalid &&
+            formulario.get('fotoCarroExterna')?.touched
+          ) {
+            <small class="mensagem-erro">Por favor, adicione uma foto Externa do Veículo</small>
+          }
+          @if (formulario.get('fotoCarroExterna')?.value) {
+            <div class="foto-container">
+              <img
+                [src]="formulario.get('fotoCarroExterna')?.value"
+                alt="Foto-externa-veiculo"
+                class="foto-perfil"
+              />
+            </div>
+          }
+        </div>
 
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('fotoCarroInterna')?.invalid && formulario.get('fotoCarroInterna')?.touched
-        "
-      >
-        <label class="formulario-label">Foto Interna do Veículo *</label>
-        <input
-          type="file"
-          accept="image/*"
-          (change)="selecionarFoto($event, 'fotoCarroInterna')"
-          class="input-foto"
-          id="fotoCarroInterna"
-        />
-        <label for="fotoCarroInterna" class="mensagem-arquivo-foto formulario-foto"
-          >Escolher Imagem *</label
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('fotoCarroInterna')?.invalid &&
+            formulario.get('fotoCarroInterna')?.touched
+          "
         >
-        @if (
-          formulario.get('fotoCarroInterna')?.invalid && formulario.get('fotoCarroInterna')?.touched
-        ) {
-          <small classe="mensagem-erro">Por favor, adicione uma foto interna do Veículo</small>
-        }
-        @if (formulario.get('fotoCarroInterna')?.value) {
-          <div class="foto-container">
-            <img
-              [src]="formulario.get('fotoCarroInterna')?.value"
-              alt="Foto-Interna-veiculo"
-              class="foto-perfil"
-            />
-          </div>
-        }
+          <label class="formulario-label">Foto Interna do Veículo *</label>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="selecionarFoto($event, 'fotoCarroInterna')"
+            class="input-foto"
+            id="fotoCarroInterna"
+          />
+          <label for="fotoCarroInterna" class="mensagem-arquivo-foto formulario-foto"
+            >Escolher Imagem *</label
+          >
+          @if (
+            formulario.get('fotoCarroInterna')?.invalid &&
+            formulario.get('fotoCarroInterna')?.touched
+          ) {
+            <small classe="mensagem-erro">Por favor, adicione uma foto interna do Veículo</small>
+          }
+          @if (formulario.get('fotoCarroInterna')?.value) {
+            <div class="foto-container">
+              <img
+                [src]="formulario.get('fotoCarroInterna')?.value"
+                alt="Foto-Interna-veiculo"
+                class="foto-perfil"
+              />
+            </div>
+          }
+        </div>
       </div>
     </fieldset>
     <div class="btn-container">
