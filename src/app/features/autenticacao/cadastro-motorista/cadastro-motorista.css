@@ -49,20 +49,20 @@ picture.imagem-container {
 
 img.imagem-page {
   object-fit: cover;
-  object-position: center;
-  opacity: 30%;
+  object-position: 140% center;
+  opacity: 70%;
   width: 100%;
   height: 100%;
 }
 
 form.formulario-container {
-  /* display: flex;
-  flex-direction: column; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  max-width: 500px;
+  max-width: 900px;
+  gap: 20px;
   width: 100%;
-  min-height: 70vh;
+  /* min-height: 70vh; */
+  height: auto;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid color-mix(in srgb, var(--ring) 60%, transparent);
@@ -70,6 +70,25 @@ form.formulario-container {
   padding: 24px 32px;
   box-shadow: 0 20px 250px -5px rgba(4, 120, 236, 0.15);
   z-index: 2;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+legend {
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 8px;
 }
 
 div.campos-formulario-container {
@@ -165,6 +184,13 @@ input.texto-input:focus {
   box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
 }
 
+.fotos-veiculo-linha {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
 .mensagem-erro {
   color: var(--destructive);
   font-size: 0.75rem;
@@ -187,15 +213,16 @@ input.texto-input:focus {
 }
 
 .btn-container {
+  grid-column: 1/-1;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  margin-top: 14px;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .btn-finalizar-cadastro {
   width: 100%;
-  max-width: 180px;
+  max-width: 220px;
   height: 40px;
   background: linear-gradient(to right, var(--primary), rgba(59, 130, 246, 0.9));
   color: var(--primary-foreground);
