@@ -12,300 +12,307 @@
   </picture>
 
   <form class="formulario-container" [formGroup]="formulario" (ngSubmit)="cadastrar()">
-    <fieldset>
-      <legend>Dados Motorista</legend>
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('nomeCompleto')?.invalid && formulario.get('nomeCompleto')?.touched
-        "
-      >
-        <label class="formulario-label">Nome Completo *</label>
-        <input
-          type="text"
-          placeholder="Digite seu nome completo"
-          formControlName="nomeCompleto"
-          class="texto-input"
-        />
-
-        @if (formulario.get('nomeCompleto')?.invalid && formulario.get('nomeCompleto')?.touched) {
-          <small class="mensagem-erro">Por favor, digite seu nome completo</small>
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched"
-      >
-        <label for="formulario-label">CPF *</label>
-        <input type="text" placeholder="000.000.000-00" formControlName="cpf" class="texto-input" />
-        @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
-          @if (formulario.get('cpf')?.hasError('required')) {
-            <small class="mensagem-erro">Por favor, digite seu CPF</small>
-          }
-          @if (formulario.get('cpf')?.hasError('minlength')) {
-            <small class="mensagem-erro">O CPF precisa conter 11 dígitos</small>
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="formulario.get('cidade')?.invalid && formulario.get('cidade')?.touched"
-      >
-        <label class="formulario-label">Digite sua Cidade *</label>
-        <input type="text" placeholder="Cidade" formControlName="cidade" class="texto-input" />
-        @if (formulario.get('cidade')?.invalid && formulario.get('cidade')?.touched) {
-          <small class="mensagem-erro">Por favor, digite sua cidade</small>
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched"
-      >
-        <label class="formulario-label">Digite seu Telefone *</label>
-        <input
-          type="tel"
-          placeholder="(71) 99999-9999"
-          formControlName="telefone"
-          class="texto-input"
-        />
-        @if (formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
-          <small class="mensagem-erro">Por favor, digite seu telefone</small>
-          @if (formulario.get('telefone')?.hasError('minlength')) {
-            <small class="mensagem-erro">O telefone precisa ter no mínimo 11 caracteres</small>
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="formulario.get('email')?.invalid && formulario.get('email')?.touched"
-      >
-        <label class="formulario-label">Digite seu e-mail *</label>
-        <input
-          type="email"
-          placeholder="seu-email@dominio.com"
-          formControlName="email"
-          class="texto-input"
-        />
-        @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
-          @if (formulario.get('email')?.hasError('required')) {
-            <small class="mensagem-erro">Por favor, digite seu e-mail</small>
-          }
-          @if (formulario.get('email')?.hasError('email')) {
-            <small class="mensagem-erro">Por favor, digite um e-mail válido</small>
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('valorPorKm')?.invalid && formulario.get('valorPorKm')?.touched
-        "
-      >
-        <label class="formulario-label">Digite quanto custa seu KM rodado *</label>
-        <input
-          type="number"
-          placeholder="R$/KM: 2.00"
-          formControlName="valorPorKm"
-          class="texto-input"
-        />
-        @if (formulario.get('valorPorKm')?.invalid && formulario.get('valorPorKm')?.touched) {
-          @if (formulario.get('valorPorKm')?.hasError('required')) {
-            <small class="mensagem-erro"
-              >Por favor, digite quanto pretende ganhar por KM rodado</small
-            >
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.Invalid]="formulario.get('senha')?.invalid && formulario.get('senha')?.touched"
-      >
-        <label class="formulario-label">Digite sua senha *</label>
-        <input
-          type="password"
-          placeholder="Digite sua senha"
-          formControlName="senha"
-          class="texto-input"
-        />
-        @if (formulario.get('senha')?.invalid && formulario.get('senha')?.touched) {
-          @if (formulario.get('senha')?.hasError('required')) {
-            <small class="mensagem-erro">Digite sua senha</small>
-          }
-          @if (formulario.get('senha')?.hasError('minlength')) {
-            <small class="mensagem-erro">A senha precisa conter mais de 6 caracteres</small>
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('fotoPerfil')?.invalid && formulario.get('fotoPerfil')?.touched
-        "
-      >
-        <label class="formulario-label">Adicione sua melhor foto *</label>
-        <input
-          type="file"
-          accept="image/*"
-          (change)="selecionarFoto($event, 'fotoPerfil')"
-          class="input-foto"
-          id="fotoPerfil"
-        />
-        <label for="fotoPerfil" class="mensagem-arquivo-foto formulario-foto"
-          >Escolher Imagem *</label
+    @if (passoAtual === 1) {
+      <fieldset>
+        <legend>Dados Motorista</legend>
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('nomeCompleto')?.invalid && formulario.get('nomeCompleto')?.touched
+          "
         >
-        @if (formulario.get('fotoPerfil')?.invalid && formulario.get('fotoPerfil')?.touched) {
-          <small class="mensagem-erro">Por favor, adicione uma foto de Perfil</small>
-        }
-        @if (formulario.get('fotoPerfil')?.value) {
-          <div class="foto-container">
-            <img
-              [src]="formulario.get('fotoPerfil')?.value"
-              alt="Foto-perfil"
-              class="foto-perfil"
+          <label class="formulario-label">Nome Completo *</label>
+          <input
+            type="text"
+            placeholder="Digite seu nome completo"
+            formControlName="nomeCompleto"
+            class="texto-input"
+          />
+
+          @if (formulario.get('nomeCompleto')?.invalid && formulario.get('nomeCompleto')?.touched) {
+            <small class="mensagem-erro">Por favor, digite seu nome completo</small>
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched"
+        >
+          <label for="formulario-label">CPF *</label>
+          <input type="text" placeholder="000.000.000-00" formControlName="cpf" class="texto-input" />
+          @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
+            @if (formulario.get('cpf')?.hasError('required')) {
+              <small class="mensagem-erro">Por favor, digite seu CPF</small>
+            }
+            @if (formulario.get('cpf')?.hasError('minlength')) {
+              <small class="mensagem-erro">O CPF precisa conter 11 dígitos</small>
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="formulario.get('cidade')?.invalid && formulario.get('cidade')?.touched"
+        >
+          <label class="formulario-label">Digite sua Cidade *</label>
+          <input type="text" placeholder="Cidade" formControlName="cidade" class="texto-input" />
+          @if (formulario.get('cidade')?.invalid && formulario.get('cidade')?.touched) {
+            <small class="mensagem-erro">Por favor, digite sua cidade</small>
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched"
+        >
+          <label class="formulario-label">Digite seu Telefone *</label>
+          <input
+            type="tel"
+            placeholder="(71) 99999-9999"
+            formControlName="telefone"
+            class="texto-input"
+          />
+          @if (formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
+            <small class="mensagem-erro">Por favor, digite seu telefone</small>
+            @if (formulario.get('telefone')?.hasError('minlength')) {
+              <small class="mensagem-erro">O telefone precisa ter no mínimo 11 caracteres</small>
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="formulario.get('email')?.invalid && formulario.get('email')?.touched"
+        >
+          <label class="formulario-label">Digite seu e-mail *</label>
+          <input
+            type="email"
+            placeholder="seu-email@dominio.com"
+            formControlName="email"
+            class="texto-input"
+          />
+          @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+            @if (formulario.get('email')?.hasError('required')) {
+              <small class="mensagem-erro">Por favor, digite seu e-mail</small>
+            }
+            @if (formulario.get('email')?.hasError('email')) {
+              <small class="mensagem-erro">Por favor, digite um e-mail válido</small>
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('valorPorKm')?.invalid && formulario.get('valorPorKm')?.touched
+          "
+        >
+          <label class="formulario-label">Digite quanto custa seu KM rodado *</label>
+          <input
+            type="number"
+            placeholder="R$/KM: 2.00"
+            formControlName="valorPorKm"
+            class="texto-input"
+          />
+          @if (formulario.get('valorPorKm')?.invalid && formulario.get('valorPorKm')?.touched) {
+            @if (formulario.get('valorPorKm')?.hasError('required')) {
+              <small class="mensagem-erro"
+                >Por favor, digite quanto pretende ganhar por KM rodado</small
+              >
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.Invalid]="formulario.get('senha')?.invalid && formulario.get('senha')?.touched"
+        >
+          <label class="formulario-label">Digite sua senha *</label>
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            formControlName="senha"
+            class="texto-input"
+          />
+          @if (formulario.get('senha')?.invalid && formulario.get('senha')?.touched) {
+            @if (formulario.get('senha')?.hasError('required')) {
+              <small class="mensagem-erro">Digite sua senha</small>
+            }
+            @if (formulario.get('senha')?.hasError('minlength')) {
+              <small class="mensagem-erro">A senha precisa conter mais de 6 caracteres</small>
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('fotoPerfil')?.invalid && formulario.get('fotoPerfil')?.touched
+          "
+        >
+          <label class="formulario-label">Adicione sua melhor foto *</label>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="selecionarFoto($event, 'fotoPerfil')"
+            class="input-foto"
+            id="fotoPerfil"
+          />
+          <label for="fotoPerfil" class="mensagem-arquivo-foto formulario-foto"
+            >Escolher Imagem *</label
+          >
+          @if (formulario.get('fotoPerfil')?.invalid && formulario.get('fotoPerfil')?.touched) {
+            <small class="mensagem-erro">Por favor, adicione uma foto de Perfil</small>
+          }
+          @if (formulario.get('fotoPerfil')?.value) {
+            <div class="foto-container">
+              <img
+                [src]="formulario.get('fotoPerfil')?.value"
+                alt="Foto-perfil"
+                class="foto-perfil"
+              />
+            </div>
+          }
+        </div>
+      </fieldset>
+      <div class="btn-container">
+        <button type="button" (click)="avancarPassoForm()" class="btn-finalizar-cadastro">Continuar Cadastro</button>
+      </div>
+    }
+    @if (passoAtual === 2) {
+      <fieldset>
+        <legend>Dados Veículo</legend>
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('modeloCarro')?.invalid && formulario.get('modeloCarro')?.touched
+          "
+        >
+          <label class="formulario-label">Informe o modelo do seu Veículo *</label>
+          <input
+            type="text"
+            placeholder="Ford EcoSport"
+            formControlName="modeloCarro"
+            class="texto-input"
+          />
+          @if (formulario.get('modeloCarro')?.invalid && formulario.get('modeloCarro')?.touched) {
+            @if (formulario.get('modeloCarro')?.hasError('required')) {
+              <small class="mensagem-erro">Por favor, informe o modelo do seu Veículo</small>
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="
+            formulario.get('placaCarro')?.invalid && formulario.get('placaCarro')?.touched
+          "
+        >
+          <label class="formulario-label">Informe a Placa do Veículo *</label>
+          <input type="text" placeholder="PPP0P00" formControlName="placaCarro" class="texto-input" />
+          @if (formulario.get('placaCarro')?.invalid && formulario.get('placaCarro')?.touched) {
+            @if (formulario.get('placaCarro')?.hasError('required')) {
+              <small class="mensagem-erro">Por favor, informe a Placa do Veículo</small>
+            }
+            @if (formulario.get('placaCarro')?.hasError('minlength')) {
+              <small class="mensagem-erro">A placa do Veículo deve conter mais de 6 caracteres</small>
+            }
+          }
+        </div>
+
+        <div
+          class="grupo-campos-formulario"
+          [class.invalid]="formulario.get('corCarro')?.invalid && formulario.get('corCarro')?.touched"
+        >
+          <label class="formulario-label">Cor do Veículo *</label>
+          <input
+            type="text"
+            placeholder="Informe a cor do Veículo"
+            formControlName="corCarro"
+            class="texto-input"
+          />
+          @if (formulario.get('corCarro')?.invalid && formulario.get('corCarro')?.touched) {
+            @if (formulario.get('corCarro')?.hasError('required')) {
+              <small class="mensagem-erro">Por favor, informa a cor do Veículo</small>
+            }
+          }
+        </div>
+        <div class="fotos-veiculo-linha">
+          <div
+            class="grupo-campos-formulario"
+            [class.invalid]="
+              formulario.get('fotoCarroExterna')?.invalid &&
+              formulario.get('fotoCarroExterna')?.touched
+            "
+          >
+            <label class="formulario-label">Foto Externa do Veículo *</label>
+            <input
+              type="file"
+              accept="image/*"
+              (change)="selecionarFoto($event, 'fotoCarroExterna')"
+              class="input-foto"
+              id="fotoCarroExterna"
             />
+            <label for="fotoCarroExterna" class="mensagem-arquivo-foto formulario-foto"
+              >Escolher Imagem *</label
+            >
+            @if (
+              formulario.get('fotoCarroExterna')?.invalid &&
+              formulario.get('fotoCarroExterna')?.touched
+            ) {
+              <small class="mensagem-erro">Por favor, adicione uma foto Externa do Veículo</small>
+            }
+            @if (formulario.get('fotoCarroExterna')?.value) {
+              <div class="foto-container">
+                <img
+                  [src]="formulario.get('fotoCarroExterna')?.value"
+                  alt="Foto-externa-veiculo"
+                  class="foto-perfil"
+                />
+              </div>
+            }
           </div>
-        }
-      </div>
-    </fieldset>
 
-    <fieldset>
-      <legend>Dados Veículo</legend>
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('modeloCarro')?.invalid && formulario.get('modeloCarro')?.touched
-        "
-      >
-        <label class="formulario-label">Informe o modelo do seu Veículo *</label>
-        <input
-          type="text"
-          placeholder="Ford EcoSport"
-          formControlName="modeloCarro"
-          class="texto-input"
-        />
-        @if (formulario.get('modeloCarro')?.invalid && formulario.get('modeloCarro')?.touched) {
-          @if (formulario.get('modeloCarro')?.hasError('required')) {
-            <small class="mensagem-erro">Por favor, informe o modelo do seu Veículo</small>
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="
-          formulario.get('placaCarro')?.invalid && formulario.get('placaCarro')?.touched
-        "
-      >
-        <label class="formulario-label">Informe a Placa do Veículo *</label>
-        <input type="text" placeholder="PPP0P00" formControlName="placaCarro" class="texto-input" />
-        @if (formulario.get('placaCarro')?.invalid && formulario.get('placaCarro')?.touched) {
-          @if (formulario.get('placaCarro')?.hasError('required')) {
-            <small class="mensagem-erro">Por favor, informe a Placa do Veículo</small>
-          }
-          @if (formulario.get('placaCarro')?.hasError('minlength')) {
-            <small class="mensagem-erro">A placa do Veículo deve conter mais de 6 caracteres</small>
-          }
-        }
-      </div>
-
-      <div
-        class="grupo-campos-formulario"
-        [class.invalid]="formulario.get('corCarro')?.invalid && formulario.get('corCarro')?.touched"
-      >
-        <label class="formulario-label">Cor do Veículo *</label>
-        <input
-          type="text"
-          placeholder="Informe a cor do Veículo"
-          formControlName="corCarro"
-          class="texto-input"
-        />
-        @if (formulario.get('corCarro')?.invalid && formulario.get('corCarro')?.touched) {
-          @if (formulario.get('corCarro')?.hasError('required')) {
-            <small class="mensagem-erro">Por favor, informa a cor do Veículo</small>
-          }
-        }
-      </div>
-      <div class="fotos-veiculo-linha">
-        <div
-          class="grupo-campos-formulario"
-          [class.invalid]="
-            formulario.get('fotoCarroExterna')?.invalid &&
-            formulario.get('fotoCarroExterna')?.touched
-          "
-        >
-          <label class="formulario-label">Foto Externa do Veículo *</label>
-          <input
-            type="file"
-            accept="image/*"
-            (change)="selecionarFoto($event, 'fotoCarroExterna')"
-            class="input-foto"
-            id="fotoCarroExterna"
-          />
-          <label for="fotoCarroExterna" class="mensagem-arquivo-foto formulario-foto"
-            >Escolher Imagem *</label
+          <div
+            class="grupo-campos-formulario"
+            [class.invalid]="
+              formulario.get('fotoCarroInterna')?.invalid &&
+              formulario.get('fotoCarroInterna')?.touched
+            "
           >
-          @if (
-            formulario.get('fotoCarroExterna')?.invalid &&
-            formulario.get('fotoCarroExterna')?.touched
-          ) {
-            <small class="mensagem-erro">Por favor, adicione uma foto Externa do Veículo</small>
-          }
-          @if (formulario.get('fotoCarroExterna')?.value) {
-            <div class="foto-container">
-              <img
-                [src]="formulario.get('fotoCarroExterna')?.value"
-                alt="Foto-externa-veiculo"
-                class="foto-perfil"
-              />
-            </div>
-          }
+            <label class="formulario-label">Foto Interna do Veículo *</label>
+            <input
+              type="file"
+              accept="image/*"
+              (change)="selecionarFoto($event, 'fotoCarroInterna')"
+              class="input-foto"
+              id="fotoCarroInterna"
+            />
+            <label for="fotoCarroInterna" class="mensagem-arquivo-foto formulario-foto"
+              >Escolher Imagem *</label
+            >
+            @if (
+              formulario.get('fotoCarroInterna')?.invalid &&
+              formulario.get('fotoCarroInterna')?.touched
+            ) {
+              <small classe="mensagem-erro">Por favor, adicione uma foto interna do Veículo</small>
+            }
+            @if (formulario.get('fotoCarroInterna')?.value) {
+              <div class="foto-container">
+                <img
+                  [src]="formulario.get('fotoCarroInterna')?.value"
+                  alt="Foto-Interna-veiculo"
+                  class="foto-perfil"
+                />
+              </div>
+            }
+          </div>
         </div>
-
-        <div
-          class="grupo-campos-formulario"
-          [class.invalid]="
-            formulario.get('fotoCarroInterna')?.invalid &&
-            formulario.get('fotoCarroInterna')?.touched
-          "
-        >
-          <label class="formulario-label">Foto Interna do Veículo *</label>
-          <input
-            type="file"
-            accept="image/*"
-            (change)="selecionarFoto($event, 'fotoCarroInterna')"
-            class="input-foto"
-            id="fotoCarroInterna"
-          />
-          <label for="fotoCarroInterna" class="mensagem-arquivo-foto formulario-foto"
-            >Escolher Imagem *</label
-          >
-          @if (
-            formulario.get('fotoCarroInterna')?.invalid &&
-            formulario.get('fotoCarroInterna')?.touched
-          ) {
-            <small classe="mensagem-erro">Por favor, adicione uma foto interna do Veículo</small>
-          }
-          @if (formulario.get('fotoCarroInterna')?.value) {
-            <div class="foto-container">
-              <img
-                [src]="formulario.get('fotoCarroInterna')?.value"
-                alt="Foto-Interna-veiculo"
-                class="foto-perfil"
-              />
-            </div>
-          }
-        </div>
+      </fieldset>
+      <div class="btn-container">
+        <button type="button" (click)="passoAtual = 1" class="btn-finalizar-cadastro">Voltar</button>
+        <button type="submit" class="btn-finalizar-cadastro">Finalizar Cadastro</button>
       </div>
-    </fieldset>
-    <div class="btn-container">
-      <button type="submit" class="btn-finalizar-cadastro">Finalizar Cadastro</button>
-    </div>
+    }
   </form>
 </section>

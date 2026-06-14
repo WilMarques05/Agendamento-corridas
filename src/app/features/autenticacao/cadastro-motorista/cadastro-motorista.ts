@@ -13,7 +13,10 @@ export class CadastroMotorista {
   private authService = inject(Autenticacao);
   private changeDetector = inject(ChangeDetectorRef);
 
+  passoAtual = 1; //Variável para controle de passo do formulário
+
   formulario = this.formBuilder.group({
+    // Dados Passo 1 (Dados Motorista)
     nomeCompleto: ['', [Validators.required]],
     cpf: ['', [Validators.required, Validators.minLength(11)]],
     cidade: ['', [Validators.required]],
@@ -22,6 +25,8 @@ export class CadastroMotorista {
     senha: ['', [Validators.required, Validators.minLength(6)]],
     fotoPerfil: ['', [Validators.required]],
     valorPorKm: ['', [Validators.required]],
+
+    // Dados Passo 2 (Dados veículo)
     modeloCarro: ['', [Validators.required]],
     placaCarro: ['', [Validators.required, Validators.minLength(7)]],
     corCarro: ['', [Validators.required]],
@@ -48,6 +53,22 @@ export class CadastroMotorista {
       this.formulario.patchValue({[nomeCampo]: urlImagem});
       this.formulario.get(nomeCampo)?.markAsDirty();
       this.formulario.get(nomeCampo)?.markAllAsTouched();
+    }
+  }
+
+  avancarPassoForm(){
+    const camposPassoMotorista = ['nomeCompleto', 'cpf', 'cidade', 'telefone', 'email', 'senha', 'fotoPerfil', 'valorPorKm'];
+
+    let camposPassoMotoristaValido = true;
+    camposPassoMotorista.forEach(campoForm => {
+      let campo = this.formulario.get(campoForm);
+      if(campo?.invalid){
+        camposPassoMotoristaValido = false;
+        campo.markAllAsTouched();
+      }
+    });
+    if(camposPassoMotoristaValido){
+      this.passoAtual = 2;
     }
   }
 }

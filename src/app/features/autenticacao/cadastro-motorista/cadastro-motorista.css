@@ -218,6 +218,7 @@ input.texto-input:focus {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+  gap: 10px;
 }
 
 .btn-finalizar-cadastro {
