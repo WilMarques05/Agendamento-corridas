@@ -1,16 +1,58 @@
-<header class="header-container">
-    <picture class="logo-container">
-        <img id="imagem-logo" src="/logo_elitedrive.png" alt="logo-eliteDrive-png">
-    </picture>
+<header class="cabecalho-principal sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark p-0">
+    <div class="container">
 
-    <ul class="lista-menu-container">
-        <li class="item-menu">Como funciona</li>
-        <li class="item-menu">Vantagens</li>
-        <li class="item-menu">Segurança</li>
-    </ul>
-    
-    <div class="btn-container">
-        <button class="btn-header" id="btn-entrar">Entrar</button>
-        <button class="btn-header" id="btn-cadastrar">Criar Conta</button>
+      <a class="navbar-brand" routerLink="/">
+        <picture class="img-container">
+          <img class="img-logo" src="logo_elitedrive.png" alt="Logo-EliteDrive" />
+        </picture>
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menuNavegacao"
+        aria-controls="menuNavegacao"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuNavegacao">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 target-links">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" fragment="como-funciona">Como funciona</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" fragment="vantagens">Vantagens</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" fragment="seguranca">Segurança</a>
+          </li>
+        </ul>
+
+        <div class="d-flex flex-column flex-lg-row gap-3 ms-lg-3 area-botoes">
+          <a class="btn btn-entrar" routerLink="/login">Entrar</a>
+
+          <div class="dropdown">
+            <button
+              class="btn btn-criar-conta dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Criar conta
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end menu-suspenso-personalizado">
+              <li><a class="dropdown-item dropdown-item-passageiro" routerLink="/cadastro-motorista">Sou Motorista</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item dropdown-item-motorista" routerLink="/cadastro-passageiro">Sou Passageiro</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </nav>
 </header>
