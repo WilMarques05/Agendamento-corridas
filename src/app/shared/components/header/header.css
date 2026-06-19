@@ -1,103 +1,170 @@
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
+header.cabecalho-principal {
+  background-color: var(--corPrincipalHeader);
   height: 70px;
-  border: 0.8px solid rgba(3, 6, 73, 0.324);
-  background-color: rgba(5, 5, 77, 0.266);
-  box-shadow: 1px 1px 10px 1px rgba(65, 70, 127, 0.49);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 1px 1px 10px 1px #ff8c002b;
+  transition: all 0.3s ease;
 }
 
-.logo-container {
-  /* border: 2px solid red; */
-  width: 140px;
-  height: auto;
-  margin-left: 100px;
+picture.img-container {
+  margin-left: -30px;
+  display: inline-block;
+  width: 280px;
+  height: 60px;
+  overflow: hidden;
 }
 
-#imagem-logo {
-  /* border: 2px dashed white; */
+img.img-logo {
   width: 100%;
   height: 100%;
+  padding-top: 2px;
+  object-fit: contain;
+  transform: scale(2.2);
 }
 
-.lista-menu-container {
-  /* border: 1px solid yellow; */
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
-  width: 600px;
+.navbar-nav {
+  margin-right: 12%;
+  gap: 16px;
 }
 
-.item-menu {
-  /* border: 1px dashed green; */
-  font-size: 1.2rem;
+.nav-link {
+  color: var(--brancoPuro) !important;
+  font-size: 1.01rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.btn-container {
-  /* border: 1px solid; */
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 360px;
+.nav-link:hover {
+  color: var(--laranjaVibranteNeon) !important;
 }
 
-.btn-header {
-  border: 1px solid rgb(12, 12, 231);
-  background-color: rgba(49, 49, 187, 0.548 );
-  box-shadow: 0px 0px 10px 1px #0059ffc8;
-  color: rgb(255, 255, 255);
-  font-size: 0.9rem;
-  font-weight: 600;
-  width: 130px;
-  height: 34px;
+/* Estilização Geral dos Botões */
+.btn-entrar {
+  color: var(--brancoPuro);
+  border: 1px solid var(--azulEletricoNeon);
+  box-shadow: 0 0 2px var(--azulEletricoNeon);
+  transition: all 0.3s ease;
+}
+.btn-entrar:hover {
+  color: var(--azulEletricoNeon);
+  box-shadow: 0 0 10px var(--azulEletricoNeon);
+}
+
+.btn-criar-conta {
+  background: rgba(255, 140, 0, 0.08);
+  color: var(--brancoPuro);
+  border: 1px solid var(--laranjaVibranteNeon);
+  box-shadow: 0 0 2px var(--laranjaVibranteNeon);
+  transition: all 0.3s ease;
+}
+
+.btn-criar-conta:hover {
+  color: var(--laranjaVibranteNeon);
+  box-shadow: 0 0 10px var(--laranjaVibranteNeon);
+}
+
+.menu-suspenso-personalizado {
+  background-color: var(--azulMarinhoEscuro);
+  background: #0d1b2ae4;
+  border: 1px solid var(--corPrincipalHeader);
+    margin-top: 14px;
+    margin-right: -64px;
+}
+
+.menu-suspenso-personalizado .dropdown-item-passageiro {
+  color: var(--brancoPuro);
+  width: 280px;
+  border: 1px solid var(--azulEletricoNeon);
   border-radius: 8px;
-  opacity: 0.9;
-  cursor: pointer;
+  text-align: center;
 }
 
-#btn-cadastrar {
-  background-color: rgba(77, 71, 5, 0.765);
-  border: 1px solid rgba(255, 255, 0, 0.478);
-  box-shadow: 0px 0px 10px 1px rgba(255, 255, 0, 0.563);
+.menu-suspenso-personalizado .dropdown-item-passageiro:hover {
+  background-color: var(--azulEletricoNeon);
+  color: var(--brancoPuro);
+  box-shadow: 0 0 10px var(--azulEletricoNeon);
 }
 
-.btn-header:hover {
-  /* transform: translateY(-1px); */
-  box-shadow: 0 0px 20px 8px rgb(12, 12, 231);
-  background-color: #0059ff;
-  /* opacity: 0.6; */
+.menu-suspenso-personalizado .dropdown-item-motorista {
+  color: var(--brancoPuro);
+  width: 280px;
+  border: 1px solid var(--laranjaVibranteNeon);
+  border-radius: 8px;
+  text-align: center;
 }
 
-#btn-cadastrar:hover {
-  /* transform: translateY(-1px); */
-  box-shadow: 0 0px 20px 8px rgba(234, 255, 6, 0.512);
-  background-color: rgba(229, 255, 0, 0.751);
-  /* opacity: 0.6; */
+.menu-suspenso-personalizado .dropdown-item-motorista:hover {
+  background-color: var(--laranjaVibranteNeon);
+  color: var(--brancoPuro);
+  box-shadow: 0 0 10px var(--laranjaVibranteNeon);
 }
 
-/* 
-
-.btn-finalizar-cadastro {
-  width: 100%;
-  max-width: 180px;
-  height: 40px;
-  background: linear-gradient(to right, var(--primary), rgba(59, 130, 246, 0.9));
-  color: var(--primary-foreground);
-  border: none;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 8px 20px -3px rgba(59, 130, 246, 0.3);
-  transition: all 0.2s ease-in-out;
+.dropdown-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-finalizar-cadastro:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 15px 30px -6px rgba(59, 130, 246, 0.4);
-  opacity: 0.95;
+/* CUSTOMIZAÇÃO DO BOTÃO HAMBÚRGUER (Laranja Neon) */
+.navbar-toggler {
+  border-color: rgb(237, 127, 36) !important; /* Bordinha laranja sutil */
+}
+.navbar-toggler:focus {
+  box-shadow: 0 0 10px var(--laranjaVibranteNeon) !important;
+}
+.navbar-toggler-icon {
+  /* Transforma o ícone padrão do Bootstrap no seu Laranja Vibrante */
+  filter: invert(59%) sepia(80%) saturate(2256%) hue-rotate(1deg) brightness(103%) contrast(105%) !important;
 }
 
-*/
+/* 📱 CONFIGURAÇÃO EXCLUSIVA PARA MOBILE */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: rgba(26, 42, 58, 0.98); /* Seu --azulMarinhoEscuro */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 0.8rem;
+    border: 1px solid rgba(0, 224, 255, 0.2); /* Bordinha azul neon na caixa */
+  }
+
+  /* Força todos os itens a alinharem à esquerda */
+  .navbar-nav {
+    align-items: flex-start !important;
+  }
+  .nav-item {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .nav-link {
+    padding-left: 0 !important;
+  }
+
+  .area-botoes {
+    align-items: flex-start !important;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .btn-entrar,
+  .dropdown {
+    width: 80px;
+    text-align: center;
+  }
+
+  .btn-criar-conta {
+    width: auto !important; /* Remove o esticado e deixa no tamanho do texto */
+    display: inline-block;
+    padding-left: 1rem !important; /* Dá um espacinho interno na esquerda */
+    padding-right: 1rem !important; /* Dá um espacinho interno na direita */
+  }
+
+  .menu-suspenso-personalizado {
+    position: static !important;
+    float: none !important;
+    background-color: rgba(13, 27, 42, 0.5) !important; /* Fundo interno um pouco mais escuro */
+    border: none !important;
+    border-left: 2px solid var(--azulEletricoNeon) !important; /* Detalhe neon na esquerda */
+    margin-top: 0.5rem !important;
+    border-radius: 0 4px 4px 0 !important;
+    padding-left: 0.5rem !important;
+  }
+}
