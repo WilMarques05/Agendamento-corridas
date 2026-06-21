@@ -8,7 +8,7 @@ header.cabecalho-principal {
 }
 
 picture.img-container {
-  margin-left: -30px;
+  margin-left: -60px;
   display: inline-block;
   width: 280px;
   height: 60px;
@@ -39,13 +39,13 @@ img.img-logo {
   color: var(--laranjaVibranteNeon) !important;
 }
 
-/* Estilização Geral dos Botões */
 .btn-entrar {
   color: var(--brancoPuro);
   border: 1px solid var(--azulEletricoNeon);
   box-shadow: 0 0 2px var(--azulEletricoNeon);
   transition: all 0.3s ease;
 }
+
 .btn-entrar:hover {
   color: var(--azulEletricoNeon);
   box-shadow: 0 0 10px var(--azulEletricoNeon);
@@ -104,36 +104,39 @@ img.img-logo {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* CUSTOMIZAÇÃO DO BOTÃO HAMBÚRGUER (Laranja Neon) */
 .navbar-toggler {
-  border-color: rgb(237, 127, 36) !important; /* Bordinha laranja sutil */
+  border-color: var(--laranjaVibranteNeon)!important;box-shadow: 0 0 10px var(--laranjaVibranteNeon);
 }
+
 .navbar-toggler:focus {
   box-shadow: 0 0 10px var(--laranjaVibranteNeon) !important;
 }
+
 .navbar-toggler-icon {
-  /* Transforma o ícone padrão do Bootstrap no seu Laranja Vibrante */
   filter: invert(59%) sepia(80%) saturate(2256%) hue-rotate(1deg) brightness(103%) contrast(105%) !important;
 }
 
-/* 📱 CONFIGURAÇÃO EXCLUSIVA PARA MOBILE */
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    background-color: rgba(26, 42, 58, 0.98); /* Seu --azulMarinhoEscuro */
+    background-color: var(--azulMarinhoEscuro);
     border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 0.8rem;
-    border: 1px solid rgba(0, 224, 255, 0.2); /* Bordinha azul neon na caixa */
+    padding: 1.1rem;
+    border: 1px solid var(--azulEletricoNeon);
+    opacity: 0.98;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
   }
 
-  /* Força todos os itens a alinharem à esquerda */
   .navbar-nav {
     align-items: flex-start !important;
   }
+
   .nav-item {
     width: 100%;
     margin-bottom: 0.5rem;
   }
+
   .nav-link {
     padding-left: 0 !important;
   }
@@ -151,18 +154,19 @@ img.img-logo {
   }
 
   .btn-criar-conta {
-    width: auto !important; /* Remove o esticado e deixa no tamanho do texto */
+    width: auto !important;
     display: inline-block;
-    padding-left: 1rem !important; /* Dá um espacinho interno na esquerda */
-    padding-right: 1rem !important; /* Dá um espacinho interno na direita */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
   .menu-suspenso-personalizado {
     position: static !important;
+    width: 320px;
     float: none !important;
-    background-color: rgba(13, 27, 42, 0.5) !important; /* Fundo interno um pouco mais escuro */
+    background-color: var(--corPrincipalHeader) !important;
     border: none !important;
-    border-left: 2px solid var(--azulEletricoNeon) !important; /* Detalhe neon na esquerda */
+    border-left: 2px solid var(--laranjaVibranteNeon) !important;
     margin-top: 0.5rem !important;
     border-radius: 0 4px 4px 0 !important;
     padding-left: 0.5rem !important;
