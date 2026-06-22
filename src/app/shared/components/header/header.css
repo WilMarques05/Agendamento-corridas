@@ -71,11 +71,17 @@ header.cabecalho-principal .btn-entrar {
   border: 1px solid var(--azulEletricoNeon);
   box-shadow: 0 0 2px var(--azulEletricoNeon);
   transition: all 0.3s ease;
+    text-shadow:
+    0 0 1px var(--brancoPuro),
+    0 0 1px var(--brancoPuro);
 }
 
 header.cabecalho-principal .btn-entrar:hover {
   color: var(--azulEletricoNeon);
   box-shadow: 0 0 10px var(--azulEletricoNeon);
+    text-shadow:
+    0 0 1px var(--azulEletricoNeon),
+    0 0 1px var(--azulEletricoNeon);
 }
 
 header.cabecalho-principal .btn-criar-conta {
@@ -84,11 +90,17 @@ header.cabecalho-principal .btn-criar-conta {
   border: 1px solid var(--laranjaVibranteNeon);
   box-shadow: 0 0 2px var(--laranjaVibranteNeon);
   transition: all 0.3s ease;
+    text-shadow:
+    0 0 1px var(--brancoPuro),
+    0 0 1px var(--brancoPuro);
 }
 
 header.cabecalho-principal .btn-criar-conta:hover {
   color: var(--laranjaVibranteNeon);
   box-shadow: 0 0 10px var(--laranjaVibranteNeon);
+    text-shadow:
+    0 0 1px var(--laranjaVibranteNeon),
+    0 0 1px var(--laranjaVibranteNeon);
 }
 
 header.cabecalho-principal .menu-suspenso-personalizado {
