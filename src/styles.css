@@ -15,7 +15,7 @@
   --fonte-secundaria: 'Open Sans', sans-serif;
 
   /* CORES */
-  --fundoPrincipal: #0d1b2a;      /* Background de telas e seções */
+  --fundoPrincipal: #0a0139;      /* Background de telas e seções */
   --azulEletricoNeon: #00e0ff;    /* Destaques, ícones, bordas de botões, textos neon */
   --corPrincipalHeader: #0a013966; /*background header*/
   --laranjaVibranteNeon: #FC6B00; /* Destaques secundários, ícones, bordas de botões */
@@ -46,6 +46,9 @@ body {
   font-family: var(--fonte-secundaria);
   background-color: var(--fundoPrincipal);
   color: var(--brancoPuro);
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 h1,
