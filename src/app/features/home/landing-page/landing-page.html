@@ -1,3 +1,57 @@
-<picture>
+<!-- A seção inteira carrega o fundo usando a sua imagem diretamente pelo style inline -->
+<section class="secao-hero" style="background-image: url('imagem_tela_landingPage.png')">
+  <div class="container container-conteudo-hero">
+    <div class="row">
+      <!-- Lado esquerdo concentrando os textos e os botões de ação -->
+      <div class="col-12 col-lg-7 area-texto-hero text-center text-lg-start">
+        <!-- Mini Badge Superior -->
+        <div class="mini-tag d-inline-flex align-items-center gap-2 mb-4">
+          <i class="bi bi-clock-history text-azul"></i>
+          <span>Mobilidade agendada, do seu jeito.</span>
+        </div>
+
+        <!-- Título Principal com Gradiente -->
+        <h1 class="titulo-hero mb-3">
+          Agende sua viagem <br class="d-none d-md-block" />
+          com <span class="texto-gradiente-neon">exclusividade.</span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="subtitulo-hero mb-5">
+          Conectamos motoristas e passageiros para viagens agendadas com conforto, segurança e total
+          praticidade.
+        </p>
+
+        <!-- CTAs: Dois Botões de Seleção Rápidos (Estilo Cards) -->
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-4 area-ctas-hero"
+        >
+          <!-- Botão Motorista -->
+          <a routerLink="/cadastro-motorista" class="card-btn-hero btn-motorista-hero">
+            <div class="icon-box">
+              <i class="bi bi-steeringwheel"></i>
+            </div>
+            <div class="text-box">
+              <span class="titulo-btn">Sou Motorista</span>
+              <span class="sub-btn">Dirija e aumente seus ganhos</span>
+            </div>
+          </a>
+
+          <!-- Botão Passageiro -->
+          <a routerLink="/cadastro-passageiro" class="card-btn-hero btn-passageiro-hero">
+            <div class="icon-box">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="text-box">
+              <span class="titulo-btn">Sou Passageiro</span>
+              <span class="sub-btn">Encontre sua próxima viagem</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <picture>
   <img src="imagem_tela_landingPage.png" alt="">
-</picture>
+</picture> -->
