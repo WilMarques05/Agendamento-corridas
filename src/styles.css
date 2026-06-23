@@ -15,9 +15,9 @@
   --fonte-secundaria: 'Open Sans', sans-serif;
 
   /* CORES */
-  --fundoPrincipal: #0a0139;      /* Background de telas e seções */
+  --fundoPrincipal: #030208;      /* Background de telas e seções */
   --azulEletricoNeon: #00e0ff;    /* Destaques, ícones, bordas de botões, textos neon */
-  --corPrincipalHeader: #0a013966; /*background header*/
+  --corPrincipalHeader:  #030208; /*background header #0a013966*/
   --laranjaVibranteNeon: #FC6B00; /* Destaques secundários, ícones, bordas de botões */
   --roxoProfundo: #4a006f;        /* Gradientes, sombras, elementos de profundidade */
   --azulMarinhoEscuro: #1a2a3a;   /* Cards, elementos de interface secundários */
