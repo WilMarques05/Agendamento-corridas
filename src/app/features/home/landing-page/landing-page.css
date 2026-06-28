@@ -114,6 +114,44 @@
   opacity: 0.8;
 }
 
+.beneficios-container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  background: var(--fundoPrincipal);
+  gap: 30px;
+  margin-top: 42px;
+  padding: 16px;
+  border: 0.6px solid var(--azulEletricoNeon);
+  opacity: 0.8;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.beneficio{
+  display: flex;
+  font-size: medium;
+}
+
+.beneficio-titulo{
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.divisor {
+  width: 0.2px;
+  height: auto;
+  background: var(--cinzaClaro);
+  opacity: 0.4;
+}
+
+.img-beneficio{
+  width: 30px;
+  height: 30px;
+}
+
 /* 📱 RESPONSIVIDADE (MOBILE) */
 @media (max-width: 991.98px) {
   .secao-hero-background {
