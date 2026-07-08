@@ -1,0 +1,46 @@
+section.vantagens-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.carrossel-container {
+  width: 60vw !important;
+  margin-top: -30px;
+}
+
+@media (max-width: 991.98px) {
+      section.vantagens-container {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 30vh;
+    margin-top: -80px !important;
+  }
+
+  .carrossel-container {
+    border: 1px solid rgb(245, 239, 239);
+    width: 90vw !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 513px) {
+  section.vantagens-container {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 30vh;
+    margin-top: -80px !important;
+  }
+
+  .carrossel-container {
+    border: 1px solid rgb(245, 239, 239);
+    width: 90vw !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+}

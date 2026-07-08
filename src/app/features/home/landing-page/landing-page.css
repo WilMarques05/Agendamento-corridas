@@ -7,7 +7,7 @@
   display: flex;
   position: relative;
   overflow: hidden;
-  padding: 2rem 0;
+  padding: 2rem 0 0 0;
 }
 
 .mini-tag {
@@ -167,6 +167,7 @@
   width: 40px;
   height: 40px;
 }
+
 
 @media (max-width: 991.98px) {
   .secao-hero-background {

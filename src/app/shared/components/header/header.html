@@ -1,7 +1,7 @@
 <header class="cabecalho-principal sticky-top d-none d-lg-block">
   <nav class="navbar navbar-expand-lg navbar-dark p-0">
     <div class="container">
-      <a class="navbar-brand" routerLink="/">
+      <a class="navbar-brand" routerLink="/" fragment="hero">
         <picture class="img-container">
           <img class="img-logo" src="/logo_elitedrive.png" alt="EliteDrive Logo" />
         </picture>
@@ -66,6 +66,7 @@
   <a
     class="tab-item"
     routerLink="/"
+    fragment="hero"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }"
   >
@@ -84,19 +85,21 @@
   </a>
 
   <div class="tab-item dropdown dropup">
-    <button
-      class="btn-cadastrar"
-      type="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
+    <button class="btn-cadastrar" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-person-plus-fill"></i>
-
     </button>
     <ul class="dropdown-menu dropdown-menu-dark menu-suspenso-mobile">
-      <li><a class="dropdown-item item-passageiro py-2" routerLink="/cadastro-passageiro">Sou Passageiro</a></li>
+      <li>
+        <a class="dropdown-item item-passageiro py-2" routerLink="/cadastro-passageiro"
+          >Sou Passageiro</a
+        >
+      </li>
       <li><hr class="dropdown-divider m-0" /></li>
-      <li><a class="dropdown-item item-motorista py-2" routerLink="/cadastro-motorista">Sou Motorista</a></li>
+      <li>
+        <a class="dropdown-item item-motorista py-2" routerLink="/cadastro-motorista"
+          >Sou Motorista</a
+        >
+      </li>
     </ul>
     <span>Cadastre-se</span>
   </div>

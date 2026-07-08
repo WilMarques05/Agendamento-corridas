@@ -42,6 +42,10 @@
   --ring: rgba(59, 130, 246, 0.5); /* Aura azul de foco */
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--fonte-secundaria);
   background-color: var(--fundoPrincipal);
@@ -49,6 +53,10 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+section[id] {
+  /* Altere o valor (ex: 80px) para bater certinho com a altura do seu header */
+  scroll-margin-top: 80px; 
 }
 
 h1,
