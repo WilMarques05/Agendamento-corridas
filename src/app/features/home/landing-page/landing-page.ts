@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Header } from '../../../shared/components/header/header';
-import { Carrossel } from '../carrossel/carrossel';
-import { Footer } from "../../../shared/components/footer/footer";
+import { SecaoHero } from './secao-hero/secao-hero';
+import { SecaoVantagens } from "./secao-vantagens/secao-vantagens";
 
 @Component({
   selector: 'app-landing-page',
-  imports: [Header, Carrossel, Footer],
+  imports: [SecaoHero, SecaoVantagens],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })

@@ -1,13 +1,12 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { CadastroPassageiro } from './features/autenticacao/cadastro-passageiro/cadastro-passageiro';
 import { Header } from './shared/components/header/header';
 import { Footer } from './shared/components/footer/footer';
 import { take, filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CadastroPassageiro, Header, Footer],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
