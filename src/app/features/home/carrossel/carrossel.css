@@ -4,7 +4,7 @@ section.vantagens-container {
   gap: 50px;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 90vh;
   padding: 1rem 0;
   position: relative;
   isolation: isolate;
@@ -127,7 +127,7 @@ section.vantagens-container > * {
   section.vantagens-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: auto;
     height: auto;
     margin-top: -40px !important;
@@ -157,7 +157,7 @@ section.vantagens-container > * {
   section.vantagens-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: auto;
     height: auto;
     margin-top: -50px !important;
