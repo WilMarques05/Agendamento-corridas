@@ -10,6 +10,13 @@
   padding: 2rem 0 0 0;
 }
 
+.container-conteudo-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 0 0 10% !important;
+}
+
 .mini-tag {
   background: rgba(0, 224, 255, 0.1);
   border: 1px solid rgba(0, 224, 255, 0.3);
@@ -168,7 +175,6 @@
   height: 40px;
 }
 
-
 @media (max-width: 991.98px) {
   .secao-hero-background {
     background-position: 75% center;
@@ -180,6 +186,13 @@
   .card-btn-hero {
     max-width: 100%;
   }
+
+  /* Continuar daqui para ajustar responsividade */
+  .container-conteudo-hero {
+    margin: 0 0 0 0 !important;
+    justify-content: none !important; 
+  }
+  /* -------------------------------------------- */
 }
 
 @media (max-width: 513px) {
@@ -190,6 +203,13 @@
     gap: 20px 12px !important;
     width: 100% !important;
   }
+
+  /* Continuar daqui para ajustar responsividade */
+  .container-conteudo-hero {
+    margin: 0 0 0 0 !important;
+    justify-content: none !important; 
+  }
+  /* -------------------------------------------- */
 
   .beneficios-container .divisor {
     display: none !important;
