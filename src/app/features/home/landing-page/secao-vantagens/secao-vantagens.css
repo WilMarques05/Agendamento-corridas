@@ -4,7 +4,7 @@ section.vantagens-container {
   gap: 50px;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 100vh;
   padding: 1rem 0;
   position: relative;
   isolation: isolate;
