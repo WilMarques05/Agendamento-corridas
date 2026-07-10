@@ -1,5 +1,5 @@
 .secao-hero {
-  background-image: url('/imagem_tela_landingPage.png');
+  background-image: url('/imagem_tela_landingPage.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0 -50px;
@@ -13,7 +13,7 @@
 .container-conteudo-hero {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 0 0 0 10% !important;
 }
 
@@ -190,7 +190,7 @@
   /* Continuar daqui para ajustar responsividade */
   .container-conteudo-hero {
     margin: 0 0 0 0 !important;
-    justify-content: none !important; 
+    justify-content: none !important;
   }
   /* -------------------------------------------- */
 }
@@ -207,7 +207,7 @@
   /* Continuar daqui para ajustar responsividade */
   .container-conteudo-hero {
     margin: 0 0 0 0 !important;
-    justify-content: none !important; 
+    justify-content: none !important;
   }
   /* -------------------------------------------- */
 
