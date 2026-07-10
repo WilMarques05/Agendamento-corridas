@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Carrossel } from "./components/carrossel/carrossel";
+import { CardsVantagens } from "./components/cards-vantagens/cards-vantagens";
 
 @Component({
   selector: 'app-secao-vantagens',
-  imports: [Carrossel],
+  imports: [Carrossel, CardsVantagens],
   templateUrl: './secao-vantagens.html',
   styleUrl: './secao-vantagens.css',
 })

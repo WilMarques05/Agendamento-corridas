@@ -1,0 +1,60 @@
+.container-cards-vantagens {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90vw;
+  height: 250px;
+}
+
+.card-vantagens {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 8px;
+  width: 11%;
+  height: 240px;
+  padding: 5px;
+  text-align: center;
+}
+
+.icone-vantagens {
+  width: 80px;
+  height: 80px;
+}
+
+.titulo-card-vantagens {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.descricao-card-vantagens {
+  font-size: 0.9rem;
+}
+
+#card-violeta {
+  background: rgba(59, 2, 59, 0.13);
+  border: 1px solid var(--roxoProfundo);
+  box-shadow: inset 0 0 40px -18px var(--roxoProfundo);
+}
+
+.card-azul {
+  background: rgba(2, 48, 59, 0.253);
+  border: 1px solid rgba(41, 124, 179, 0.671);
+  box-shadow: inset 0 0 40px -20px var(--azulEletricoNeon);
+}
+
+.card-laranja {
+  background: rgba(59, 36, 2, 0.253);
+  border: 1px solid rgba(163, 105, 17, 0.671);
+  box-shadow: inset 0 0 40px -20px var(--laranjaVibranteNeon);
+}
+
+#card-amarelo {
+  background: rgba(59, 36, 2, 0.253);
+  border: 1px solid rgba(161, 163, 17, 0.671);
+  box-shadow: inset 0 0 40px -20px var(--accent);
+}
