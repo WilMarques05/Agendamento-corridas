@@ -5,7 +5,7 @@ section.vantagens-container {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 1rem 0;
+  padding: 3rem 0;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -108,7 +108,7 @@ section.vantagens-container > * {
     height: auto;
     margin-top: -40px !important;
     margin-bottom: 3.5rem;
-    padding: 0 1rem;
+    padding: 3rem 1rem;
   }
 
   section.vantagens-container::before,
@@ -127,7 +127,7 @@ section.vantagens-container > * {
     height: auto;
     margin-top: -50px !important;
     margin-bottom: 4.5rem;
-    padding: 0 0.75rem;
+    padding: 3rem 0.75rem;
   }
 
   section.vantagens-container::before,
