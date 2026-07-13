@@ -5,7 +5,7 @@ section.vantagens-container {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 3rem 0;
+  padding: 6rem 0rem;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -93,6 +93,7 @@ section.vantagens-container > * {
 .titulo-vantagens h2 {
   color: #f2fbff;
   text-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
+  font-size: clamp(2rem, 4vw, 3.2rem);
 }
 
 .titulo-vantagens p {

@@ -1,5 +1,5 @@
 .como-funciona {
-  padding: 6rem 1.5rem;
+  padding: 6rem 0rem;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 34%),
     linear-gradient(180deg, rgba(11, 18, 32, 0.98) 0%, rgba(8, 12, 22, 0.98) 100%);
@@ -35,7 +35,8 @@
 .como-funciona__header h2 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.1;
+  color: #f2fbff;
+  text-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
 }
 
 .como-funciona__header p {
