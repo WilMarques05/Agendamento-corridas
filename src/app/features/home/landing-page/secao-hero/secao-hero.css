@@ -14,9 +14,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: min(100%, 1240px);
-  margin: 0 auto !important;
-  padding: 0 clamp(1rem, 4vw, 3.5rem);
+  width: min(100%, 2000px);
+  margin:0 !important;
+  padding-left: 200px ;
+  /* padding: 0 clamp(1rem, 4vw, 3.5rem); */
 }
 
 .container-conteudo-hero .row {
@@ -192,7 +193,7 @@
 
 .container-icone-beneficios {
   padding: 6px;
-  height: 80%;
+  height: 70%;
 }
 
 .icone-beneficio {
