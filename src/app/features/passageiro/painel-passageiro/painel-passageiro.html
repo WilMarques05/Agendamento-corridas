@@ -1,0 +1,53 @@
+<div class="dashboard-container">
+  <!-- Barra Lateral de Navegação (Sidebar) -->
+  <aside class="sidebar">
+    <div class="logo-area">
+      <span class="texto-logo">Elite<span class="text-laranja">Drive</span></span>
+    </div>
+
+    <nav class="menu-nav">
+      <a class="nav-item ativa"><i class="bi bi-map"></i> Solicitar Viagem</a>
+      <a class="nav-item"><i class="bi bi-clock-history"></i> Histórico</a>
+      <a class="nav-item"><i class="bi bi-wallet2"></i> Pagamentos</a>
+    </nav>
+
+    <div class="usuario-rodape">
+      <div class="user-info">
+        <div class="avatar-passageiro">P</div>
+        <div>
+          <span class="nome-user d-block">Passageiro</span>
+          <span class="status-user">Cliente VIP</span>
+        </div>
+      </div>
+      <button class="btn-logout" (click)="deslogar()"><i class="bi bi-box-arrow-right"></i> Sair</button>
+    </div>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="conteudo-principal">
+    <!-- Simulação do Mapa de Fundo -->
+    <div class="mapa-placeholder">
+      <div class="mapa-overlay"></div>
+
+      <!-- Card Flutuante de Solicitação -->
+      <div class="card-solicitacao">
+        <h3>Para onde vamos hoje?</h3>
+        <p class="sub-solicitacao">Digite os endereços para agendar ou pedir agora.</p>
+
+        <form>
+          <div class="grupo-busca mb-3">
+            <i class="bi bi-geo-alt-fill texto-azul"></i>
+            <input type="text" placeholder="Local de partida (Sua localização)" class="input-busca">
+          </div>
+
+          <div class="grupo-busca mb-4">
+            <i class="bi bi-pin-map-fill text-laranja"></i>
+            <input type="text" placeholder="Para onde quer ir?" class="input-busca">
+          </div>
+
+          <button type="button" class="btn-buscar-motorista">Confirmar Destino</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,171 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0b132b; /* Azul escuro de fundo */
+  color: #ffffff;
+}
+
+/* 🪐 SIDEBAR */
+.sidebar {
+  width: 280px;
+  background: rgba(11, 19, 43, 0.95);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+}
+
+.texto-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 3rem;
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.nav-item:hover, .nav-item.ativa {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+}
+
+/* Se for passageiro, use a ativação laranja. Se for motorista, azul! */
+.nav-item.ativa {
+  box-shadow: inset 3px 0 0 var(--azulEletricoNeon, #00e0ff);
+}
+
+/* 🗺️ MAPA DO PASSAGEIRO */
+.conteudo-principal {
+  flex: 1;
+  position: relative;
+}
+
+.mapa-placeholder {
+  width: 100%;
+  height: 100%;
+  /* Fundo preto simulando o mapa ou você pode integrar um mapa de verdade depois */
+  background: radial-gradient(circle, #1c2541 10%, #0b132b 100%);
+  position: relative;
+}
+
+/* CARD DE SOLICITAÇÃO */
+.card-solicitacao {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background: rgba(11, 19, 43, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+/* INPUTS DE BUSCA */
+.grupo-busca {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.grupo-busca i {
+  position: absolute;
+  left: 15px;
+}
+
+.input-busca {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 15px 12px 40px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+/* 🚀 CARDS DO MOTORISTA */
+.conteudo-principal-motorista {
+  flex: 1;
+  padding: 3rem;
+  overflow-y: auto;
+}
+
+.card-metrica {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.metrica-titulo {
+  font-size: 0.85rem;
+  color: #a5a5a5;
+  text-transform: uppercase;
+}
+
+.metrica-valor {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+/* CORRIDA PENDENTE */
+.card-corrida-pendente {
+  background: linear-gradient(135deg, rgba(0, 224, 255, 0.05) 0%, rgba(11, 19, 43, 0.95) 100%);
+  border: 1px solid var(--azulEletricoNeon, #00e0ff);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 25px rgba(0, 224, 255, 0.15);
+}
+
+.badge-nova-corrida {
+  background: rgba(0, 224, 255, 0.2);
+  color: #00e0ff;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+/* STATUS TOGGLE */
+.btn-status {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #ff3333;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-status.online {
+  color: #00ff66;
+}
+
+.btn-aceitar-corrida {
+  background: #00e0ff;
+  color: #0b132b;
+  font-weight: 700;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+}
