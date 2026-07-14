@@ -1,1 +1,123 @@
-<p>login works!</p>
+<section class="secao-login" style="background-image: url('imagem_tela_landingPage.png')">
+  <div class="mascara-escura-login"></div>
+
+  <div class="container container-login">
+    <div class="card-login">
+      <div class="topo-card text-center mb-4">
+        <h2 class="titulo-login">Área de Login</h2>
+        <p class="subtitulo-login">Acesse sua conta e continue sua jornada.</p>
+      </div>
+
+      <!-- 🗂️ SELETOR DE ABAS (PASSAGEIRO / MOTORISTA) -->
+      <div class="abas-login d-flex mb-4">
+        <button
+          type="button"
+          class="btn-aba aba-passageiro"
+          [class.ativa]="tipoUsuario === 'passageiro'"
+          (click)="mudarAba('passageiro')"
+        >
+          <i class="bi bi-person-fill me-2"></i> Passageiro
+        </button>
+
+        <button
+          type="button"
+          class="btn-aba aba-motorista"
+          [class.ativa]="tipoUsuario === 'motorista'"
+          (click)="mudarAba('motorista')"
+        >
+          <i class="bi bi-steeringwheel me-2"></i> Motorista
+        </button>
+      </div>
+
+      <!-- 📝 FORMULÁRIO DE ACESSO -->
+      <form (ngSubmit)="efetuarLogin()">
+
+  <!-- Alerta de Erro de Login usando @if -->
+  @if (mensagemErro) {
+    <div class="alert alert-danger py-2 text-center mb-3" style="font-size: 0.9rem; background: rgba(220, 53, 69, 0.2); border: 1px solid var(--laranjaVibranteNeon); color: #ff6b6b;">
+      {{ mensagemErro }}
+    </div>
+  }
+
+  <!-- Campo E-mail / Telefone -->
+  <div class="campo-grupo mb-3">
+    <div class="input-wrapper">
+      <i class="bi bi-envelope icone-input"></i>
+      <input
+        type="email"
+        placeholder="E-mail ou telefone"
+        required
+        [(ngModel)]="credenciais.email"
+        name="email"
+        class="input-custom">
+    </div>
+  </div>
+
+  <!-- Campo Senha -->
+  <div class="campo-grupo mb-3">
+    <div class="input-wrapper">
+      <i class="bi bi-lock icone-input"></i>
+      <input
+        [type]="exibirSenha ? 'text' : 'password'"
+        placeholder="Senha"
+        required
+        [(ngModel)]="credenciais.senha"
+        name="senha"
+        class="input-custom">
+      <button type="button" class="btn-olho" (click)="exibirSenha = !exibirSenha">
+        <!-- Mantemos a classe dinâmica do ícone de olho -->
+        <i class="bi" [class.bi-eye-slash]="exibirSenha" [class.bi-eye]="!exibirSenha"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Opções Extras (Lembrar-me e Esqueci a Senha) -->
+  <div class="d-flex justify-content-between align-items-center mb-4 opções-extras">
+    <label class="check-lembrar">
+      <input type="checkbox" name="lembrar">
+      <span>Lembrar-me</span>
+    </label>
+    <a routerLink="/recuperar-senha" class="link-esqueci">Esqueci minha senha</a>
+  </div>
+
+  <!-- Botão Entrar Dinâmico com @if e @else -->
+  <button type="submit" class="btn-entrar-submit" [ngClass]="'btn-' + tipoUsuario" [disabled]="carregando">
+    @if (!carregando) {
+      <span>Entrar como {{ tipoUsuario === 'passageiro' ? 'Passageiro' : 'Motorista' }}</span>
+    } @else {
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    }
+  </button>
+
+</form>
+
+      <!-- Divisor -->
+      <div class="divisor-login my-4">
+        <span>ou continue com</span>
+      </div>
+
+      <!-- Redes Sociais Alternativas -->
+      <div class="d-flex gap-3 redes-login mb-4">
+        <button type="button" class="btn-rede-social">
+          <i class="bi bi-google me-2"></i> Google
+        </button>
+        <button type="button" class="btn-rede-social">
+          <i class="bi bi-facebook me-2"></i> Facebook
+        </button>
+      </div>
+
+      <!-- Link para Cadastro -->
+      <div class="texto-cadastro-link text-center">
+        <span>Ainda não tem uma conta? </span>
+        <a
+          [routerLink]="
+            tipoUsuario === 'passageiro' ? '/cadastro-passageiro' : '/cadastro-motorista'
+          "
+          class="link-criar"
+        >
+          Criar conta
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
