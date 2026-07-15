@@ -5,4 +5,5 @@ export interface Passageiro{
   cpf: string;
   email: string;
   fotoPerfilBase64: string;
+  avaliacao: number;
 }

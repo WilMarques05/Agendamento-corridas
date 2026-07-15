@@ -1,53 +1,417 @@
 <div class="dashboard-container">
-  <!-- Barra Lateral de Navegação (Sidebar) -->
-  <aside class="sidebar">
-    <div class="logo-area">
+  <!-- BARRA DE TOPO EXCLUSIVA PARA DISPOSITIVOS MÓVEIS (< 768px) -->
+  <header class="topbar-mobile">
+    <button class="btn-hamburguer" (click)="alternarMenu()">
+      <i class="bi" [class.bi-list]="!menuLateralAberto" [class.bi-x-lg]="menuLateralAberto"></i>
+    </button>
+    <span class="logo-mobile">Elite<span class="text-laranja">Drive</span></span>
+
+    @if (fotoPassageiro) {
+      <img
+        [src]="fotoPassageiro"
+        alt="Foto do usuário"
+        class="avatar-mobile"
+        style="object-fit: cover"
+      />
+    } @else {
+      <div class="avatar-mobile">{{ nomePassageiro.charAt(0).toUpperCase() }}</div>
+    }
+  </header>
+
+  <!-- OVERLAY DE FUNDO PARA FECHAR O MENU SE CLICAR FORA (MOBILE) -->
+  @if (menuLateralAberto) {
+    <div class="sidebar-overlay" (click)="alternarMenu()"></div>
+  }
+
+  <!-- BARRA LATERAL (SIDEBAR / OFF-CANVAS) -->
+  <aside class="sidebar" [class.menu-aberto]="menuLateralAberto">
+    <div class="logo-area d-none-mobile">
       <span class="texto-logo">Elite<span class="text-laranja">Drive</span></span>
     </div>
 
+    <div class="perfil-usuario">
+      <div class="avatar-container">
+        @if (fotoPassageiro && fotoPassageiro.trim() !== '') {
+          <img [src]="fotoPassageiro" alt="Foto do usuário" class="foto-perfil" />
+        } @else {
+          <div class="avatar-fallback">{{ nomePassageiro.charAt(0).toUpperCase() }}</div>
+        }
+      </div>
+      <div class="info-usuario">
+        <span class="nome-user">{{ nomePassageiro }}</span>
+        <span class="status-user">Passageiro VIP</span>
+      </div>
+    </div>
+
     <nav class="menu-nav">
-      <a class="nav-item ativa"><i class="bi bi-map"></i> Solicitar Viagem</a>
-      <a class="nav-item"><i class="bi bi-clock-history"></i> Histórico</a>
-      <a class="nav-item"><i class="bi bi-wallet2"></i> Pagamentos</a>
+      <a class="nav-item ativa" (click)="navegarInterno()"
+        ><i class="bi bi-map"></i> Solicitar Corrida</a
+      >
+      <a class="nav-item" (click)="navegarInterno()"
+        ><i class="bi bi-clock-history"></i> Minhas Corridas</a
+      >
     </nav>
 
-    <div class="usuario-rodape">
-      <div class="user-info">
-        <div class="avatar-passageiro">P</div>
-        <div>
-          <span class="nome-user d-block">Passageiro</span>
-          <span class="status-user">Cliente VIP</span>
-        </div>
-      </div>
-      <button class="btn-logout" (click)="deslogar()"><i class="bi bi-box-arrow-right"></i> Sair</button>
-    </div>
+    <button class="btn-logout" (click)="deslogar()">
+      <i class="bi bi-box-arrow-right"></i> Sair
+    </button>
   </aside>
 
-  <!-- Conteúdo Principal -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="conteudo-principal">
-    <!-- Simulação do Mapa de Fundo -->
-    <div class="mapa-placeholder">
-      <div class="mapa-overlay"></div>
+    <!-- SEÇÃO: MOTORISTAS DISPONÍVEIS -->
+    <section class="secao-dashboard">
+      <h2 class="titulo-secao">Motoristas cadastrados na plataforma</h2>
 
-      <!-- Card Flutuante de Solicitação -->
-      <div class="card-solicitacao">
-        <h3>Para onde vamos hoje?</h3>
-        <p class="sub-solicitacao">Digite os endereços para agendar ou pedir agora.</p>
+      <div class="grid-motoristas">
+        @for (motorista of motoristas; track motorista.id) {
+          <div class="card-motorista" (click)="selecionarMotorista(motorista)">
+            <div class="avatar-motorista-card">
+              @if (motorista.fotoPerfilBase64 && motorista.fotoPerfilBase64 !== '') {
+                <img [src]="motorista.fotoPerfilBase64" [alt]="motorista.nomeCompleto" class="foto-motorista">
+              } @else {
+                <div class="avatar-fallback-motorista">M</div>
+              }
+            </div>
+            <h3 class="nome-motorista-card">{{ motorista.nomeCompleto }}</h3>
+            <p class="detalhe-veiculo">
+              <i class="bi bi-car-front-fill"></i> {{ motorista.modeloCarro }} ({{ motorista.corCarro }})
+            </p>
+            <div class="avaliacao-card">
+              <i class="bi bi-star-fill text-warning"></i>
+              <span>5.0</span>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
 
-        <form>
-          <div class="grupo-busca mb-3">
-            <i class="bi bi-geo-alt-fill texto-azul"></i>
-            <input type="text" placeholder="Local de partida (Sua localização)" class="input-busca">
+    <!-- SEÇÃO: AGENDAMENTO EM ESPERA -->
+    @if (agendamentoAtivo && motoristaDoAgendamento) {
+      <section class="secao-dashboard mt-5 animate__animated animate__fadeIn">
+        <h2 class="titulo-secao text-laranja">Solicitação em Espera</h2>
+
+        <div class="card-solicitacao-espera-container">
+          <!-- MAPA INTEGRADO -->
+          <div class="mapa-espera-wrapper">
+            <div id="map-espera" style="height: 100%; width: 100%; min-height: 250px; border-radius: 16px;"></div>
           </div>
 
-          <div class="grupo-busca mb-4">
-            <i class="bi bi-pin-map-fill text-laranja"></i>
-            <input type="text" placeholder="Para onde quer ir?" class="input-busca">
+          <!-- DETALHES GERAIS DA SOLICITAÇÃO -->
+          <div class="card-solicitacao-espera">
+            <div class="header-solicitacao">
+              <span class="status-badge">
+                <i class="bi bi-hourglass-split"></i> {{ agendamentoAtivo.status }}
+              </span>
+              @if (agendamentoAtivo.status === 'Pendente') {
+                <span class="tempo-alerta"
+                  ><i class="bi bi-clock"></i> O motorista tem 30 min para confirmar</span
+                >
+              }
+            </div>
+
+            <div class="info-corrida-espera">
+              <div class="detalhes-motorista-espera">
+                <p><strong>Motorista:</strong> {{ motoristaDoAgendamento.nomeCompleto }}</p>
+                <p>
+                  <strong>Veículo:</strong> {{ motoristaDoAgendamento.modeloCarro }} ({{
+                    motoristaDoAgendamento.corCarro
+                  }})
+                </p>
+                <p><strong>Telefone:</strong> {{ motoristaDoAgendamento.telefone }}</p>
+              </div>
+              <div class="detalhes-viagem-espera">
+                <p><strong>De:</strong> {{ agendamentoAtivo.localPartida }}</p>
+                <p><strong>Para:</strong> {{ agendamentoAtivo.localDestino }}</p>
+                <p>
+                  <strong>Data/Hora:</strong> {{ formatarData(agendamentoAtivo.dataCorrida) }} às
+                  {{ agendamentoAtivo.horarioCorrida }}
+                </p>
+              </div>
+              <div class="valores-espera">
+                <p><strong>Distância:</strong> {{ agendamentoAtivo.distanciaKm }} km</p>
+                <p>
+                  <strong>Valor Estimado:</strong>
+                  <span class="text-success"
+                    >R$ {{ agendamentoAtivo.valorTotal | number: '1.2-2' }}</span
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="alerta-email">
+              <i class="bi bi-envelope-check"></i> Um e-mail de agendamento foi enviado para o
+              motorista. Você receberá uma confirmação por e-mail assim que ele aceitar!
+            </div>
+
+            <button class="btn-cancelar-solicitacao" (click)="abrirConfirmacaoCancelamento()">
+              Cancelar Solicitação
+            </button>
+          </div>
+        </div>
+      </section>
+    }
+  </main>
+
+  <!-- MINI TELA / OVERLAY (MODAL DETALHADO) -->
+  @if (motoristaSelecionado) {
+    <div class="modal-overlay">
+      <div class="modal-container">
+        <button class="btn-fechar-modal" (click)="fecharModal()"><i class="bi bi-x-lg"></i></button>
+
+        <div class="modal-conteudo">
+          <!-- Coluna Esquerda: Info Motorista -->
+          <div class="col-detalhes-motorista">
+            <div class="perfil-topo-modal">
+              <div class="avatar-modal">
+                @if (motoristaSelecionado.fotoPerfilBase64) {
+                  <img
+                    [src]="motoristaSelecionado.fotoPerfilBase64"
+                    alt="Foto Motorista"
+                    class="foto-modal-img"
+                  />
+                } @else {
+                  <div class="avatar-fallback-modal">M</div>
+                }
+              </div>
+              <div>
+                <h2>{{ motoristaSelecionado.nomeCompleto }}</h2>
+                <div class="status-viagens">
+                  <span><i class="bi bi-star-fill text-warning"></i> 5.0</span>
+                  <span class="separador">•</span>
+                  <span>Cidade: {{ motoristaSelecionado.cidade }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detalhes-tecnicos mt-4">
+              <p>
+                <strong>Veículo:</strong> {{ motoristaSelecionado.modeloCarro }} ({{
+                  motoristaSelecionado.corCarro
+                }})
+              </p>
+              <p><strong>Placa:</strong> {{ motoristaSelecionado.placaCarro }}</p>
+              <p>
+                <strong>Preço por Km:</strong>
+                <span class="text-success"
+                  >R$ {{ motoristaSelecionado.valorPorKm | number: '1.2-2' }}</span
+                >
+              </p>
+            </div>
+
+            <div class="fotos-veiculo-container mt-4">
+              <h4>Fotos do Veículo</h4>
+              <div class="grid-fotos-veiculo">
+                <div class="foto-box">
+                  @if (motoristaSelecionado.fotoCarroInternaBase64 && motoristaSelecionado.fotoCarroInternaBase64 !== '') {
+                    <img [src]="motoristaSelecionado.fotoCarroInternaBase64" alt="Foto Interna" class="foto-carro">
+                  } @else {
+                    <div class="avatar-fallback-modal" style="border-radius: 0; font-size: 0.9rem; background: #1e293b; color: #64748b; display: flex; align-items: center; justify-content: center; height: 100%;">
+                      <span>Sem Foto Interna</span>
+                    </div>
+                  }
+                  <span class="label-foto">Interna</span>
+                </div>
+
+                <div class="foto-box">
+                  @if (motoristaSelecionado.fotoCarroExternaBase64 && motoristaSelecionado.fotoCarroExternaBase64 !== '') {
+                    <img [src]="motoristaSelecionado.fotoCarroExternaBase64" alt="Foto Externa" class="foto-carro">
+                  } @else {
+                    <div class="avatar-fallback-modal" style="border-radius: 0; font-size: 0.9rem; background: #1e293b; color: #64748b; display: flex; align-items: center; justify-content: center; height: 100%;">
+                      <span>Sem Foto Externa</span>
+                    </div>
+                  }
+                  <span class="label-foto">Externa</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <button type="button" class="btn-buscar-motorista">Confirmar Destino</button>
-        </form>
+          <!-- Coluna Direita: Formulário e Mapa -->
+          <div class="col-formulario-mapa">
+            <h3>Agendar Corrida</h3>
+
+            <div class="form-agendamento">
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label class="form-label">Data *</label>
+                  <input
+                    type="date"
+                    class="form-control-custom"
+                    [class.input-erro]="tentouSubmeter && !dadosCorrida.data"
+                    [min]="dataMinima"
+                    [(ngModel)]="dadosCorrida.data"
+                    name="data"
+                  />
+                  @if (tentouSubmeter && !dadosCorrida.data) {
+                    <span class="erro-campo-mensagem">Preenchimento obrigatório</span>
+                  }
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Horário *</label>
+                  <input
+                    type="time"
+                    class="form-control-custom"
+                    [class.input-erro]="tentouSubmeter && !dadosCorrida.hora"
+                    [(ngModel)]="dadosCorrida.hora"
+                    name="hora"
+                  />
+                  @if (tentouSubmeter && !dadosCorrida.hora) {
+                    <span class="erro-campo-mensagem">Preenchimento obrigatório</span>
+                  }
+                </div>
+              </div>
+
+              <!-- PONTO DE PARTIDA COM AUTOCOMPLETE -->
+              <div class="mb-2 position-relative">
+                <label class="form-label">Local de Partida *</label>
+                <input
+                  type="text"
+                  class="form-control-custom"
+                  [class.input-erro]="tentouSubmeter && !dadosCorrida.origem"
+                  placeholder="Ex: Av. Tancredo Neves, Salvador"
+                  [(ngModel)]="dadosCorrida.origem"
+                  (input)="buscarSugestoes('origem', dadosCorrida.origem)"
+                  name="origem"
+                  autocomplete="off"
+                />
+                @if (tentouSubmeter && !dadosCorrida.origem) {
+                  <span class="erro-campo-mensagem">Preenchimento obrigatório</span>
+                }
+                @if (sugestoesOrigem.length > 0) {
+                  <ul class="dropdown-autocomplete">
+                    @for (sugestao of sugestoesOrigem; track sugestao) {
+                      <li (click)="selecionarSugestao('origem', sugestao)">{{ sugestao }}</li>
+                    }
+                  </ul>
+                }
+              </div>
+
+              <!-- DESTINO COM AUTOCOMPLETE -->
+              <div class="mb-3 position-relative">
+                <label class="form-label">Destino *</label>
+                <input
+                  type="text"
+                  class="form-control-custom"
+                  [class.input-erro]="tentouSubmeter && !dadosCorrida.destino"
+                  placeholder="Ex: Farol da Barra, Salvador"
+                  [(ngModel)]="dadosCorrida.destino"
+                  (input)="buscarSugestoes('destino', dadosCorrida.destino)"
+                  name="destino"
+                  autocomplete="off"
+                />
+                @if (tentouSubmeter && !dadosCorrida.destino) {
+                  <span class="erro-campo-mensagem">Preenchimento obrigatório</span>
+                }
+                @if (sugestoesDestino.length > 0) {
+                  <ul class="dropdown-autocomplete">
+                    @for (sugestao of sugestoesDestino; track sugestao) {
+                      <li (click)="selecionarSugestao('destino', sugestao)">{{ sugestao }}</li>
+                    }
+                  </ul>
+                }
+              </div>
+
+              <div class="mapa-container mb-3">
+                <div id="map" style="height: 100%; width: 100%; border-radius: 8px"></div>
+                @if (calculandoRota) {
+                  <div class="mapa-loader">
+                    <span class="spinner-border spinner-border-sm"></span> Buscando rota em Salvador...
+                  </div>
+                }
+              </div>
+
+              @if (rotaCalculada) {
+                <div class="resumo-rota mb-3 animate__animated animate__fadeIn">
+                  <div class="resumo-item">
+                    <span class="resumo-label">Distância</span>
+                    <span class="resumo-valor">{{ dadosCorrida.distancia }} km</span>
+                  </div>
+                  <div class="resumo-item">
+                    <span class="resumo-label">Tempo</span>
+                    <span class="resumo-valor">{{ dadosCorrida.tempo }}</span>
+                  </div>
+                  <div class="resumo-item">
+                    <span class="resumo-label">Total</span>
+                    <span class="resumo-valor text-success"
+                      >R$ {{ dadosCorrida.valorTotal | number: '1.2-2' }}</span
+                    >
+                  </div>
+                </div>
+              }
+
+              <button type="button" class="btn-confirmar-agendamento" (click)="confirmarAgendamento()">Confirmar Agendamento</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
+  }
+
+  <!-- MINI TELA / POP-UP DE CONFIRMAÇÃO DE AGENDAMENTO -->
+  @if (mostrarConfirmacaoPopUp) {
+    <div class="popup-overlay animate__animated animate__fadeIn">
+      <div class="popup-container">
+        <div class="popup-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h4 class="popup-titulo">Solicitação Enviada!</h4>
+        <p class="popup-descricao">
+          Seu agendamento foi gerado e enviado ao motorista. Você poderá acompanhar o status diretamente no seu painel de agendamento em espera.
+        </p>
+        <button type="button" class="btn-popup-ok" (click)="fecharPopUpDeConfirmacao()">OK</button>
+      </div>
+    </div>
+  }
+
+  <!-- POP-UP BLOQUEIO: REGRA DE NEGÓCIO DUPLICADA -->
+  @if (mostrarAlertaAgendamentoAtivo) {
+    <div class="popup-overlay animate__animated animate__fadeIn">
+      <div class="popup-container" style="border-color: var(--laranja-neon);">
+        <div class="popup-icon" style="color: var(--laranja-neon);">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+        <h4 class="popup-titulo">Agendamento em Andamento</h4>
+        <p class="popup-descricao">
+          Você já possui uma solicitação de corrida ativa na plataforma. Conclua ou cancele o agendamento atual para poder selecionar outro motorista.
+        </p>
+        <button type="button" class="btn-popup-ok" (click)="fecharAlertaAtivo()">Entendido</button>
+      </div>
+    </div>
+  }
+
+  <!-- MINI TELA / POP-UP DE ATENÇÃO: PERGUNTA SE QUER CANCELAR -->
+  @if (mostrarPopUpCancelamento) {
+    <div class="popup-overlay animate__animated animate__fadeIn">
+      <div class="popup-container" style="border-color: var(--vermelho-cancelar); box-shadow: 0 0 30px rgba(255, 59, 48, 0.15);">
+        <div class="popup-icon" style="color: var(--vermelho-cancelar);">
+          <i class="bi bi-exclamation-circle-fill"></i>
+        </div>
+        <h4 class="popup-titulo">Cancelar Solicitação?</h4>
+        <p class="popup-descricao">
+          Tem certeza de que deseja cancelar este agendamento? Esta ação não poderá ser desfeita e o motorista será notificado.
+        </p>
+        <div style="display: flex; gap: 10px; width: 100%;">
+          <button type="button" class="btn-popup-voltar" (click)="fecharPopUpCancelamento()">Voltar</button>
+          <button type="button" class="btn-popup-cancelar-confirmar" (click)="cancelarSolicitacaoReal()">Sim, Cancelar</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- MINI TELA / POP-UP DE CONFIRMAÇÃO: CANCELADO COM SUCESSO -->
+  @if (mostrarPopUpCanceladoSucesso) {
+    <div class="popup-overlay animate__animated animate__fadeIn">
+      <div class="popup-container">
+        <div class="popup-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h4 class="popup-titulo">Cancelado com Sucesso!</h4>
+        <p class="popup-descricao">
+          O seu agendamento de corrida foi cancelado. A tela foi liberada e você já pode solicitar novas corridas com outros motoristas.
+        </p>
+        <button type="button" class="btn-popup-ok" (click)="fecharPopUpCanceladoSucesso()">OK</button>
+      </div>
+    </div>
+  }
 </div>

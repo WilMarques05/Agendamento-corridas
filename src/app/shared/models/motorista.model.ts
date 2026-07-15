@@ -5,6 +5,7 @@ export interface Motorista{
   telefone: string;
   email: string;
   fotoPerfilBase64: string;
+  avaliacao: number;
   valorPorKm: number;
 
   modeloCarro: string;

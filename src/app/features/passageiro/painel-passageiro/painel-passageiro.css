@@ -1,171 +1,1170 @@
+/* ==========================================================================
+   🎨 DESIGN SYSTEM & VARIÁVEIS (EliteDrive Premium Dark Theme)
+   ========================================================================== */
+:host {
+  --fundo-principal: #040814; /* Azul escuro quase preto */
+  --fundo-card: #0b1121; /* Azul meia-noite para superfícies */
+  --borda-vidro: rgba(255, 255, 255, 0.08);
+  --borda-foco: rgba(255, 107, 0, 0.4);
+
+  /* Cores de Destaque */
+  --laranja-neon: #ff6b00;
+  --laranja-glow: rgba(255, 107, 0, 0.25);
+  --verde-sucesso: #00ff88;
+  --vermelho-cancelar: #ff3b30;
+  --texto-primario: #f8fafc;
+  --texto-secundario: #94a3b8;
+
+  display: block;
+  min-height: 100vh;
+  background-color: var(--fundo-principal);
+  color: var(--texto-primario);
+}
+
+/* Container Principal */
 .dashboard-container {
   display: flex;
   min-height: 100vh;
-  background-color: #0b132b; /* Azul escuro de fundo */
-  color: #ffffff;
+  position: relative;
+  background-color: var(--fundo-principal);
 }
 
-/* 🪐 SIDEBAR */
+/* ==========================================================================
+   🪐 SIDEBAR (Barra Lateral Esquerda) - Desktop
+   ========================================================================== */
 .sidebar {
-  width: 280px;
-  background: rgba(11, 19, 43, 0.95);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  width: 260px;
+  background-color: #070c1b;
+  border-right: 1px solid var(--borda-vidro);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem 1.5rem;
+  padding: 1.8rem 1.2rem;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-area {
+  margin-bottom: 1.8rem;
 }
 
 .texto-logo {
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
 }
 
+.text-laranja {
+  color: var(--laranja-neon);
+  text-shadow: 0 0 10px var(--laranja-glow);
+}
+
+/* Perfil do Usuário na Lateral */
+.perfil-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--borda-vidro);
+  border-radius: 12px;
+  margin-bottom: 1.8rem;
+}
+
+.avatar-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--laranja-neon);
+  box-shadow: 0 0 10px var(--laranja-glow);
+  background-color: #1e293b;
+  flex-shrink: 0;
+}
+
+.foto-perfil {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--laranja-neon), #e05e00);
+}
+
+.info-usuario {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nome-user {
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.status-user {
+  font-size: 0.7rem;
+  color: var(--texto-secundario);
+}
+
+/* Links do Menu */
 .menu-nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 3rem;
+  gap: 8px;
   flex-grow: 1;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 12px 15px;
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.7);
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--texto-secundario);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.2s;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
   cursor: pointer;
+  border: 1px solid transparent;
 }
 
-.nav-item:hover, .nav-item.ativa {
-  background: rgba(255, 255, 255, 0.03);
+.nav-item i {
+  font-size: 1rem;
+}
+
+.nav-item:hover {
   color: #fff;
+  background: rgba(255, 107, 0, 0.05);
+  border-color: rgba(255, 107, 0, 0.15);
 }
 
-/* Se for passageiro, use a ativação laranja. Se for motorista, azul! */
 .nav-item.ativa {
-  box-shadow: inset 3px 0 0 var(--azulEletricoNeon, #00e0ff);
+  background: linear-gradient(90deg, rgba(255, 107, 0, 0.15) 0%, rgba(255, 107, 0, 0.02) 100%);
+  color: var(--laranja-neon);
+  border-color: rgba(255, 107, 0, 0.25);
+  box-shadow: inset 3px 0 0 var(--laranja-neon);
 }
 
-/* 🗺️ MAPA DO PASSAGEIRO */
-.conteudo-principal {
-  flex: 1;
-  position: relative;
-}
-
-.mapa-placeholder {
-  width: 100%;
-  height: 100%;
-  /* Fundo preto simulando o mapa ou você pode integrar um mapa de verdade depois */
-  background: radial-gradient(circle, #1c2541 10%, #0b132b 100%);
-  position: relative;
-}
-
-/* CARD DE SOLICITAÇÃO */
-.card-solicitacao {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-  background: rgba(11, 19, 43, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  z-index: 10;
-}
-
-/* INPUTS DE BUSCA */
-.grupo-busca {
-  position: relative;
+/* Logout */
+.btn-logout {
+  background: none;
+  border: none;
+  color: var(--vermelho-cancelar);
+  font-weight: 700;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: fit-content;
 }
 
-.grupo-busca i {
-  position: absolute;
-  left: 15px;
+.btn-logout:hover {
+  opacity: 0.8;
 }
 
-.input-busca {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 12px 15px 12px 40px;
-  border-radius: 8px;
-  color: #fff;
-}
-
-/* 🚀 CARDS DO MOTORISTA */
-.conteudo-principal-motorista {
+/* ==========================================================================
+   💻 CONTEÚDO PRINCIPAL (Sem Barra de Rolagem Interna)
+   ========================================================================== */
+.conteudo-principal {
   flex: 1;
-  padding: 3rem;
+  padding: 2rem;
+  height: auto;
+  max-height: none;
+  overflow-y: visible;
+}
+
+.titulo-secao {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #fff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Grid de Cards de Motoristas */
+.grid-motoristas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-motorista {
+  background: var(--fundo-card);
+  border: 1px solid var(--borda-vidro);
+  border-radius: 16px;
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-motorista::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--laranja-neon), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card-motorista:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 107, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(255, 107, 0, 0.05);
+}
+
+.card-motorista:hover::before {
+  opacity: 1;
+}
+
+.avatar-motorista-card {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 0.9rem;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background: #1e293b;
+}
+
+.foto-motorista {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback-motorista {
+  width: 100%;
+  height: 100%;
+  background: #273549;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #94a3b8;
+}
+
+.nome-motorista-card {
+  font-size: 1.1rem;
+  font-weight: 750;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.detalhe-veiculo {
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.avaliacao-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.15);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ff8c3a;
+}
+
+/* ==========================================================================
+   🕒 CARD DE SOLICITAÇÃO ATIVA / EM ESPERA (VERSÃO COMPACTA PRO)
+   ========================================================================== */
+.card-solicitacao-espera-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr; /* Proporção ideal de tela */
+  gap: 1.2rem; /* Espaçamento reduzido */
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.02) 0%, rgba(11, 17, 33, 0.98) 100%);
+  border: 1px solid var(--laranja-neon);
+  border-radius: 16px; /* Borda levemente menor */
+  padding: 1.2rem; /* Padding reduzido para sumir o excesso de tamanho */
+  box-shadow: 0 0 25px rgba(255, 107, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  max-width: 980px; /* Previne esticamento desproporcional em telas 4K */
+}
+
+.mapa-espera-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 190px; /* Reduzido de 250px para harmonizar com o tamanho novo */
+  background-color: #050811;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--borda-vidro);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-solicitacao-espera {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header-solicitacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0.8rem; /* Margem vertical ajustada */
+}
+
+.status-badge {
+  background: rgba(255, 107, 0, 0.12);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  color: var(--laranja-neon);
+  font-weight: 800;
+  padding: 4px 12px; /* Emblema slim */
+  border-radius: 50px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tempo-alerta {
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.info-corrida-espera {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.8rem;
+  border-top: 1px solid var(--borda-vidro);
+  border-bottom: 1px solid var(--borda-vidro);
+  padding: 0.8rem 0; /* Padding interno de texto menor */
+  margin-bottom: 0.8rem;
+}
+
+.info-corrida-espera p {
+  margin-bottom: 0.3rem;
+  font-size: 0.82rem; /* Letras condensadas corporativas */
+  color: #e2e8f0;
+}
+
+.info-corrida-espera strong {
+  color: var(--texto-secundario);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.valores-espera .text-success {
+  color: var(--verde-sucesso) !important;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.alerta-email {
+  background: rgba(0, 255, 136, 0.02);
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  color: #5ef3ad;
+  padding: 0.6rem 0.8rem; /* Caixa compacta */
+  border-radius: 8px;
+  font-size: 0.78rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.alerta-email i {
+  font-size: 1rem;
+}
+
+.btn-cancelar-solicitacao {
+  background: transparent;
+  border: 1.5px solid var(--vermelho-cancelar);
+  color: var(--vermelho-cancelar);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 8px 18px; /* Botão menor e discreto */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.btn-cancelar-solicitacao:hover {
+  background: var(--vermelho-cancelar);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+}
+
+/* ==========================================================================
+   🖥️ OVERLAY & MODAL DETALHADO (Mini Tela) - Desktop
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(2, 4, 10, 0.9);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 2rem;
+}
+
+.modal-container {
+  background: #090e1a;
+  border: 1px solid var(--borda-vidro);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1040px;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(255, 107, 0, 0.05);
+  animation: modalEntrar 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalEntrar {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.btn-fechar-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--borda-vidro);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.btn-fechar-modal:hover {
+  background: rgba(255, 107, 0, 0.15);
+  color: var(--laranja-neon);
+  border-color: rgba(255, 107, 0, 0.3);
+  transform: rotate(90deg);
+}
+
+.modal-conteudo {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  height: 100%;
+}
+
+/* Coluna Esquerda: Detalhes do Motorista */
+.col-detalhes-motorista {
+  border-right: 1px solid var(--borda-vidro);
+  padding: 2.5rem;
   overflow-y: auto;
 }
 
-.card-metrica {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 1.5rem;
+.perfil-topo-modal {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 }
 
-.metrica-titulo {
-  font-size: 0.85rem;
-  color: #a5a5a5;
-  text-transform: uppercase;
+.avatar-modal {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--laranja-neon);
+  box-shadow: 0 0 15px var(--laranja-glow);
+  background: #1e293b;
 }
 
-.metrica-valor {
-  font-size: 2rem;
+.foto-modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback-modal {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--laranja-neon), #d05300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 800;
-  margin: 10px 0;
+  font-size: 1.6rem;
+  color: #fff;
 }
 
-/* CORRIDA PENDENTE */
-.card-corrida-pendente {
-  background: linear-gradient(135deg, rgba(0, 224, 255, 0.05) 0%, rgba(11, 19, 43, 0.95) 100%);
-  border: 1px solid var(--azulEletricoNeon, #00e0ff);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 0 25px rgba(0, 224, 255, 0.15);
+.col-detalhes-motorista h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
 }
 
-.badge-nova-corrida {
-  background: rgba(0, 224, 255, 0.2);
-  color: #00e0ff;
+.status-viagens {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+.separador {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.detalhes-tecnicos {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--borda-vidro);
+  border-radius: 12px;
+  padding: 1.1rem;
+}
+
+.detalhes-tecnicos p {
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.detalhes-tecnicos p:last-child {
+  margin-bottom: 0;
+}
+
+.detalhes-tecnicos strong {
+  color: var(--texto-secundario);
+}
+
+/* Galeria de Fotos do Veículo */
+.fotos-veiculo-container h4 {
+  font-size: 0.95rem;
   font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 50px;
+  margin-bottom: 0.9rem;
+}
+
+.grid-fotos-veiculo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.foto-box {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 110px;
+  border: 1px solid var(--borda-vidro);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.foto-carro {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.foto-box:hover .foto-carro {
+  transform: scale(1.08);
+}
+
+.label-foto {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(4, 8, 20, 0.85);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Coluna Direita: Formulário e Mapa */
+.col-formulario-mapa {
+  padding: 2.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-formulario-mapa h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: #fff;
+}
+
+.form-label {
   font-size: 0.8rem;
-}
-
-/* STATUS TOGGLE */
-.btn-status {
-  background: none;
-  border: none;
-  font-size: 2.5rem;
-  color: #ff3333;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-status.online {
-  color: #00ff66;
-}
-
-.btn-aceitar-corrida {
-  background: #00e0ff;
-  color: #0b132b;
   font-weight: 700;
-  border: none;
-  padding: 12px 30px;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.form-control-custom {
+  width: 100%;
+  background: #121826;
+  border: 1px solid var(--borda-vidro);
   border-radius: 8px;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+  border-color: var(--laranja-neon);
+  background: #161d2f;
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.15);
+}
+
+/* Container do Mapa Leaflet */
+.mapa-container {
+  height: 170px;
+  position: relative;
+  border: 1px solid var(--borda-vidro);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #050811;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mapa-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(9, 14, 26, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--laranja-neon);
+  z-index: 1000;
+}
+
+/* Informações de Rota Calculada */
+.resumo-rota {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--borda-vidro);
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+}
+
+.resumo-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.resumo-label {
+  font-size: 0.7rem;
+  color: var(--texto-secundario);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.resumo-valor {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.resumo-valor.text-success {
+  color: var(--verde-sucesso) !important;
+}
+
+/* Botão de Agendamento */
+.btn-confirmar-agendamento {
+  background: linear-gradient(90deg, var(--laranja-neon) 0%, #ff8025 100%);
+  color: #050811;
+  font-weight: 800;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(255, 107, 0, 0.15);
+}
+
+.btn-confirmar-agendamento:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+  background: linear-gradient(90deg, #ff8025 0%, #ff9547 100%);
+}
+
+.topbar-mobile {
+  display: none;
+}
+
+/* ==========================================================================
+   🔍 AUTOCOMPLETE SUGGESTIONS DROPDOWN (EliteDrive Style)
+   ========================================================================== */
+.position-relative {
+  position: relative;
+}
+
+.dropdown-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 6px 0;
+  list-style: none;
+  z-index: 3000;
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.dropdown-autocomplete li {
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dropdown-autocomplete li:hover {
+  background: rgba(255, 107, 0, 0.1);
+  color: var(--laranja-neon);
+}
+
+/* ==========================================================================
+   ✅ DESIGN DO POP-UP DE CONFIRMAÇÃO E TRAVA
+   ========================================================================== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(2, 4, 10, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3100;
+}
+
+.popup-container {
+  background: #090e1a;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 136, 0.05);
+  animation: popupEntrar 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popupEntrar {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popup-icon {
+  font-size: 3rem;
+  color: var(--verde-sucesso);
+  margin-bottom: 1rem;
+}
+
+.popup-titulo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: #fff;
+}
+
+.popup-descricao {
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.btn-popup-ok {
+  background: linear-gradient(90deg, var(--laranja-neon) 0%, #ff8025 100%);
+  color: #050811;
+  font-weight: 800;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-popup-ok:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(255, 107, 0, 0.2);
+}
+
+/* ==========================================================================
+   🚨 ESTILOS VISUAIS PARA ERROS DE CAMPOS OBRIGATÓRIOS
+   ========================================================================== */
+.erro-campo-mensagem {
+  color: var(--vermelho-cancelar);
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: 3px;
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.form-control-custom.input-erro {
+  border-color: rgba(255, 59, 48, 0.45) !important;
+  background: rgba(255, 59, 48, 0.02) !important;
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.1) !important;
+}
+
+.btn-popup-voltar {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--borda-vidro);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.btn-popup-voltar:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #cbd5e1;
+}
+
+.btn-popup-cancelar-confirmar {
+  flex: 1;
+  background: var(--vermelho-cancelar);
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 59, 48, 0.2);
+}
+
+.btn-popup-cancelar-confirmar:hover {
+  background: #e0241b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(255, 59, 48, 0.35);
+}
+
+/* ==========================================================================
+   📱 RESPONSIVIDADE COMPLETA E MENU OFFCANVAS (TELAS < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .topbar-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    background: #070c1b;
+    border-bottom: 1px solid var(--borda-vidro);
+    padding: 0 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+  }
+
+  .btn-hamburguer {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .logo-mobile {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+  }
+
+  .avatar-mobile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--laranja-neon), #e05e00);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 0 10px var(--laranja-glow);
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    padding-top: 70px;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 290px;
+    height: 100vh;
+    z-index: 2050;
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 15px 0 35px rgba(0, 0, 0, 0.8);
+    background-color: #070c1b;
+    padding-top: 3rem;
+  }
+
+  .sidebar.menu-aberto {
+    left: 0;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(2, 4, 10, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 2040;
+  }
+
+  .d-none-mobile {
+    display: none !important;
+  }
+
+  .conteudo-principal {
+    padding: 1.5rem;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .titulo-secao {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .grid-motoristas {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .card-motorista {
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* Mudança estrutural adaptável para o mobile na tela de espera */
+  .card-solicitacao-espera-container {
+    grid-template-columns: 1fr; /* Stack em uma coluna vertical */
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .mapa-espera-wrapper {
+    min-height: 180px;
+    height: 180px;
+  }
+
+  .card-solicitacao-espera {
+    padding: 0;
+  }
+
+  .header-solicitacao {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .tempo-alerta {
+    font-size: 0.78rem;
+  }
+
+  .info-corrida-espera {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 0.8rem 0;
+  }
+
+  /* Modal Detalhado Mobile */
+  .modal-overlay {
+    padding: 8px;
+  }
+
+  .modal-container {
+    height: 95vh;
+    border-radius: 16px;
+  }
+
+  .modal-conteudo {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .col-detalhes-motorista {
+    border-right: none;
+    border-bottom: 1px solid var(--borda-vidro);
+    padding: 1.5rem 1rem;
+  }
+
+  .perfil-topo-modal {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .avatar-modal {
+    width: 64px;
+    height: 64px;
+  }
+
+  .col-detalhes-motorista h2 {
+    font-size: 1.25rem;
+  }
+
+  .status-viagens {
+    justify-content: center;
+  }
+
+  .grid-fotos-veiculo {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .foto-box {
+    height: 100px;
+  }
+
+  .col-formulario-mapa {
+    padding: 1.5rem 1rem;
+  }
+
+  .col-formulario-mapa h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .mapa-container {
+    height: 150px;
+  }
+
+  .resumo-rota {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0.8rem;
+  }
+
+  .resumo-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .btn-fechar-modal {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+  }
 }
