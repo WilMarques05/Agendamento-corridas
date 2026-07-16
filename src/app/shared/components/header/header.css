@@ -1,4 +1,3 @@
-/* ESCONDENDO A ESTILIZAÇÃO DO MOBILE QUANDO A TELA FOR DE DESKTOP */
 @media (min-width: 992px) {
   .cabecalho-principal {
     display: block !important;
@@ -9,7 +8,6 @@
   }
 }
 
-/* ESCONDENDO A ESTILIZAÇÃO DO DESKTOP QUANDO A TELA FOR DE MOBILE */
 @media (max-width: 991.98px) {
   .cabecalho-principal {
     display: none !important;
@@ -24,7 +22,6 @@
   }
 }
 
-/* ESTILIZAÇÃO DESKTOP */
 header.cabecalho-principal {
   background: var(--corPrincipalHeader);
   background: linear-gradient(
@@ -165,7 +162,6 @@ header.cabecalho-principal .menu-suspenso-personalizado .dropdown-item-motorista
   box-shadow: 0 0 10px var(--laranjaVibranteNeon);
 }
 
-/* ESTILIZAÇÃO TELAS MENORES/MOBILE  */
 .cabecalho-principal-mobile .d-flex {
   display: flex !important;
   flex-direction: row !important;
@@ -206,7 +202,6 @@ header.cabecalho-principal .menu-suspenso-personalizado .dropdown-item-motorista
   transition: all 0.2s ease;
 }
 
-/* A TAB BAR FIXA EMBAIXO */
 .bottom-tab-bar {
   position: fixed;
   bottom: 0;
@@ -272,7 +267,6 @@ header.cabecalho-principal .menu-suspenso-personalizado .dropdown-item-motorista
   transform: scale(0.9);
 }
 
-/* BOTÃO CADASTRE-SE*/
 .bottom-tab-bar .menu-suspenso-mobile {
   background-color: var(--fundoPrincipal) !important;
   margin-bottom: 12px !important;

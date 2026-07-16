@@ -14,9 +14,8 @@ export class Header implements OnInit {
   private router = inject(Router);
   protected isDashboard: boolean = false;
 
-  // Dados simulados para o usuário logado (substitua pela sua lógica real de Auth)
-  protected nomeUsuario: string = 'Tatiane';
-  protected fotoUsuario: string = 'assets/foto-perfil.jpg';
+  protected nomeUsuario: string = '';
+  protected fotoUsuario: string = '';
 
   ngOnInit() {
     this.router.events
@@ -27,7 +26,6 @@ export class Header implements OnInit {
   }
 
   logout() {
-    // Implemente sua lógica de signOut aqui
     this.router.navigate(['/']);
   }
 }
