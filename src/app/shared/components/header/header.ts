@@ -1,7 +1,8 @@
+import { ThemeService } from './../../services/theme';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { filter } from 'rxjs';
+import { filter, take } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { filter } from 'rxjs';
 })
 export class Header implements OnInit {
   private router = inject(Router);
+  private themeService = inject(ThemeService);
   protected isDashboard: boolean = false;
 
   protected nomeUsuario: string = '';
@@ -24,6 +26,10 @@ export class Header implements OnInit {
         this.isDashboard = event.urlAfterRedirects.includes('/painel-');
       });
   }
+
+  toggleTheme() {
+  this.themeService.toggleTheme();
+}
 
   logout() {
     this.router.navigate(['/']);

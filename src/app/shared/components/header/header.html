@@ -25,6 +25,9 @@
                 <li><a class="dropdown-item dropdown-item-passageiro" routerLink="/cadastro-motorista">Sou Motorista</a></li>
               </ul>
             </div>
+            <button class="btn btn-outline-info ms-2" (click)="toggleTheme()">
+  <i class="bi bi-sun"></i> / <i class="bi bi-moon"></i>
+</button>
           } @else {
             <span class="text-white">Olá, {{ nomeUsuario }}</span>
             <button class="btn btn-outline-danger" (click)="logout()">Sair</button>

@@ -1,4 +1,4 @@
-/* importando leaflet - estilo */
+
 @import "../node_modules/leaflet/dist/leaflet.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
@@ -9,6 +9,12 @@
 }
 
 :root {
+
+  /* TEMA ESCURO (PADRÃO) */
+  --fundoPrincipal: #030208;
+  --corPrincipalHeader: #030208;
+  --textoPrincipal: #ffffff;
+
 
   /* FONTES */
   --fonte-principal: 'Montserrat', sans-serif;
@@ -24,11 +30,7 @@
   --brancoPuro: #ffffff;          /* Textos principais, ícones de alto contraste */
   --cinzaClaro: #cccccc;          /* Textos secundários, placeholders */
   --destructive: #ef4444;         /* Vermelho de Erros */
-  
 
-
-
-  /* PARA EXCLUIR POSTERIORMENTE */
   --background: #0f172a;           /* Azul asfalto profundo */
   --card: rgba(30, 41, 59, 0.8);   /* Fundo dos cards (Glassmorphism) */
   --border: rgba(255, 255, 255, 0.08); /* Bordas sutis */
@@ -47,6 +49,14 @@ html{
   scroll-behavior: smooth;
 }
 
+body.light-theme {
+  --fundoPrincipal: #ffffff;
+  --corPrincipalHeader: #f8f9fa;
+  --textoPrincipal: #1a1a1a;
+  --azulEletricoNeon: #007bff; /* Ajuste para melhor contraste no claro */
+  --laranjaVibranteNeon: #d9534f;
+}
+
 body {
   font-family: var(--fonte-secundaria);
   background-color: var(--fundoPrincipal);
@@ -57,7 +67,7 @@ body {
 }
 section[id] {
   /* Altere o valor (ex: 80px) para bater certinho com a altura do seu header */
-  scroll-margin-top: 80px; 
+  scroll-margin-top: 80px;
 }
 
 h1,
