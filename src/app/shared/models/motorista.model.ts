@@ -1,4 +1,4 @@
-export interface Motorista{
+export interface Motorista {
   id?: string;
   nomeCompleto: string;
   cidade: string;
@@ -8,6 +8,7 @@ export interface Motorista{
   avaliacao: number;
   valorPorKm: number;
 
+  marcaCarro: string;
   modeloCarro: string;
   placaCarro: string;
   corCarro: string;

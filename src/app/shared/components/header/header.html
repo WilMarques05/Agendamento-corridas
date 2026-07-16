@@ -1,106 +1,77 @@
+<!-- CABEÇALHO DESKTOP -->
 <header class="cabecalho-principal sticky-top d-none d-lg-block">
   <nav class="navbar navbar-expand-lg navbar-dark p-0">
     <div class="container">
-      <a class="navbar-brand" routerLink="/" fragment="hero">
-        <picture class="img-container">
-          <img class="img-logo" src="/logo_elitedrive.png" alt="EliteDrive Logo" />
-        </picture>
+      <a class="navbar-brand" routerLink="/">
+        <picture class="img-container"><img class="img-logo" src="/logo_elitedrive.png"></picture>
       </a>
 
       <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/" fragment="como-funciona">Como funciona</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/" fragment="vantagens">Vantagens</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/" fragment="seguranca">Segurança</a>
-          </li>
-        </ul>
+        <!-- Menu Dinâmico -->
+        @if (!isDashboard) {
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+            <li class="nav-item"><a class="nav-link" routerLink="/" fragment="como-funciona">Como funciona</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/" fragment="vantagens">Vantagens</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/" fragment="seguranca">Segurança</a></li>
+          </ul>
+        }
 
         <div class="d-flex gap-3 ms-lg-3 align-items-center">
-          <a class="btn btn-entrar" routerLink="/login">Entrar</a>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-criar-conta dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-            >
-              Criar conta
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end menu-suspenso-personalizado">
-              <li>
-                <a class="dropdown-item dropdown-item-motorista" routerLink="/cadastro-passageiro"
-                  >Sou Passageiro</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item dropdown-item-passageiro" routerLink="/cadastro-motorista"
-                  >Sou Motorista</a
-                >
-              </li>
-            </ul>
-          </div>
+          @if (!isDashboard) {
+            <a class="btn btn-entrar" routerLink="/login">Entrar</a>
+            <div class="dropdown">
+              <button class="btn btn-criar-conta dropdown-toggle" type="button" data-bs-toggle="dropdown">Criar conta</button>
+              <ul class="dropdown-menu dropdown-menu-end menu-suspenso-personalizado">
+                <li><a class="dropdown-item dropdown-item-motorista" routerLink="/cadastro-passageiro">Sou Passageiro</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item dropdown-item-passageiro" routerLink="/cadastro-motorista">Sou Motorista</a></li>
+              </ul>
+            </div>
+          } @else {
+            <span class="text-white">Olá, {{ nomeUsuario }}</span>
+            <button class="btn btn-outline-danger" (click)="logout()">Sair</button>
+          }
         </div>
       </div>
     </div>
   </nav>
 </header>
 
-<header class="cabecalho-principal-mobile sticky-top">
+<!-- CABEÇALHO MOBILE -->
+<header class="cabecalho-principal-mobile sticky-top d-lg-none">
   <div class="d-flex justify-content-between align-items-center py-2 px-3 w-100">
     <a routerLink="/" class="m-0">
-      <picture class="img-container-mobile">
-        <img class="img-logo" src="/logo_elitedrive.png" alt="EliteDrive" />
-      </picture>
+      <picture class="img-container-mobile"><img class="img-logo" src="/logo_elitedrive.png"></picture>
     </a>
-    <a class="btn-entrar-mobile" routerLink="/login">Entrar</a>
+
+    @if (isDashboard) {
+      <div class="d-flex align-items-center gap-2">
+        <span class="text-white small">Olá, {{ nomeUsuario }}</span>
+        <button class="btn btn-sm btn-outline-danger" (click)="logout()">Sair</button>
+      </div>
+    } @else {
+      <a class="btn-entrar-mobile" routerLink="/login">Entrar</a>
+    }
   </div>
 </header>
 
-<div class="bottom-tab-bar d-flex d-lg-none">
-  <a
-    class="tab-item"
-    routerLink="/"
-    fragment="hero"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    <i class="bi bi-house-door"></i>
-    <span>Início</span>
-  </a>
+<!-- BOTTOM TAB BAR DINÂMICA -->
+@if (!isDashboard) {
+  <div class="bottom-tab-bar d-flex d-lg-none">
+    <a class="tab-item" routerLink="/" fragment="hero" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <i class="bi bi-house-door"></i> <span>Início</span>
+    </a>
+    <a class="tab-item" routerLink="/" fragment="como-funciona"><i class="bi bi-compass"></i> <span>Como funciona</span></a>
+    <a class="tab-item" routerLink="/" fragment="vantagens"><i class="bi bi-stars"></i> <span>Vantagens</span></a>
 
-  <a class="tab-item" routerLink="/" fragment="como-funciona">
-    <i class="bi bi-compass"></i>
-    <span>Como funciona</span>
-  </a>
-
-  <a class="tab-item" routerLink="/" fragment="vantagens">
-    <i class="bi bi-stars"></i>
-    <span>Vantagens</span>
-  </a>
-
-  <div class="tab-item dropdown dropup">
-    <button class="btn-cadastrar" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-person-plus-fill"></i>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-dark menu-suspenso-mobile">
-      <li>
-        <a class="dropdown-item item-passageiro py-2" routerLink="/cadastro-passageiro"
-          >Sou Passageiro</a
-        >
-      </li>
-      <li><hr class="dropdown-divider m-0" /></li>
-      <li>
-        <a class="dropdown-item item-motorista py-2" routerLink="/cadastro-motorista"
-          >Sou Motorista</a
-        >
-      </li>
-    </ul>
-    <span>Cadastre-se</span>
+    <div class="tab-item dropdown dropup">
+      <button class="btn-cadastrar" type="button" data-bs-toggle="dropdown"><i class="bi bi-person-plus-fill"></i></button>
+      <ul class="dropdown-menu dropdown-menu-dark menu-suspenso-mobile">
+        <li><a class="dropdown-item item-passageiro py-2" routerLink="/cadastro-passageiro">Sou Passageiro</a></li>
+        <li><hr class="dropdown-divider m-0" /></li>
+        <li><a class="dropdown-item item-motorista py-2" routerLink="/cadastro-motorista">Sou Motorista</a></li>
+      </ul>
+      <span>Cadastre-se</span>
+    </div>
   </div>
-</div>
+}

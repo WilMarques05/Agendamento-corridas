@@ -43,13 +43,14 @@
       </div>
     </div>
 
+    <!-- ✅ NAVEGAÇÃO ENTRE ABAS INTEGRADA -->
     <nav class="menu-nav">
-      <a class="nav-item ativa" (click)="navegarInterno()"
-        ><i class="bi bi-map"></i> Solicitar Corrida</a
-      >
-      <a class="nav-item" (click)="navegarInterno()"
-        ><i class="bi bi-clock-history"></i> Minhas Corridas</a
-      >
+      <a class="nav-item" [class.ativa]="abaAtiva === 'solicitar'" (click)="navegarInterno('solicitar')">
+        <i class="bi bi-map"></i> Solicitar Corrida
+      </a>
+      <a class="nav-item" [class.ativa]="abaAtiva === 'historico'" (click)="navegarInterno('historico')">
+        <i class="bi bi-clock-history"></i> Minhas Corridas
+      </a>
     </nav>
 
     <button class="btn-logout" (click)="deslogar()">
@@ -59,96 +60,167 @@
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="conteudo-principal">
-    <!-- SEÇÃO: MOTORISTAS DISPONÍVEIS -->
-    <section class="secao-dashboard">
-      <h2 class="titulo-secao">Motoristas cadastrados na plataforma</h2>
 
-      <div class="grid-motoristas">
-        @for (motorista of motoristas; track motorista.id) {
-          <div class="card-motorista" (click)="selecionarMotorista(motorista)">
-            <div class="avatar-motorista-card">
-              @if (motorista.fotoPerfilBase64 && motorista.fotoPerfilBase64 !== '') {
-                <img [src]="motorista.fotoPerfilBase64" [alt]="motorista.nomeCompleto" class="foto-motorista">
-              } @else {
-                <div class="avatar-fallback-motorista">M</div>
+    <!-- 🟢 ABA 1: SOLICITAR CORRIDA -->
+    @if (abaAtiva === 'solicitar') {
+      <!-- SEÇÃO: MOTORISTAS DISPONÍVEIS -->
+      <section class="secao-dashboard">
+        <h2 class="titulo-secao">Motoristas cadastrados na plataforma</h2>
+
+        <div class="grid-motoristas">
+          @for (motorista of motoristas; track motorista.id) {
+            <div class="card-motorista" (click)="selecionarMotorista(motorista)">
+              <div class="avatar-motorista-card">
+                @if (motorista.fotoPerfilBase64 && motorista.fotoPerfilBase64 !== '') {
+                  <img [src]="motorista.fotoPerfilBase64" [alt]="motorista.nomeCompleto" class="foto-motorista">
+                } @else {
+                  <div class="avatar-fallback-motorista">M</div>
+                }
+              </div>
+              <h3 class="nome-motorista-card">{{ motorista.nomeCompleto }}</h3>
+              <p class="detalhe-veiculo">
+                <i class="bi bi-car-front-fill"></i> {{ motorista.modeloCarro }} ({{ motorista.corCarro }})
+              </p>
+              <div class="avaliacao-card">
+                <i class="bi bi-star-fill text-warning"></i>
+                <span>{{ motorista.avaliacao | number:'1.1-1' }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- SEÇÃO: AGENDAMENTOS -->
+      @if (agendamentoAtivo && motoristaDoAgendamento) {
+        <section class="secao-dashboard mt-5 animate__animated animate__fadeIn">
+          <h2 class="titulo-secao text-laranja">Agendamentos</h2>
+
+          <div class="card-solicitacao-espera-container"
+               [ngClass]="{
+                 'borda-pendente': agendamentoAtivo.status === 'Pendente',
+                 'borda-aceito': agendamentoAtivo.status === 'Aceito',
+                 'borda-recusado': agendamentoAtivo.status === 'Recusado'
+               }">
+
+            <div class="mapa-espera-wrapper">
+              <div id="map-espera" style="height: 100%; width: 100%; min-height: 250px; border-radius: 16px;"></div>
+            </div>
+
+            <div class="card-solicitacao-espera">
+              <div class="header-solicitacao">
+                <span class="status-badge"
+                      [ngClass]="{
+                        'status-pendente': agendamentoAtivo.status === 'Pendente',
+                        'status-aceito': agendamentoAtivo.status === 'Aceito',
+                        'status-recusado': agendamentoAtivo.status === 'Recusado'
+                      }">
+                  <i class="bi"
+                     [class.bi-hourglass-split]="agendamentoAtivo.status === 'Pendente'"
+                     [class.bi-check-circle-fill]="agendamentoAtivo.status === 'Aceito'"
+                     [class.bi-x-circle-fill]="agendamentoAtivo.status === 'Recusado'"></i>
+                  {{ agendamentoAtivo.status }}
+                </span>
+              </div>
+
+              <div class="info-corrida-espera">
+                <div class="detalhes-motorista-espera">
+                  <p><strong>Motorista:</strong> {{ motoristaDoAgendamento.nomeCompleto }}</p>
+                  <p><strong>Veículo:</strong> {{ motoristaDoAgendamento.modeloCarro }} ({{ motoristaDoAgendamento.corCarro }})</p>
+                  <p><strong>Telefone:</strong> {{ motoristaDoAgendamento.telefone }}</p>
+                </div>
+                <div class="detalhes-viagem-espera">
+                  <p><strong>De:</strong> {{ agendamentoAtivo.localPartida }}</p>
+                  <p><strong>Para:</strong> {{ agendamentoAtivo.localDestino }}</p>
+                </div>
+                <div class="valores-espera">
+                  <p><strong>Distância:</strong> {{ agendamentoAtivo.distanciaKm }} km</p>
+                  <p>
+                    <strong>Valor Estimado:</strong>
+                    <span class="text-success">R$ {{ agendamentoAtivo.valorTotal | number: '1.2-2' }}</span>
+                  </p>
+                </div>
+              </div>
+
+              @if (agendamentoAtivo.status === 'Pendente') {
+                <div class="alerta-email">
+                  <i class="bi bi-envelope-check"></i> Um e-mail de agendamento foi enviado para o motorista. Você receberá uma confirmação assim que ele aceitar!
+                </div>
               }
+
+              @if (agendamentoAtivo.status === 'Aceito') {
+                <a [href]="'https://wa.me/55' + motoristaDoAgendamento.telefone.replace(/\D/g, '')"
+                   target="_blank"
+                   class="btn-whatsapp">
+                  <i class="bi bi-whatsapp"></i> Falar com Motorista
+                </a>
+              }
+
+              <button class="btn-cancelar-solicitacao" (click)="abrirConfirmacaoCancelamento()">
+                {{ agendamentoAtivo.status === 'Recusado' ? 'Entendido / Fechar Painel' : 'Cancelar Agendamento' }}
+              </button>
             </div>
-            <h3 class="nome-motorista-card">{{ motorista.nomeCompleto }}</h3>
-            <p class="detalhe-veiculo">
-              <i class="bi bi-car-front-fill"></i> {{ motorista.modeloCarro }} ({{ motorista.corCarro }})
-            </p>
-            <div class="avaliacao-card">
-              <i class="bi bi-star-fill text-warning"></i>
-              <span>5.0</span>
-            </div>
+          </div>
+        </section>
+      }
+    }
+
+    <!-- 🟠 ABA 2: MINHAS CORRIDAS (HISTÓRICO COMPLETO DETALHADO ADICIONADO) -->
+    @if (abaAtiva === 'historico') {
+      <section class="secao-dashboard animate__animated animate__fadeIn">
+        <h2 class="titulo-secao text-laranja">Minhas Corridas</h2>
+
+        @if (minhasCorridas.length === 0) {
+          <div style="text-align: center; padding: 40px; background: var(--fundo-card); border-radius: 16px; border: 1px solid var(--borda-vidro);">
+            <i class="bi bi-calendar2-x-fill text-muted" style="font-size: 2.5rem;"></i>
+            <h4 style="margin-top: 15px; color: var(--texto-secundario);">Nenhuma corrida finalizada no seu histórico.</h4>
+          </div>
+        } @else {
+          <div style="background: var(--fundo-card); border-radius: 16px; border: 1px solid var(--borda-vidro); padding: 20px; overflow-x: auto;">
+            <table class="table table-dark table-hover style-tabela-corridas" style="width: 100%; margin-bottom: 0; color: #fff; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--borda-vidro); text-align: left;">
+                  <th style="padding: 12px 10px;">Data/Hora</th>
+                  <th style="padding: 12px 10px;">Motorista</th>
+                  <th style="padding: 12px 10px;">Trajeto (Partida / Destino)</th>
+                  <th style="padding: 12px 10px;">Valor Pago</th>
+                  <th style="padding: 12px 10px;">Sua Avaliação</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (corrida of minhasCorridas; track corrida.id) {
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle;">
+                    <td style="padding: 15px 10px; font-size: 0.85rem; min-width: 120px;">
+                      <div>{{ formatarData(corrida.dataCorrida) }}</div>
+                      <div style="color: var(--texto-secundario); font-size: 0.75rem; margin-top: 2px;">às {{ corrida.horarioCorrida }}</div>
+                    </td>
+                    <td style="padding: 15px 10px; font-weight: 700; font-size: 0.9rem; min-width: 150px;">
+                      {{ corrida.nomeMotorista }}
+                    </td>
+                    <td style="padding: 15px 10px; font-size: 0.8rem; max-width: 320px; color: var(--texto-secundario);">
+                      <div><i class="bi bi-geo-alt-fill text-danger"></i> <strong>Partida:</strong> {{ corrida.localPartida }}</div>
+                      <div style="margin-top: 5px;"><i class="bi bi-flag-fill text-success"></i> <strong>Destino:</strong> {{ corrida.localDestino }}</div>
+                    </td>
+                    <td style="padding: 15px 10px; font-weight: bold; color: var(--verde-sucesso); font-size: 0.95rem; min-width: 100px;">
+                      R$ {{ corrida.valorTotal | number:'1.2-2' }}
+                    </td>
+                    <td style="padding: 15px 10px; min-width: 180px;">
+                      <div style="display: flex; gap: 3px; color: #ffb703; font-size: 0.9rem;">
+                        @for (star of [1,2,3,4,5]; track star) {
+                          <i class="bi" [class.bi-star-fill]="corrida.notaMotorista >= star" [class.bi-star]="corrida.notaMotorista < star"></i>
+                        }
+                        <span style="color: #fff; font-size: 0.75rem; margin-left: 5px; font-weight: bold;">(M: {{ corrida.notaMotorista }} ★)</span>
+                      </div>
+                      <div style="color: #00e0ff; font-size: 0.75rem; margin-top: 3px; font-weight: 600;">Veículo: {{ corrida.notaVeiculo }} ★</div>
+                      <div style="font-style: italic; color: #94a3b8; font-size: 0.75rem; margin-top: 5px; max-height: 40px; overflow: hidden; text-overflow: ellipsis;" [title]="corrida.comentario">
+                        "{{ corrida.comentario }}"
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
           </div>
         }
-      </div>
-    </section>
-
-    <!-- SEÇÃO: AGENDAMENTO EM ESPERA -->
-    @if (agendamentoAtivo && motoristaDoAgendamento) {
-      <section class="secao-dashboard mt-5 animate__animated animate__fadeIn">
-        <h2 class="titulo-secao text-laranja">Solicitação em Espera</h2>
-
-        <div class="card-solicitacao-espera-container">
-          <!-- MAPA INTEGRADO -->
-          <div class="mapa-espera-wrapper">
-            <div id="map-espera" style="height: 100%; width: 100%; min-height: 250px; border-radius: 16px;"></div>
-          </div>
-
-          <!-- DETALHES GERAIS DA SOLICITAÇÃO -->
-          <div class="card-solicitacao-espera">
-            <div class="header-solicitacao">
-              <span class="status-badge">
-                <i class="bi bi-hourglass-split"></i> {{ agendamentoAtivo.status }}
-              </span>
-              @if (agendamentoAtivo.status === 'Pendente') {
-                <span class="tempo-alerta"
-                  ><i class="bi bi-clock"></i> O motorista tem 30 min para confirmar</span
-                >
-              }
-            </div>
-
-            <div class="info-corrida-espera">
-              <div class="detalhes-motorista-espera">
-                <p><strong>Motorista:</strong> {{ motoristaDoAgendamento.nomeCompleto }}</p>
-                <p>
-                  <strong>Veículo:</strong> {{ motoristaDoAgendamento.modeloCarro }} ({{
-                    motoristaDoAgendamento.corCarro
-                  }})
-                </p>
-                <p><strong>Telefone:</strong> {{ motoristaDoAgendamento.telefone }}</p>
-              </div>
-              <div class="detalhes-viagem-espera">
-                <p><strong>De:</strong> {{ agendamentoAtivo.localPartida }}</p>
-                <p><strong>Para:</strong> {{ agendamentoAtivo.localDestino }}</p>
-                <p>
-                  <strong>Data/Hora:</strong> {{ formatarData(agendamentoAtivo.dataCorrida) }} às
-                  {{ agendamentoAtivo.horarioCorrida }}
-                </p>
-              </div>
-              <div class="valores-espera">
-                <p><strong>Distância:</strong> {{ agendamentoAtivo.distanciaKm }} km</p>
-                <p>
-                  <strong>Valor Estimado:</strong>
-                  <span class="text-success"
-                    >R$ {{ agendamentoAtivo.valorTotal | number: '1.2-2' }}</span
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="alerta-email">
-              <i class="bi bi-envelope-check"></i> Um e-mail de agendamento foi enviado para o
-              motorista. Você receberá uma confirmação por e-mail assim que ele aceitar!
-            </div>
-
-            <button class="btn-cancelar-solicitacao" (click)="abrirConfirmacaoCancelamento()">
-              Cancelar Solicitação
-            </button>
-          </div>
-        </div>
       </section>
     }
   </main>
@@ -177,7 +249,7 @@
               <div>
                 <h2>{{ motoristaSelecionado.nomeCompleto }}</h2>
                 <div class="status-viagens">
-                  <span><i class="bi bi-star-fill text-warning"></i> 5.0</span>
+                  <span><i class="bi bi-star-fill text-warning"></i> {{ motoristaSelecionado.avaliacao | number:'1.1-1' }}</span>
                   <span class="separador">•</span>
                   <span>Cidade: {{ motoristaSelecionado.cidade }}</span>
                 </div>
@@ -348,49 +420,35 @@
     </div>
   }
 
-  <!-- MINI TELA / POP-UP DE CONFIRMAÇÃO DE AGENDAMENTO -->
+  <!-- POP-UPS -->
   @if (mostrarConfirmacaoPopUp) {
     <div class="popup-overlay animate__animated animate__fadeIn">
       <div class="popup-container">
-        <div class="popup-icon">
-          <i class="bi bi-check-circle-fill"></i>
-        </div>
+        <div class="popup-icon"><i class="bi bi-check-circle-fill"></i></div>
         <h4 class="popup-titulo">Solicitação Enviada!</h4>
-        <p class="popup-descricao">
-          Seu agendamento foi gerado e enviado ao motorista. Você poderá acompanhar o status diretamente no seu painel de agendamento em espera.
-        </p>
+        <p class="popup-descricao">Seu agendamento foi gerado e enviado ao motorista.</p>
         <button type="button" class="btn-popup-ok" (click)="fecharPopUpDeConfirmacao()">OK</button>
       </div>
     </div>
   }
 
-  <!-- POP-UP BLOQUEIO: REGRA DE NEGÓCIO DUPLICADA -->
   @if (mostrarAlertaAgendamentoAtivo) {
     <div class="popup-overlay animate__animated animate__fadeIn">
       <div class="popup-container" style="border-color: var(--laranja-neon);">
-        <div class="popup-icon" style="color: var(--laranja-neon);">
-          <i class="bi bi-exclamation-triangle-fill"></i>
-        </div>
+        <div class="popup-icon" style="color: var(--laranja-neon);"><i class="bi bi-exclamation-triangle-fill"></i></div>
         <h4 class="popup-titulo">Agendamento em Andamento</h4>
-        <p class="popup-descricao">
-          Você já possui uma solicitação de corrida ativa na plataforma. Conclua ou cancele o agendamento atual para poder selecionar outro motorista.
-        </p>
+        <p class="popup-descricao">Você já possui uma solicitação de corrida activa na plataforma.</p>
         <button type="button" class="btn-popup-ok" (click)="fecharAlertaAtivo()">Entendido</button>
       </div>
     </div>
   }
 
-  <!-- MINI TELA / POP-UP DE ATENÇÃO: PERGUNTA SE QUER CANCELAR -->
   @if (mostrarPopUpCancelamento) {
     <div class="popup-overlay animate__animated animate__fadeIn">
-      <div class="popup-container" style="border-color: var(--vermelho-cancelar); box-shadow: 0 0 30px rgba(255, 59, 48, 0.15);">
-        <div class="popup-icon" style="color: var(--vermelho-cancelar);">
-          <i class="bi bi-exclamation-circle-fill"></i>
-        </div>
+      <div class="popup-container" style="border-color: var(--vermelho-cancelar);">
+        <div class="popup-icon" style="color: var(--vermelho-cancelar);"><i class="bi bi-exclamation-circle-fill"></i></div>
         <h4 class="popup-titulo">Cancelar Solicitação?</h4>
-        <p class="popup-descricao">
-          Tem certeza de que deseja cancelar este agendamento? Esta ação não poderá ser desfeita e o motorista será notificado.
-        </p>
+        <p class="popup-descricao">Tem certeza de que deseja cancelar este agendamento?</p>
         <div style="display: flex; gap: 10px; width: 100%;">
           <button type="button" class="btn-popup-voltar" (click)="fecharPopUpCancelamento()">Voltar</button>
           <button type="button" class="btn-popup-cancelar-confirmar" (click)="cancelarSolicitacaoReal()">Sim, Cancelar</button>
@@ -399,18 +457,49 @@
     </div>
   }
 
-  <!-- MINI TELA / POP-UP DE CONFIRMAÇÃO: CANCELADO COM SUCESSO -->
   @if (mostrarPopUpCanceladoSucesso) {
     <div class="popup-overlay animate__animated animate__fadeIn">
       <div class="popup-container">
-        <div class="popup-icon">
-          <i class="bi bi-check-circle-fill"></i>
-        </div>
+        <div class="popup-icon"><i class="bi bi-check-circle-fill"></i></div>
         <h4 class="popup-titulo">Cancelado com Sucesso!</h4>
-        <p class="popup-descricao">
-          O seu agendamento de corrida foi cancelado. A tela foi liberada e você já pode solicitar novas corridas com outros motoristas.
-        </p>
+        <p class="popup-descricao">O seu agendamento de corrida foi cancelado.</p>
         <button type="button" class="btn-popup-ok" (click)="fecharPopUpCanceladoSucesso()">OK</button>
+      </div>
+    </div>
+  }
+
+  <!-- MODAL DE AVALIAÇÃO INTERATIVA -->
+  @if (mostrarModalAvaliacao) {
+    <div class="popup-overlay animate__animated animate__fadeIn">
+      <div class="popup-container modal-feedback-container" style="border: 1px solid var(--laranja-neon); max-width: 440px; padding: 25px; text-align: center;">
+        <div class="popup-icon text-laranja" style="color: var(--laranja-neon); font-size: 2.5rem;"><i class="bi bi-star-fill"></i></div>
+        <h4 class="popup-titulo" style="color: #fff; font-weight: 800;">Como foi sua corrida?</h4>
+        <p class="popup-descricao" style="color: var(--texto-secundario); font-size: 0.85rem;">Sua corrida foi concluída com sucesso! Avalie sua experiência:</p>
+
+        <div style="text-align: left; margin-top: 20px;">
+          <label class="form-label" style="color: #fff; font-size: 0.8rem; font-weight: 700;">Nota do Motorista</label>
+          <div class="d-flex gap-2 justify-content-center my-2">
+            @for (s of [1,2,3,4,5]; track s) {
+              <i class="bi" [class.bi-star-fill]="notaMotoristaTemp >= s" [class.bi-star]="notaMotoristaTemp < s" style="font-size: 1.8rem; color: #ffb703; cursor: pointer;" (click)="notaMotoristaTemp = s"></i>
+            }
+          </div>
+        </div>
+
+        <div style="text-align: left; margin-top: 15px;">
+          <label class="form-label" style="color: #fff; font-size: 0.8rem; font-weight: 700;">Nota do Veículo</label>
+          <div class="d-flex gap-2 justify-content-center my-2">
+            @for (s of [1,2,3,4,5]; track s) {
+              <i class="bi" [class.bi-star-fill]="notaVeiculoTemp >= s" [class.bi-star]="notaVeiculoTemp < s" style="font-size: 1.8rem; color: #00e0ff; cursor: pointer;" (click)="notaVeiculoTemp = s"></i>
+            }
+          </div>
+        </div>
+
+        <div style="text-align: left; margin-top: 15px; margin-bottom: 25px;">
+          <label class="form-label" style="color: #fff; font-size: 0.8rem; font-weight: 700;">Deixe um Comentário *</label>
+          <textarea class="form-control-custom feedback-textarea" rows="3" placeholder="Escreva um comentário sobre a experiência..." [(ngModel)]="comentarioTemp" style="width: 100%; background: #121826; border: 1px solid var(--borda-vidro); border-radius: 8px; color: #fff; padding: 10px;"></textarea>
+        </div>
+
+        <button type="button" class="btn-confirmar-agendamento" (click)="salvarAvaliacaoCorrida()">Enviar Avaliação</button>
       </div>
     </div>
   }

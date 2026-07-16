@@ -947,6 +947,82 @@
   box-shadow: 0 6px 15px rgba(255, 59, 48, 0.35);
 }
 
+/* Badge de Confirmação Verde para Status Aceito */
+.status-badge.status-badge-aceito {
+  background: rgba(0, 255, 136, 0.12) !important;
+  border: 1px solid rgba(0, 255, 136, 0.4) !important;
+  color: var(--verde-sucesso) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
+
+/* ==========================================================================
+   🟩 STATUS E BORDAS DINÂMICAS DO CARD
+   ========================================================================== */
+
+/* Bordas do Container Principal */
+.borda-pendente { border: 2px solid var(--laranja-neon) !important; }
+.borda-aceito { border: 2px solid var(--verde-sucesso) !important; }
+.borda-recusado { border: 2px solid var(--vermelho-cancelar) !important; }
+
+/* Estilização Base do Badge de Status */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 🟠 Status: Aguardando / Pendente */
+.status-pendente {
+  background: rgba(255, 107, 0, 0.12) !important;
+  border: 1px solid rgba(255, 107, 0, 0.3) !important;
+  color: var(--laranja-neon) !important;
+}
+
+/* 🟢 Status: Aceito (Fundo e Texto Verde Confirmado) */
+.status-aceito {
+  background: rgba(0, 255, 136, 0.12) !important;
+  border: 1px solid rgba(0, 255, 136, 0.4) !important;
+  color: var(--verde-sucesso) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.1);
+}
+
+/* 🔴 Status: Recusado (Fundo e Texto Vermelho) */
+.status-recusado {
+  background: rgba(255, 59, 48, 0.12) !important;
+  border: 1px solid rgba(255, 59, 48, 0.4) !important;
+  color: var(--vermelho-cancelar) !important;
+}
+
+/* 💬 Botão WhatsApp Customizado */
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff !important;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  transition: background 0.2s ease, transform 0.1s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-whatsapp:hover {
+  background: #128c7e;
+  transform: translateY(-1px);
+}
 /* ==========================================================================
    📱 RESPONSIVIDADE COMPLETA E MENU OFFCANVAS (TELAS < 768px)
    ========================================================================== */

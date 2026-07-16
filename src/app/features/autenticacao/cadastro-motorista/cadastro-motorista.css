@@ -1,150 +1,166 @@
-section.container-principal {
+/* ==========================================================================
+   🪐 CADASTRO MOTORISTA PREMIUM - DESIGN SYSTEM (Azul Eletrico Neon)
+   ========================================================================== */
+.container-principal {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  justify-items: center;
+  grid-template-columns: 1fr 1.2fr; /* Divisão harmônica perfeita desktop */
+  min-height: 100vh;
+  width: 100%;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+  padding: 40px 6%;
   position: relative;
-  overflow: visible;
+  background-color: #040814;
   gap: 40px;
 }
 
-div.text-container {
+/* 🖼️ IMAGEM DE FUNDO REAJUSTADA - MAIS FUNDA, NÍTIDA E SEM SOBREPOSIÇÃO */
+.imagem-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.imagem-page {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0.45; /* Aumentado de 26% para maior nitidez e profundidade */
+  filter: contrast(1.1) brightness(0.85); /* Fica mais viva e profunda */
+}
+
+.gradiente-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(4, 8, 20, 0.92) 0%, rgba(11, 17, 33, 0.65) 100%);
+}
+
+/* COLUNA TEXTUAL */
+.text-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  text-align: center;
+  gap: 16px;
   z-index: 2;
-  max-width: 70%;
-  width: 80%;
-  margin-right: 6%;
-  margin-left: 50%;
-  margin-bottom: 40%;
+  max-width: 460px;
 }
 
-h2.subtitulo {
-  font-size: 2.5rem;
-  font-weight: bold;
-  letter-spacing: -0.025em;
-  margin-bottom: 4px;
-  background: linear-gradient(to right, var(--foreground), rgba(255, 255, 255, 0.5));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.subtitulo {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #ffffff;
 }
 
-p.subtitulo-descricao {
-  color: var(--muted-foreground);
-  font-size: 1rem;
+.text-azul {
+  color: #00e0ff;
+  text-shadow: 0 0 15px rgba(0, 224, 255, 0.35);
+}
+
+.subtitulo-descricao {
+  color: #94a3b8;
+  font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.6;
 }
 
-picture.imagem-container {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-}
-
-img.imagem-page {
-  object-fit: cover;
-  object-position: 140% center;
-  opacity: 70%;
-  width: 100%;
-  height: 100%;
-}
-
-form.formulario-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 900px;
-  gap: 20px;
-  width: 100%;
-  /* min-height: 70vh; */
-  height: auto;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid color-mix(in srgb, var(--ring) 60%, transparent);
-  border-radius: 24px;
-  padding: 24px 32px;
-  box-shadow: 0 20px 250px -5px rgba(4, 120, 236, 0.15);
+/* 🏢 FORM WRAPPER & CONTAINER DESTACADO */
+.form-wrapper {
   z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-fieldset {
+.formulario-container {
+  width: 100%;
+  max-width: 620px;
+  background: rgba(11, 17, 33, 0.75); /* Efeito translúcido dark de alta classe */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 224, 255, 0.25); /* Destacado em Neon */
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(0, 224, 255, 0.05); /* Glow suave */
+  transition: border-color 0.3s ease;
+}
+
+.formulario-container:focus-within {
+  border-color: #00e0ff;
+}
+
+fieldset.grid-form-step {
   border: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas perfeitas */
+  gap: 16px;
 }
 
 legend {
+  grid-column: 1 / -1;
   text-align: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding-bottom: 10px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--foreground);
-  margin-bottom: 8px;
 }
 
-div.campos-formulario-container {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 12px;
-}
-
-div.grupo-campos-formulario {
+/* COMPORTAMENTO DOS CAMPOS */
+.grupo-campos-formulario {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.formulario-foto {
+.grupo-campos-formulario.full-width {
   grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 4px;
 }
 
-label.formulario-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  background: linear-gradient(to right, var(--foreground), rgba(248, 250, 252, 0.7));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  user-select: none;
-  padding-left: 4px;
+.formulario-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  padding-left: 2px;
 }
 
-input.texto-input {
+.texto-input {
   width: 100%;
-  height: 32px;
-  background-color: rgba(148, 163, 184, 0.04);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--foreground);
-  padding: 0 16px;
-  font-size: 0.9rem;
-  transition: all 0.2s ease-in-out;
+  height: 40px;
+  background-color: #0d1527;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 0 14px;
+  font-size: 0.88rem;
+  transition: all 0.25s ease;
 }
 
-input.texto-input::placeholder {
-  color: var(--muted-foreground);
-  opacity: 0.4;
-  font-size: 0.9rem;
+.texto-input::placeholder {
+  color: #475569;
 }
 
-input.texto-input:focus {
+.texto-input:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 14px 2px var(--ring);
+  border-color: #00e0ff;
+  background-color: #111b34;
+  box-shadow: 0 0 10px rgba(0, 224, 255, 0.15);
 }
 
+/* FOTOS & PREVIEWS */
 .input-foto {
   display: none;
 }
@@ -154,149 +170,277 @@ input.texto-input:focus {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 34px;
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px dashed var(--muted-foreground);
-  border-radius: 12px;
-  color: var(--foreground);
-  font-size: 0.8rem;
-  font-weight: 500;
+  height: 40px;
+  background-color: rgba(0, 224, 255, 0.03);
+  border: 1px dashed rgba(0, 224, 255, 0.3);
+  border-radius: 10px;
+  color: #00e0ff;
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
 }
 
 .mensagem-arquivo-foto:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: var(--primary);
+  background-color: rgba(0, 224, 255, 0.08);
+  border-color: #00e0ff;
 }
 
-.foto-container {
-  margin: 0;
-  align-self: center;
+.preview-foto-wrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.foto-perfil {
-  width: 100px;
-  height: 100px;
+.foto-preview-circular {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--success);
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  border: 2px solid #00ff88;
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.25);
 }
 
 .fotos-veiculo-linha {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  width: 100%;
 }
 
+.foto-preview-car {
+  width: 100%;
+  height: 95px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #00ff88;
+}
+
+/* ERROS & ALERTAS */
 .mensagem-erro {
-  color: var(--destructive);
-  font-size: 0.75rem;
-  font-weight: 500;
-  align-self: flex-end;
+  color: #ff3b30;
+  font-size: 0.72rem;
+  font-weight: 600;
   margin-top: 2px;
 }
 
+.alerta-erro-negocio {
+  grid-column: 1 / -1;
+  background: rgba(255, 59, 48, 0.08);
+  border: 1px solid rgba(255, 59, 48, 0.25);
+  color: #ff5247;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
 .grupo-campos-formulario.invalid .formulario-label {
-  color: var(--destructive);
+  color: #ff3b30;
 }
 
 .grupo-campos-formulario.invalid .texto-input {
-  border-color: var(--destructive);
-  box-shadow: 0 0 14px 2px color-mix(in srgb, var(--destructive) 30%, transparent);
+  border-color: rgba(255, 59, 48, 0.5) !important;
+  background: rgba(255, 59, 48, 0.02);
 }
 
-.grupo-campos-formulario.invalid .texto-input:focus {
-  box-shadow: 0 0 8px 3px color-mix(in srgb, var(--destructive) 30%, transparent);
-}
-
+/* REAJUSTE COMPLETO DE BOTÕES */
 .btn-container {
-  grid-column: 1/-1;
-  width: 100%;
+  grid-column: 1 / -1;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.btn-finalizar-cadastro {
+  margin-top: 18px;
   width: 100%;
-  max-width: 220px;
-  height: 40px;
-  background: linear-gradient(to right, var(--primary), rgba(59, 130, 246, 0.9));
-  color: var(--primary-foreground);
+}
+
+.btn-container.space-between {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.btn-acao-pro {
+  flex: 1;
+  height: 42px;
+  background: linear-gradient(90deg, #00e0ff 0%, #00b0cc 100%);
+  color: #040814;
   border: none;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 8px 20px -3px rgba(59, 130, 246, 0.3);
-  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 224, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-finalizar-cadastro:hover {
+.btn-acao-pro:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 15px 30px -6px rgba(59, 130, 246, 0.4);
-  opacity: 0.95;
+  box-shadow: 0 6px 20px rgba(0, 224, 255, 0.35);
+  filter: brightness(1.1);
 }
 
+.btn-popup-voltar {
+  width: 110px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.btn-popup-voltar:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   🛑 ELEMENTOS DA MINI TELA DE ALERTA DE EXCLUSIVIDADE
+   ========================================================================== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(2, 4, 10, 0.88);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000; /* Garante visibilidade sobre o formulário */
+}
+
+.popup-container {
+  background: #090e1a;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+  padding: 2.2rem 2rem;
+  text-align: center;
+  animation: popupEntrar 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popupEntrar {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popup-icon {
+  font-size: 3.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.popup-titulo {
+  font-size: 1.35rem;
+  font-weight: 850;
+  margin-bottom: 0.6rem;
+}
+
+.popup-descricao {
+  font-size: 0.86rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin-bottom: 1.6rem;
+}
+
+.btn-popup-error-ok {
+  background: linear-gradient(90deg, #ff3b30 0%, #ff5247 100%);
+  color: #ffffff;
+  font-weight: 800;
+  border: none;
+  padding: 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(255, 59, 48, 0.2);
+}
+
+.btn-popup-error-ok:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 59, 48, 0.35);
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   💚 ELEMENTOS DA MINI TELA DE SUCESSO (Verde Neon)
+   ========================================================================== */
+.popup-botoes-lado-a-lado {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-popup-sucesso-ok {
+  flex: 1;
+  background: linear-gradient(90deg, #00ff88 0%, #00cc6a 100%);
+  color: #040814;
+  font-weight: 800;
+  border: none;
+  padding: 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 255, 136, 0.2);
+}
+
+.btn-popup-sucesso-ok:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 255, 136, 0.35);
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   📱 MOBILE RESPONSIVO COMPLETO (< 868px)
+   ========================================================================== */
 @media (max-width: 868px) {
-  section.container-principal {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    height: auto;
-    min-height: 100vh;
-    padding: 16px;
-    justify-items: center;
-    align-items: start;
-    overflow-y: auto;
+  .container-principal {
+    grid-template-columns: 1fr; /* Quebra em coluna única */
+    padding: 24px 16px;
+    gap: 20px;
   }
 
-  picture.imagem-container {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-  }
-
-  img.imagem-page {
-    opacity: 26%;
-  }
-
-  div.text-container {
-    grid-row: 1;
-    margin: 20px 0;
-    width: 100%;
+  .text-container {
     text-align: center;
+    max-width: 100%;
+    margin-top: 20px;
   }
 
-  h2.subtitulo {
+  .subtitulo {
     font-size: 2rem;
   }
 
-  form {
-    margin-top: -40px;
+  .subtitulo-descricao {
+    font-size: 0.92rem;
   }
 
-  form.formulario-container {
-    grid-row: 2;
-    position: relative;
-    max-width: 100%;
-    padding: 24px 20px;
+  .formulario-container {
+    padding: 20px;
   }
 
-  div.campos-formulario-container {
+  fieldset.grid-form-step {
+    grid-template-columns: 1fr; /* Inputs viram blocos cheios no mobile */
+  }
+
+  .fotos-veiculo-linha {
     grid-template-columns: 1fr;
-  }
-
-  .btn-container {
-    justify-content: center;
-  }
-
-  .btn-finalizar-cadastro {
-    max-width: 100%;
   }
 }
