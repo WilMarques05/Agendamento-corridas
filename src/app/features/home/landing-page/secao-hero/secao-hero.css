@@ -378,6 +378,13 @@
 }
 
 @media (max-width: 420px) {
+  .container-conteudo-hero{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   .titulo-hero {
     font-size: 1.75rem;
   }
