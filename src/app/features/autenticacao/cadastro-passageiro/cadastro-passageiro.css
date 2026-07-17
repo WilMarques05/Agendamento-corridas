@@ -16,64 +16,74 @@ div.text-container {
   gap: 12px;
   text-align: center;
   z-index: 2;
-  max-width: 70%;
+  max-width: 90%;
   width: 80%;
   margin-right: 6%;
-  margin-left: 50%;
+  margin-left: 22%;
   margin-bottom: 40%;
+  border: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(0, 10, 28, 0.046);
 }
 
 h2.subtitulo {
-  font-size: 2.5rem;
+  font-size: 4rem;
   font-weight: bold;
   letter-spacing: -0.025em;
   margin-bottom: 4px;
-  background: linear-gradient(to right, var(--foreground), rgba(255, 255, 255, 0.5));
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  margin-bottom: 0.5rem;
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 p.subtitulo-descricao {
-  color: var(--muted-foreground);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.6;
+  color: var(--brancoPuro);
+  font-size: 1.3rem;
+  opacity: 0.96;
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  margin-bottom: 2rem;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 picture.imagem-container {
-  position: fixed;
-  width: 100vw;
+  position: absolute;
+  width: 98vw;
   height: 100vh;
   z-index: 1;
 }
 
 img.imagem-page {
-  object-fit: cover;
+  object-fit: fill;
   object-position: center;
-  opacity: 30%;
+  opacity: 80%;
   width: 100%;
   height: 100%;
 }
 
 form.formulario-container {
   display: flex;
+  background-color: rgba(0, 4, 26, 0.539);
   flex-direction: column;
-  max-width: 500px;
+  align-items: center;
+  max-width: 560px;
   width: 100%;
-  min-height: 70vh;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid color-mix(in srgb, var(--ring) 60%, transparent);
+  min-height: 86vh;
+  backdrop-filter: blur(54px);
+  -webkit-backdrop-filter: blur(54px);
+  border: 1px solid color-mix(in srgb, var(--azulMarinhoEscuro) 80%, transparent);
   border-radius: 24px;
   padding: 24px 32px;
-  box-shadow: 0 20px 250px -5px rgba(4, 120, 236, 0.15);
+  box-shadow: 0 20px 250px -5px rgba(236, 97, 4, 0.15);
   z-index: 2;
 }
 
 div.campos-formulario-container {
   display: grid;
   grid-template-columns: repeat(2, max-content);
-  gap: 12px;
+  gap: 20px;
 }
 
 div.grupo-campos-formulario {
@@ -91,37 +101,39 @@ div.grupo-campos-formulario {
 }
 
 label.formulario-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  background: linear-gradient(to right, var(--foreground), rgba(248, 250, 252, 0.7));
+  color: var(--brancoPuro);
+  font-size: 1rem;
+  opacity: 0.96;
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   user-select: none;
   padding-left: 4px;
 }
 
 input.texto-input {
-  width: 100%;
-  height: 32px;
-  background-color: rgba(148, 163, 184, 0.04);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--foreground);
-  padding: 0 16px;
-  font-size: 0.9rem;
-  transition: all 0.2s ease-in-out;
+  border: 1px solid red;
+  width: 260px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 15px 12px 15px;
+  border-radius: 8px;
+  color: var(--brancoPuro);
+  transition: 0.3s border-color;
 }
 
 input.texto-input::placeholder {
   color: var(--muted-foreground);
-  opacity: 0.4;
-  font-size: 0.9rem;
+  opacity: 0.6;
+  text-align: left !important;
+  padding-left: 0;
 }
 
 input.texto-input:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 14px 2px var(--ring);
+  border-color: var(--laranjaVibranteNeon);
+
+  box-shadow: 0 0 8px 3px color-mix(in srgb, var(--laranjaVibranteNeon) 30%, transparent);
 }
 
 .input-foto {
@@ -133,9 +145,9 @@ input.texto-input:focus {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 34px;
+  height: 40px;
   background-color: rgba(255, 255, 255, 0.03);
-  border: 1px dashed var(--muted-foreground);
+  border: 1px dashed var(--laranjaVibranteNeon);
   border-radius: 12px;
   color: var(--foreground);
   font-size: 0.8rem;
@@ -146,7 +158,7 @@ input.texto-input:focus {
 
 .mensagem-arquivo-foto:hover {
   background-color: rgba(255, 255, 255, 0.08);
-  border-color: var(--primary);
+  border-color: var(--laranjaVibranteNeon);
 }
 
 .foto-container {
@@ -155,8 +167,8 @@ input.texto-input:focus {
 }
 
 .foto-perfil {
-  width: 100px;
-  height: 100px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--success);
@@ -184,32 +196,127 @@ input.texto-input:focus {
   box-shadow: 0 0 8px 3px color-mix(in srgb, var(--destructive) 30%, transparent);
 }
 
-.btn-container {
-  width: 100%;
+.grupo-checkbox {
+  grid-column: 1 / -1;
+  margin-top: 5px;
+}
+
+.checkbox-container {
   display: flex;
-  justify-content: flex-start;
-  margin-top: 14px;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkbox-container a {
+  color: var(--laranjaVibranteNeon);
+  text-decoration: none;
+  border-bottom: 1px solid var(--laranjaVibranteNeon);
+}
+
+#termos {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--laranjaVibranteNeon);
+}
+
+.btn-container {
+  display: flex;
+  grid-column: 1/-1;
+  justify-content: center;
+  margin-top: 1px;
 }
 
 .btn-finalizar-cadastro {
   width: 100%;
-  max-width: 180px;
-  height: 40px;
-  background: linear-gradient(to right, var(--primary), rgba(59, 130, 246, 0.9));
+  max-width: 100%;
+  height: 50px;
+  background: linear-gradient(to right, var(--laranjaVibranteNeon), rgb(216, 108, 8));
   color: var(--primary-foreground);
   border: none;
   border-radius: 12px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 20px -3px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 20px -3px rgba(246, 149, 59, 0.446);
   transition: all 0.2s ease-in-out;
 }
 
 .btn-finalizar-cadastro:hover {
   transform: translateY(-1px);
-  box-shadow: 0 15px 30px -6px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 15px 30px -6px rgba(246, 140, 59, 0.4);
   opacity: 0.95;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-conteudo {
+  background: rgba(0, 4, 37, 0.95);
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid var(--laranjaVibranteNeon);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  color: var(--brancoPuro);
+  box-shadow: 0 0 30px rgba(252, 107, 0, 0.3);
+}
+
+.modal-acoes{
+  display: flex;
+  gap: 20px;
+}
+
+.modal-conteudo.erro {
+  border-color: var(--destructive);
+}
+
+.btn-fechar,
+.btn-login {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--laranjaVibranteNeon);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+
+.btn-login {
+  background: var(--laranjaVibranteNeon);
+  color: white;
+}
+
+.btn-login:hover {
+  background: transparent;
+  color: var(--laranjaVibranteNeon);
+  box-shadow: 0 0 10px var(--laranjaVibranteNeon);
+}
+
+.btn-fechar {
+  background: transparent;
+  color: var(--brancoPuro);
+}
+
+.btn-fechar:hover {
+  background: var(--laranjaVibranteNeon);
+  color: white;
 }
 
 @media (max-width: 868px) {
@@ -252,14 +359,15 @@ input.texto-input:focus {
   }
 
   form.formulario-container {
-    grid-row: 2;
-    position: relative;
-    max-width: 100%;
+    width: 90%;
+    min-height: auto;
     padding: 24px 20px;
+    margin: 0 auto;
   }
 
   div.campos-formulario-container {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .btn-container {
@@ -268,5 +376,17 @@ input.texto-input:focus {
 
   .btn-finalizar-cadastro {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .subtitulo {
+    font-size: 1.6rem !important;
+  }
+  form.formulario-container {
+    padding: 16px;
+  }
+  .btn-finalizar-cadastro {
+    height: 45px;
   }
 }
