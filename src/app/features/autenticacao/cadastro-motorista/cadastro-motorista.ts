@@ -3,7 +3,7 @@ import { Autenticacao } from '../../../shared/services/autenticacao';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Firestore, collection, getDocs, query, where } from '@angular/fire/firestore';
-import { Router } from '@angular/router'; // 👈 Importação do Router adicionada
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-motorista',
@@ -18,18 +18,17 @@ export class CadastroMotorista {
   private changeDetector = inject(ChangeDetectorRef);
   private firestore = inject(Firestore);
   private zone = inject(NgZone);
-  private router = inject(Router); // 👈 Injeção do Router adicionada
+  private router = inject(Router);
 
   passoAtual = 1;
   carregando = false;
   mensagemErroGeral: string | null = null;
 
-  // Controles de Pop-ups (Mini Telas)
   mostrarPopUpErro: boolean = false;
   tituloPopUpErro: string = '';
   descricaoPopUpErro: string = '';
 
-  mostrarPopUpSucesso: boolean = false; // 👈 Controle da nova mini tela de sucesso
+  mostrarPopUpSucesso: boolean = false;
 
   formulario = this.formBuilder.group({
     nomeCompleto: ['', [Validators.required]],
@@ -47,6 +46,7 @@ export class CadastroMotorista {
     corCarro: ['', [Validators.required]],
     fotoCarroExterna: ['', [Validators.required]],
     fotoCarroInterna: ['', [Validators.required]],
+    aceitaTermos: [false, [Validators.requiredTrue]]
   });
 
   async cadastrar() {
@@ -88,7 +88,7 @@ export class CadastroMotorista {
         return;
       }
 
-      // Estruturação final
+
       const dadosFormatados = {
         nomeCompleto: dados.nomeCompleto,
         cpf: dados.cpf,
@@ -108,17 +108,15 @@ export class CadastroMotorista {
 
       await this.authService.criarMotorista(dadosFormatados as any, dados.senha as string);
 
-      // ✅ ATIVA MINI TELA DE SUCESSO
       this.zone.run(() => {
         this.mostrarPopUpSucesso = true;
-        this.formulario.reset();
+        this.formulario.reset({ aceitaTermos: false });
         this.passoAtual = 1;
         this.changeDetector.detectChanges();
       });
     } catch (error: any) {
       console.error('Erro ao registrar motorista:', error);
 
-      // 🛑 3. VALIDAÇÃO DE E-MAIL DUPLICADO (INTERCEPTADO VIA AUTH)
       if (
         error.code === 'auth/email-already-in-use' ||
         error.message?.includes('email-already-in-use')
@@ -156,7 +154,6 @@ export class CadastroMotorista {
     this.changeDetector.detectChanges();
   }
 
-  // ✅ NOVO: AÇÕES DO POP-UP DE SUCESSO
   irParaLogin() {
     this.mostrarPopUpSucesso = false;
     this.router.navigate(['/login']);

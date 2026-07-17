@@ -1,75 +1,72 @@
-/* ==========================================================================
-   🪐 CADASTRO MOTORISTA PREMIUM - DESIGN SYSTEM (Azul Eletrico Neon)
-   ========================================================================== */
 .container-principal {
   display: grid;
-  grid-template-columns: 1fr 1.2fr; /* Divisão harmônica perfeita desktop */
+  grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  width: 100%;
   align-items: center;
-  justify-content: center;
-  padding: 40px 6%;
+  justify-items: center;
+  padding: 40px 20px;
   position: relative;
-  background-color: #040814;
+  overflow: visible;
   gap: 40px;
 }
-
-/* 🖼️ IMAGEM DE FUNDO REAJUSTADA - MAIS FUNDA, NÍTIDA E SEM SOBREPOSIÇÃO */
 .imagem-container {
-  position: fixed;
+  position:absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 98vw;
   height: 100vh;
   z-index: 1;
   overflow: hidden;
 }
 
 .imagem-page {
-  object-fit: cover;
+    object-fit:cover;
   object-position: center;
+  opacity: 80%;
   width: 100%;
   height: 100%;
-  opacity: 0.45; /* Aumentado de 26% para maior nitidez e profundidade */
-  filter: contrast(1.1) brightness(0.85); /* Fica mais viva e profunda */
 }
 
-.gradiente-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(4, 8, 20, 0.92) 0%, rgba(11, 17, 33, 0.65) 100%);
-}
 
-/* COLUNA TEXTUAL */
 .text-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  text-align: center;
   z-index: 2;
-  max-width: 460px;
+  max-width: 100%;
+  width: 100%;
+  margin-right: 6%;
+  margin-left: 22%;
+  margin-bottom: 34%;
+  border: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(0, 10, 28, 0.046);
 }
 
 .subtitulo {
-  font-size: 2.8rem;
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -1px;
-  color: #ffffff;
-}
-
-.text-azul {
-  color: #00e0ff;
-  text-shadow: 0 0 15px rgba(0, 224, 255, 0.35);
+  width: 100%;
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: -0.025em;
+  margin-bottom: 4px;
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  margin-bottom: 0.5rem;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 .subtitulo-descricao {
-  color: #94a3b8;
-  font-size: 1.05rem;
-  font-weight: 500;
-  line-height: 1.6;
+  color: var(--brancoPuro);
+  font-size: 1.3rem;
+  opacity: 0.96;
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  margin-bottom: 2rem;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
-/* 🏢 FORM WRAPPER & CONTAINER DESTACADO */
 .form-wrapper {
   z-index: 2;
   width: 100%;
@@ -78,18 +75,21 @@
 }
 
 .formulario-container {
+
+    display: flex;
+  background-color: rgba(0, 4, 26, 0.539);
+  flex-direction: column;
+  align-items: center;
+  max-width: 560px;
   width: 100%;
-  max-width: 620px;
-  background: rgba(11, 17, 33, 0.75); /* Efeito translúcido dark de alta classe */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 224, 255, 0.25); /* Destacado em Neon */
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow:
-    0 25px 50px -12px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(0, 224, 255, 0.05); /* Glow suave */
-  transition: border-color 0.3s ease;
+  min-height: 86vh;
+  backdrop-filter: blur(54px);
+  -webkit-backdrop-filter: blur(54px);
+  border: 1px solid color-mix(in srgb, var(--azulMarinhoEscuro) 80%, transparent);
+  border-radius: 24px;
+  padding: 24px 32px;
+  box-shadow: 0 20px 250px -5px rgba(236, 97, 4, 0.15);
+  z-index: 2;
 }
 
 .formulario-container:focus-within {
@@ -101,27 +101,8 @@ fieldset.grid-form-step {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Duas colunas perfeitas */
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-}
-
-legend {
-  grid-column: 1 / -1;
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.5px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding-bottom: 10px;
-}
-
-/* COMPORTAMENTO DOS CAMPOS */
-.grupo-campos-formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
 .grupo-campos-formulario.full-width {
@@ -129,12 +110,15 @@ legend {
 }
 
 .formulario-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #94a3b8;
-  padding-left: 2px;
+
+    color: var(--brancoPuro);
+  font-size: 1rem;
+  opacity: 0.96;
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  background-clip: text;
+  -webkit-background-clip: text;
+  user-select: none;
+  padding-left: 4px;
 }
 
 .texto-input {
@@ -150,17 +134,21 @@ legend {
 }
 
 .texto-input::placeholder {
-  color: #475569;
+    color: var(--muted-foreground);
+  opacity: 0.6;
+  text-align: left !important;
+  padding-left: 0;
 }
 
 .texto-input:focus {
-  outline: none;
-  border-color: #00e0ff;
-  background-color: #111b34;
-  box-shadow: 0 0 10px rgba(0, 224, 255, 0.15);
+
+    outline: none;
+  border-color: var(--azulEletricoNeon);
+
+  box-shadow: 0 0 8px 3px color-mix(in srgb, var(--azulEletricoNeon) 30%, transparent);
+
 }
 
-/* FOTOS & PREVIEWS */
 .input-foto {
   display: none;
 }
@@ -194,12 +182,12 @@ legend {
 }
 
 .foto-preview-circular {
-  width: 76px;
-  height: 76px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #00ff88;
-  box-shadow: 0 0 12px rgba(0, 255, 136, 0.25);
+  border: 2px solid var(--success);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
 }
 
 .fotos-veiculo-linha {
@@ -217,7 +205,6 @@ legend {
   border: 2px solid #00ff88;
 }
 
-/* ERROS & ALERTAS */
 .mensagem-erro {
   color: #ff3b30;
   font-size: 0.72rem;
@@ -250,7 +237,6 @@ legend {
   background: rgba(255, 59, 48, 0.02);
 }
 
-/* REAJUSTE COMPLETO DE BOTÕES */
 .btn-container {
   grid-column: 1 / -1;
   display: flex;
@@ -288,6 +274,11 @@ legend {
   filter: brightness(1.1);
 }
 
+.btn-acao-pro:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .btn-popup-voltar {
   width: 110px;
   height: 42px;
@@ -306,9 +297,6 @@ legend {
   border-color: #ffffff;
 }
 
-/* ==========================================================================
-   🛑 ELEMENTOS DA MINI TELA DE ALERTA DE EXCLUSIVIDADE
-   ========================================================================== */
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -320,7 +308,7 @@ legend {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 4000; /* Garante visibilidade sobre o formulário */
+  z-index: 4000;
 }
 
 .popup-container {
@@ -377,9 +365,6 @@ legend {
   filter: brightness(1.1);
 }
 
-/* ==========================================================================
-   💚 ELEMENTOS DA MINI TELA DE SUCESSO (Verde Neon)
-   ========================================================================== */
 .popup-botoes-lado-a-lado {
   display: flex;
   gap: 12px;
@@ -408,21 +393,26 @@ legend {
   filter: brightness(1.1);
 }
 
-/* ==========================================================================
-   📱 MOBILE RESPONSIVO COMPLETO (< 868px)
-   ========================================================================== */
 @media (max-width: 868px) {
   .container-principal {
-    grid-template-columns: 1fr; /* Quebra em coluna única */
+    grid-template-columns: 1fr;
     padding: 24px 16px;
     gap: 20px;
   }
 
-  .text-container {
-    text-align: center;
-    max-width: 100%;
-    margin-top: 20px;
-  }
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 10, 28, 0.046);
+}
 
   .subtitulo {
     font-size: 2rem;
@@ -437,10 +427,36 @@ legend {
   }
 
   fieldset.grid-form-step {
-    grid-template-columns: 1fr; /* Inputs viram blocos cheios no mobile */
+    grid-template-columns: 1fr;
   }
 
   .fotos-veiculo-linha {
     grid-template-columns: 1fr;
   }
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  grid-column: 1 / -1;
+}
+
+.link-lgpd {
+  color: #00e0ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#termos {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #00e0ff;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
 }
