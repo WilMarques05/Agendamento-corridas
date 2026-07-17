@@ -3,6 +3,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from
 import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Passageiro } from '../models/passageiro.model';
 import { Motorista } from '../models/motorista.model';
+import { onAuthStateChanged, User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -44,4 +45,31 @@ export class Autenticacao {
       tipo: 'passageiros',
     };
   }
+
+  async obterUsuarioAtual(): Promise<User | null> {
+  return new Promise((resolve) => {
+    onAuthStateChanged(this.autenticacao, (user) => {
+      resolve(user);
+    });
+  });
+}
+
+async verificarPerfilUsuario(uid: string): Promise<'motorista' | 'passageiro' | null> {
+  const motoristaRef = doc(this.firestore, 'motoristas', uid);
+  const buscaMotorista = await getDoc(motoristaRef);
+
+  if (buscaMotorista.exists()) {
+    return 'motorista';
+  }
+
+  const passageiroRef = doc(this.firestore, 'passageiros', uid);
+  const buscaPassageiro = await getDoc(passageiroRef);
+
+  if (buscaPassageiro.exists()) {
+    return 'passageiro';
+  }
+
+  return null;
+}
+
 }

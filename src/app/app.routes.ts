@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { PainelPassageiro } from './features/passageiro/painel-passageiro/painel-passageiro';
-import { PainelMotorista } from './features/motorista/painel-motorista/painel-motorista';
+import { authGuard } from './core/guards/auth.guard'; // Certifique-se do caminho correto
 
 export const routes: Routes = [
   {
@@ -8,22 +7,26 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/home/landing-page/landing-page').then((m) => m.LandingPage),
   },
-
   {
     path: 'login',
     loadComponent: () => import('./features/autenticacao/login/login').then((m) => m.Login),
   },
-
   {
     path: 'painel-passageiro',
-    component: PainelPassageiro,
+    loadComponent: () =>
+      import('./features/passageiro/painel-passageiro/painel-passageiro').then(
+        (m) => m.PainelPassageiro,
+      ),
+    canActivate: [authGuard('passageiro')], // Proteção para Passageiro
   },
-
   {
     path: 'painel-motorista',
-    component: PainelMotorista,
+    loadComponent: () =>
+      import('./features/motorista/painel-motorista/painel-motorista').then(
+        (m) => m.PainelMotorista,
+      ),
+    canActivate: [authGuard('motorista')], // Proteção para Motorista
   },
-
   {
     path: 'cadastro-passageiro',
     loadComponent: () =>
@@ -31,7 +34,6 @@ export const routes: Routes = [
         (m) => m.CadastroPassageiro,
       ),
   },
-
   {
     path: 'cadastro-motorista',
     loadComponent: () =>
