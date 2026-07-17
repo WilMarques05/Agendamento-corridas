@@ -1,57 +1,63 @@
 .secao-login {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-color: var(--background);
   min-height: 100vh;
   display: flex;
   align-items: center;
-  position: relative;
-  padding: 4rem 0;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
 }
 
-.mascara-escura-login {
-  position: absolute;
-  top: 0;
-  left: 0;
+.container-imagem {
+  flex: 0 0 60%;
+  height: 100vh;
+}
+
+.container-imagem img {
   width: 100%;
   height: 100%;
-  background: rgba(13, 27, 42, 0.8); /* Escurece o fundo para destacar o card */
-  z-index: 1;
+  object-fit: fill;
 }
 
-.container-login {
-  position: relative;
-  z-index: 2;
+.container-login-direita {
+  flex: 0 0 40%;
+  height: 90vh;
   display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: var(--background);
 }
 
-/* 🪙 CARD ESTILO VIDRO FOSCO (GLASSMORPHISM) */
 .card-login {
-  background: rgba(13, 27, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 2.5rem;
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  width: 85%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .titulo-login {
   color: var(--brancoPuro);
   font-weight: 800;
   font-size: 1.8rem;
+  text-shadow: 1px 1px 1px rgba(249, 247, 247, 0.571);
+  margin-bottom: 0.5rem;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 .subtitulo-login {
-  color: var(--cinzaClaro);
-  font-size: 0.9rem;
-  opacity: 0.8;
+  color: var(--brancoPuro);
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+  margin-bottom: 2rem;
 }
 
-/* 🗂️ ESTILIZAÇÃO DAS ABAS */
 .abas-login {
   background: rgba(0, 0, 0, 0.25);
   padding: 4px;
@@ -66,25 +72,21 @@
   padding: 10px;
   color: var(--cinzaClaro);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   border-radius: 6px;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
-/* Ativação dinâmica das cores com base na classe .ativa */
 .aba-passageiro.ativa {
   background: rgba(255, 140, 0, 0.15);
   color: var(--laranjaVibranteNeon);
-  box-shadow: inset 0 0 0 1px var(--laranjaVibranteNeon);
 }
 
 .aba-motorista.ativa {
   background: rgba(0, 224, 255, 0.15);
   color: var(--azulEletricoNeon);
-  box-shadow: inset 0 0 0 1px var(--azulEletricoNeon);
 }
 
-/* 📝 INPUTS CUSTOMIZADOS */
 .input-wrapper {
   position: relative;
   display: flex;
@@ -95,25 +97,37 @@
   position: absolute;
   left: 15px;
   color: var(--cinzaClaro);
-  opacity: 0.6;
-  font-size: 1.1rem;
+  transition: 0.3s;
 }
 
 .input-custom {
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 12px 15px 12px 45px;
+  padding: 12px 15px 12px 40px;
   border-radius: 8px;
   color: var(--brancoPuro);
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: 0.3s border-color;
 }
 
-.input-custom:focus {
+.passageiro .input-custom:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(0, 0, 0, 0.4);
+  border-color: var(--laranjaVibranteNeon);
+  box-shadow: 0 0 5px rgba(252, 107, 0, 0.5);
+}
+
+.passageiro .input-custom:focus + .icone-input {
+  color: var(--laranjaVibranteNeon);
+}
+
+.motorista .input-custom:focus {
+  outline: none;
+  border-color: var(--azulEletricoNeon);
+  box-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
+}
+
+.motorista .input-custom:focus + .icone-input {
+  color: var(--azulEletricoNeon);
 }
 
 .btn-olho {
@@ -123,100 +137,79 @@
   border: none;
   color: var(--cinzaClaro);
   opacity: 0.7;
-}
-
-/* OPÇÕES EXTRAS */
-.opções-extras {
-  font-size: 0.85rem;
-}
-
-.check-lembrar {
-  color: var(--cinzaClaro);
+  cursor: pointer;
+  padding: 5px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-.link-esqueci, .link-criar {
-  color: var(--azulEletricoNeon);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.link-esqueci:hover, .link-criar:hover {
-  text-decoration: underline;
+.btn-olho:hover {
+  opacity: 1;
+  color: var(--laranjaVibranteNeon);
+  transform: scale(1.1);
 }
 
-/* 🚀 BOTÃO DE SUBMIT NEON MUTÁVEL */
+.btn-olho:active {
+  transform: scale(0.95);
+}
+
+.btn-olho i {
+  font-size: 1.1rem;
+}
+
 .btn-entrar-submit {
   width: 100%;
-  border: none;
   padding: 12px;
-  border-radius: 8px;
-  color: var(--fundoPrincipal);
+  border-radius: 12px;
   font-weight: 700;
-  font-size: 1rem;
+  margin-top: 1rem;
   transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+  border: 1px solid;
 }
 
 .btn-passageiro {
-  background: var(--laranjaVibranteNeon);
-  box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+  background: rgba(252, 107, 0, 0.15);
+  border-color: var(--laranjaVibranteNeon);
+  color: var(--brancoPuro);
+  box-shadow: inset 0 0 40px -20px var(--laranjaVibranteNeon);
 }
+
 .btn-passageiro:hover {
-  box-shadow: 0 0 20px var(--laranjaVibranteNeon);
+  background: var(--laranjaVibranteNeon);
+  box-shadow: 0 0 15px var(--laranjaVibranteNeon);
+  transform: translateY(-2px);
 }
 
 .btn-motorista {
-  background: var(--azulEletricoNeon);
-  box-shadow: 0 0 12px rgba(0, 224, 255, 0.4);
-}
-.btn-motorista:hover {
-  box-shadow: 0 0 20px var(--azulEletricoNeon);
-}
-
-/* DIVISOR */
-.divisor-login {
-  text-align: center;
-  position: relative;
-}
-.divisor-login::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  z-index: 1;
-}
-.divisor-login span {
-  background: #111f30;
-  padding: 0 15px;
-  color: var(--cinzaClaro);
-  font-size: 0.8rem;
-  position: relative;
-  z-index: 2;
-  opacity: 0.7;
-}
-
-/* REDES SOCIAIS */
-.btn-rede-social {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 10px;
-  border-radius: 8px;
+  background: rgba(0, 224, 255, 0.15);
+  border-color: var(--azulEletricoNeon);
   color: var(--brancoPuro);
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-.btn-rede-social:hover {
-  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 40px -20px var(--azulEletricoNeon);
 }
 
-.texto-cadastro-link {
-  font-size: 0.9rem;
-  color: var(--cinzaClaro);
+.btn-motorista:hover {
+  background: var(--azulEletricoNeon);
+  box-shadow: 0 0 15px var(--azulEletricoNeon);
+  transform: translateY(-2px);
+}
+
+.btn-entrar-submit:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 991px) {
+  .container-imagem {
+    display: none;
+  }
+  .container-login-direita {
+    flex: 100%;
+    height: auto;
+    padding: 2rem;
+  }
 }
