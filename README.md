@@ -273,11 +273,8 @@ Durante o desenvolvimento deste projeto foram consolidados conhecimentos em:
 
 Desenvolvedor Front-End focado na criação de aplicações modernas, responsivas e escaláveis utilizando Angular.
 
-### GitHub
-
-https://github.com/WilMarques05
-
 ### LinkedIn
+https://www.linkedin.com/in/willis-silva-marques-53a306aa/
 
 Adicione aqui o link do seu LinkedIn.
 
