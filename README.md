@@ -1,33 +1,286 @@
-# Ford < Enter > - Sprint Final: Desenvolvimento Completo de Sistema de Gestão de Corridas
+<p align="center">
 
-Este repositório consolida o projeto desenvolvido na reta final do curso de Front-End do programa Ford < Enter >, uma iniciativa realizada em parceria entre a Ford e o SENAI/CIMATEC.
+![Angular](https://img.shields.io/badge/Angular-18-DD0031?style=for-the-badge&logo=angular)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap)
+![Google Maps](https://img.shields.io/badge/Google_Maps-4285F4?style=for-the-badge&logo=googlemaps)
+![Status](https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge)
 
-## 🎯 Objetivo do Projeto
+</p>
 
-O objetivo deste projeto foi o desenvolvimento de um sistema completo de gestão e agendamento de corridas (**EliteDrive**), aplicando na prática todo o conhecimento adquirido sobre o framework Angular. A aplicação foi construída para suportar perfis distintos (Passageiro e Motorista), garantindo uma jornada de usuário fluida, segura e funcional. O foco central desta etapa foi a implementação de autenticação persistente, proteção de rotas, manipulação de estados complexos de formulários, integração com o **Google Maps API** para navegação e a integração total com o **Firebase** para armazenamento de dados em tempo real.
+# 🚖 EliteDrive — Sistema de Gestão e Agendamento de Corridas
 
-*Nota: O projeto contido neste repositório foi criado exclusivamente para fins didáticos, não representando um projeto de software final ou de produção.*
+Aplicação web desenvolvida durante o programa **Ford < Enter >**, realizado em parceria entre a **Ford Motor Company** e o **SENAI CIMATEC**, com o objetivo de aplicar conceitos modernos de desenvolvimento Front-End utilizando Angular.
 
-## 🛠️ Tecnologias e Ferramentas Exploradas
+O sistema simula uma plataforma de mobilidade urbana, permitindo que **motoristas** e **passageiros** realizem cadastro, autenticação, gerenciamento de perfil, agendamento de corridas e acompanhamento de rotas em tempo real através da integração com o **Google Maps API** e do **Firebase**.
 
-* **Angular 18+ (Standalone Components):** Arquitetura moderna utilizando componentes independentes e gerenciamento de estados.
-* **Google Maps API:** Integração de mapas dinâmicos, renderização de rotas em tempo real e geolocalização para motoristas e passageiros.
-* **Firebase Auth & Firestore:** Implementação de autenticação, persistência de dados em tempo real e regras de segurança NoSQL.
-* **Reactive Forms:** Formulários complexos com validações assíncronas e compressão de imagens via `Canvas API`.
-* **Angular Router & Guards:** Navegação protegida (`CanActivate`) para controle de acesso baseado em perfis.
-* **Design System (Dark/Neon):** Identidade visual premium utilizando *Glassmorphism* e paletas de cores neon.
-
-## 📝 O que foi praticado
-
-Durante esta jornada, foram exercitados conceitos avançados de engenharia de software front-end:
-
-* **Integração com Mapas e Rotas:** Implementação da API do Google Maps para exibir rotas em tempo real, calcular distâncias entre pontos de coleta/destino e otimizar o deslocamento dos motoristas parceiros.
-* **Arquitetura de Perfis:** Fluxos de cadastro e login segregados, onde o sistema identifica o tipo de usuário e redireciona para a interface correspondente.
-* **Segurança e Proteção de Rotas:** Aplicação de `AuthGuards` que bloqueiam o acesso não autorizado a rotas sensíveis, validando o papel do usuário no banco de dados.
-* **Manipulação de Imagens e Performance:** Rotinas para upload de fotos de perfil e veículos com compressão em Base64 para otimização de banda e armazenamento no Firestore.
-* **UX/UI e Adaptabilidade:** Refinamento da responsividade total (Mobile-First), garantindo que o design com filtros de vidro (*blur*) funcione perfeitamente em qualquer resolução.
-* **Gestão de Estados:** Controle rigoroso da experiência do usuário, incluindo o aceite obrigatório de **Termos de Uso e LGPD** antes da finalização do cadastro.
-* **Comunicação entre Componentes e Serviços:** Refatoração da lógica de negócios para camadas de serviços, mantendo os componentes focados na interação com o usuário.
+> **Projeto desenvolvido para fins educacionais**, aplicando conceitos e boas práticas utilizadas no desenvolvimento de aplicações modernas com Angular.
 
 ---
-*Projeto desenvolvido por Willis Silva Marques.*
+
+# ✨ Principais Funcionalidades
+
+- ✅ Cadastro de Passageiros
+- ✅ Cadastro de Motoristas
+- ✅ Login utilizando Firebase Authentication
+- ✅ Persistência de sessão do usuário
+- ✅ Proteção de rotas com Auth Guards
+- ✅ Controle de acesso baseado no perfil do usuário
+- ✅ Upload de imagens de perfil e veículos
+- ✅ Compressão automática de imagens utilizando Canvas API
+- ✅ Cadastro de veículos
+- ✅ Agendamento de corridas
+- ✅ Visualização de rotas em tempo real
+- ✅ Integração com Google Maps API
+- ✅ Interface totalmente responsiva
+- ✅ Aceite obrigatório dos Termos de Uso e LGPD
+- ✅ Interface moderna utilizando Glassmorphism e Neon UI
+
+---
+
+# 🏗 Arquitetura do Projeto
+
+O projeto foi desenvolvido utilizando a arquitetura moderna do **Angular Standalone Components**, promovendo maior organização, reutilização de código e facilidade de manutenção.
+
+A estrutura foi dividida em camadas bem definidas:
+
+- Components
+- Pages
+- Services
+- Guards
+- Interfaces
+- Models
+- Shared
+- Firebase
+- Google Maps
+
+Toda a lógica de negócio foi centralizada em **Services**, mantendo os componentes responsáveis apenas pela interface e interação com o usuário.
+
+---
+
+# 🛠 Tecnologias Utilizadas
+
+- Angular 18+
+- TypeScript
+- HTML5
+- CSS3
+- Bootstrap 5
+- Firebase Authentication
+- Firebase Firestore
+- Google Maps API
+- Angular Router
+- Reactive Forms
+- Canvas API
+
+---
+
+# 📚 Conceitos Aplicados
+
+## 🔐 Autenticação
+
+- Login seguro
+- Persistência de sessão
+- Firebase Authentication
+
+## 🛡 Segurança
+
+- Auth Guards
+- Proteção de rotas
+- Controle de acesso por perfil
+
+## 📝 Formulários
+
+- Reactive Forms
+- Validações síncronas
+- Validações assíncronas
+- Upload de imagens
+
+## ⚡ Performance
+
+- Compressão de imagens antes do envio
+- Otimização do armazenamento no Firestore
+
+## 🌎 Integração com APIs
+
+- Google Maps API
+- Geolocalização
+- Cálculo de rotas
+- Distância entre origem e destino
+
+## 📱 Responsividade
+
+- Mobile First
+- Glassmorphism
+- Layout adaptável
+- Interface responsiva para Desktop, Tablet e Mobile
+
+---
+
+# 📁 Estrutura do Projeto
+
+```text
+src
+│
+├── app
+│   ├── components
+│   ├── guards
+│   ├── interfaces
+│   ├── models
+│   ├── pages
+│   ├── services
+│   └── shared
+│
+├── assets
+├── environments
+└── styles
+```
+
+---
+
+# 🚀 Como Executar o Projeto
+
+## 1️⃣ Clone o repositório
+
+```bash
+git clone https://github.com/WilMarques05/Agendamento-corridas.git
+```
+
+Entre na pasta do projeto
+
+```bash
+cd Agendamento-corridas
+```
+
+---
+
+## 2️⃣ Instale as dependências
+
+```bash
+npm install
+```
+
+Caso ocorra algum conflito de versões:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+---
+
+## 3️⃣ Execute a aplicação
+
+```bash
+ng serve
+```
+
+---
+
+## 4️⃣ Acesse no navegador
+
+```text
+http://localhost:4200
+```
+
+---
+
+# 📸 Demonstração
+
+## Login
+
+<p align="center">
+<img src="assets/readme/login.png" width="900">
+</p>
+
+---
+
+## Dashboard
+
+<p align="center">
+<img src="assets/readme/dashboard.png" width="900">
+</p>
+
+---
+
+## Google Maps
+
+<p align="center">
+<img src="assets/readme/mapa.png" width="900">
+</p>
+
+> **Substitua as imagens pelos prints reais da aplicação.**
+
+---
+
+# 🎯 Objetivos de Aprendizagem
+
+Durante o desenvolvimento deste projeto foram consolidados conhecimentos em:
+
+- Arquitetura Angular
+- Componentização
+- Comunicação entre Componentes
+- Injeção de Dependências
+- Reactive Forms
+- Angular Router
+- Guards
+- Firebase Authentication
+- Firebase Firestore
+- Google Maps API
+- Gerenciamento de Estado
+- UX/UI
+- Responsividade
+- Integração com APIs
+- Boas práticas de organização de projetos Front-End
+
+---
+
+# 💡 Destaques Técnicos
+
+✔ Arquitetura utilizando Standalone Components
+
+✔ Separação da lógica de negócio em Services
+
+✔ Navegação protegida por Auth Guards
+
+✔ Persistência de autenticação
+
+✔ Compressão de imagens utilizando Canvas API
+
+✔ Upload otimizado para Firebase
+
+✔ Interface moderna utilizando Glassmorphism
+
+✔ Integração completa com Google Maps API
+
+✔ Responsividade Mobile First
+
+---
+
+# 🚀 Próximas Melhorias
+
+- Implementação de notificações em tempo real
+- Histórico completo de corridas
+- Avaliação entre passageiros e motoristas
+- Integração com pagamentos
+- Painel administrativo
+- Dashboard com indicadores
+
+---
+
+# 👨‍💻 Desenvolvedor
+
+## Willis Silva Marques
+
+Desenvolvedor Front-End focado na criação de aplicações modernas, responsivas e escaláveis utilizando Angular.
+
+### GitHub
+
+https://github.com/WilMarques05
+
+### LinkedIn
+
+Adicione aqui o link do seu LinkedIn.
+
+---
+
+# ⭐ Caso este projeto tenha sido útil, deixe uma estrela no repositório!
